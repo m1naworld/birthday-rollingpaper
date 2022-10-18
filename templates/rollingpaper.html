@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--    <meta name="viewport" content="width=375px, initial-scale=1.0">-->
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+
+    </svg>
+    <style>
+        @font-face {
+            font-family: 'Cafe24Ssurround';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'S-CoreDream-3Light';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'LeeSeoyun';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            --color-background: #FFF7BB;
+            --color-background-2: #B8E2E8;
+            --color-point-1: #FFA3B5;
+            --color-point-2: #6ED2C4;
+            --color-point-3: #FBEB54;
+            --color-black: 949494;
+            --font-point: Cafe24Ssurround;
+            --font-basic: S-CoreDream-3Light;
+            --font-handwriting: LeeSeoyun;
+
+        }
+
+        body {
+            background-color: var(--color-background);
+        }
+
+        .my-header {
+            height: 150px;
+            background-color: var(--color-background);
+            padding: 130px 100px 100px 100px;
+            display: flex;
+
+        }
+
+        .my-header p {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: gray;
+
+        }
+
+        .bi-list {
+            background-color: var(--color-background);
+            position: absolute;
+            left: 80%;
+        }
+
+        .my-cake {
+            width: 100vw;
+            height: 70vh;
+            background-color: var(--color-background);
+            text-align: center;
+        }
+
+        .menu{
+            display: none;
+        }
+
+        .menu-list {
+            display: inline-block;
+            margin-top: 25%;
+            border-radius: 40px;
+
+            width: 60vW;
+            height: 45vh;
+
+            background-color: var(--color-point-3);
+        }
+
+        .menu-list > p {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--color-point-2);
+
+            margin-top: 20%;
+
+        }
+
+        .menu-list > button {
+            width: 300px;
+
+            background-color: var(--color-background);
+            border: 1px solid var(--color-background);
+            color: var(--color-point-1);
+            font-size: 2rem;
+            font-weight: bold;
+
+            border-radius: 15px;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        .menu-list > button:hover {
+            border: 3px solid white;
+        }
+
+        .my-button {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--color-background);
+        }
+
+        .my-button > p > button {
+
+            width: 300px;
+
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+
+            border-radius: 10px;
+            padding: 10px;
+            margin: 5px;
+
+        }
+
+        .my-button > p > button:hover {
+            border: 3px solid white;
+        }
+
+
+        .con-button {
+            border: 1px solid var(--color-point-1);
+            background-color: var(--color-point-1);
+
+        }
+
+        .make-button {
+            border: 1px solid var(--color-background-2);
+            background-color: var(--color-background-2);
+        }
+
+    </style>
+    <script>
+
+
+
+        function open_list() {
+            $('#menu').show();
+        }
+
+
+    </script>
+</head>
+<body>
+<div class="my-header">
+    <p> ${nickname}님에게 <br/>
+        ${num}명의 축하가 도착했어요!
+    <p>
+        <svg onclick="open_list()" xmlns="http://www.w3.org/2000/svg" width="100" height="90" fill="currentColor"
+             id="bi-list"
+             class="bi bi-list"
+             viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                  d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+        </svg>
+</div>
+
+<div class="my-cake">
+    <div class="menu" id="menu">
+        <div class="menu-list">
+            <p>여러분도!<br/>
+                여러분의 롤링페이퍼를 만들어보세요!</p>
+            <button>나도 만들기</button>
+            <p> 아니면, <br/>
+                이미 있으신가요?</p>
+            <button>내 롤링페이퍼 <br/> 보러가기</button>
+
+        </div>
+    </div>
+</div>
+<div class='my-button'>
+    <p>
+        <button class="con-button">축하하기</button>
+    </p>
+    <p>
+        <button class="make-button">나도 만들기</button>
+    </p>
+</div>
+
+</body>
+</html>

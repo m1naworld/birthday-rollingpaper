@@ -84,7 +84,7 @@
             font-size: 1.7rem;
         }
 
-        .title-container .sign-up-button {
+        .title-container .login-button {
             margin-top: 10px;
             font-family: var(--font-point);
             color: var(--color-point-1);
@@ -96,7 +96,7 @@
         }
 
         .input-container {
-            margin-top: 20vw;
+            margin-top: 12vw;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
@@ -159,6 +159,13 @@
         }
 
     </style>
+    <script>
+        $(function(){
+            $('.login-button').click(function(){
+                location.href ='/login'
+            })
+        })
+    </script>
     <title>Sign in</title>
 </head>
 <body>
@@ -169,6 +176,7 @@
       <div>고마어어어</div>
     </div>
     <p class="sub-title">친구들아 생일 축하 해줄래...?</p>
+      <button class="login-button">로그인 하기</button>
   </div>
   <div class="input-container">
     <div class="id-container">

@@ -38,7 +38,9 @@
         }
 
         body {
-            background-color: var(--color-background);
+            background-image: url("/static/backgroundImg.png");
+            background-repeat: no-repeat;
+            background-size: cover;
             width: 100vw;
             height: 100vh;
 
@@ -57,6 +59,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            background-color: var(--color-background);
         }
 
         .title-container .title {
@@ -64,6 +67,7 @@
             font-size: 5rem;
             margin-bottom: 5px;
             text-align: center;
+
         }
 
         .title-container .title div:nth-child(1) {
@@ -79,6 +83,7 @@
             color: var(--color-black);
             margin-top: 0;
             font-size: 1.7rem;
+            background-color: var(--color-background);
         }
 
         .title-container .sign-up-button {
@@ -97,7 +102,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-
+            background-color: var(--color-background);
         }
 
         .input-container input {

@@ -12,7 +12,7 @@ app.register_blueprint(login, url_prefix="/login")
 app.register_blueprint(cake, url_prefix="/cake")
 app.register_blueprint(messageBP, url_prefix="/message")
 app.register_blueprint(rolling, url_prefix="/rolling")
-app.register_blueprint(sign_up, url_prefix="/sing-up")
+app.register_blueprint(sign_up, url_prefix="/sign-up")
 
 @app.route("/")
 def hello_world():

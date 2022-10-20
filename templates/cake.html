@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        @font-face {
+            font-family: 'Cafe24Ssurround';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+             font-family: 'S-CoreDream-3Light';
+             src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+             font-weight: normal;
+             font-style: normal;
+        }
+        :root {
+            --color-background: #FFF7BB;
+            --color-background-2: #B8E2E8;
+            --color-point-1: #FFA3B5;
+            --color-point-2: #6ED2C4;
+            --color-point-3: #FBEB54;
+            --color-black: #949494;
+            --font-point: Cafe24Ssurround;
+            --font-basic: S-CoreDream-3Light;
+            --font-handwriting: LeeSeoyun;
+        }
+        body{
+            background-image: url("../static/img/backimage.png");
+        }
+        .back {
+            /* background-color: green; */
+            font-family: var(--font-basic);
+            font-size: 43px;
+            margin-top: 43px;
+        }
+        .title {
+            /* background-color: red; */
+            font-family: var(--font-point);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 143px;
+            font-size: 42px;
+        }
+
+        .c_name {
+            height: 50px;
+            font-family: var(--font-basic);
+            font-size: 44px;
+            margin-top: -89px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .button {
+            /* background-color: blue; */
+            margin-top: 144px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn {
+            background-color: var(--color-point-1);
+            border: none;
+            text-align: center;
+            width: 83%;
+            height: 152px;
+            border-radius: 40px;
+            font-family: var(--font-basic);
+            font-size: 62px;
+            box-shadow: 3px 3px 3px black;
+            transition-duration: 0.1s;
+            color: white;
+        }
+        .btn:active {
+            margin-left: 5px;
+            margin-top: 5px;
+            box-shadow: none;
+        }
+        .container {
+          width: 400vw;
+          transition: transform 0.5s;
+        }
+        .inner {
+
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+
+          width: 100vw;
+          float: left;
+        }
+        .inner img {
+          background-color: white;
+          width: 100%;
+          height: 700px;
+          border-radius: 80px;
+        }
+        .b_cake {
+
+          width: 70%;
+          height: 700px;
+        }
+        .prev {
+            font-size: 108px;
+            width: 30px;
+            margin-left: 30px;
+            margin-top: -430px;
+        }
+        .next {
+            font-size: 108px;
+            margin-left: 887px;
+            margin-top: -284px;
+        }
+        .controller {
+            position: absolute;
+            margin-top: 30px;
+        }
+<!--        .next:hover {-->
+<!--            color: var(&#45;&#45;color-point-1);-->
+<!--        }-->
+<!--        .prev:hover {-->
+<!--            color: var(&#45;&#45;color-point-1);-->
+<!--        }-->
+    </style>
+</head>
+<body>
+
+    <div class="back">
+        <p>&nbsp<로그인 화면으로</p>
+    </div>
+
+    <div class="title">
+        <h1>케이크를 선택해주세요!</h1>
+    </div>
+
+<div>
+    <div style="overflow: hidden;" >
+        <div class="container" style="background-color: blue;">
+              <div class="inner">
+                <div class="b_cake"><img src="../static/img/strawberry.png" alt=""><p class="c_name"><b>딸기 케이크</b></p></div>
+              </div>
+            <div class="inner">
+                <div class="b_cake"><img src="../static/img/choco.png" alt=""><p class="c_name"><b>초코 케이크</b></div>
+            </div>
+            <div class="inner">
+                <div class="b_cake"><img src="../static/img/sweetpotato.png" alt=""><p class="c_name"><b>고구마 케이크</b></div>
+            </div>
+            <div class="inner">
+                <div class="b_cake"><img src="../static/img/Halloween.png" alt=""><p class="c_name"><b>할로윈 케이크</b></div>
+            </div>
+        </div>
+    </div>
+      <div class="controller">
+            <p class="prev">&lang;</p>
+            <p class="next">&rang;</p>
+        </div>
+</div>
+
+
+
+    <div class="button">
+        <button class="btn"><b>케이크 선택하기</b></button>
+    </div>
+
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        let count = 0
+        function change() {
+            count ++
+            if(count % 2 != 0){
+                document.getElementById("square1").style.height = "685px";
+                document.getElementById("square1").style.border = "8px solid var(--color-point-1)";
+            }
+            else if(count % 2 == 0){
+                document.getElementById("square1").style.height = "700px";
+                document.getElementById("square1").style.border = "white";
+            }
+        }
+
+        let n_count = 0;
+
+        document.querySelector('.next').addEventListener('click', function(){
+
+            if(n_count == 0){
+              document.querySelector('.container').style.transform = 'translate(-100vw)';
+              n_count = 1;
+            }
+            else if(n_count == 1){
+              document.querySelector('.container').style.transform = 'translate(-200vw)';
+              n_count = 2;
+            }
+            else if(n_count == 2){
+              document.querySelector('.container').style.transform = 'translate(-300vw)';
+              n_count = 3;
+            }
+        })
+
+        document.querySelector('.prev').addEventListener('click', function(){
+            if(n_count == 0){
+                document.querySelector('.container').style.transform = 'translate(+0vw)';
+            }
+            else if(n_count == 1){
+                document.querySelector('.container').style.transform = 'translate(+0vw)';
+                n_count = 0;
+            }
+            else if(n_count == 2){
+                document.querySelector('.container').style.transform = 'translate(-100vw)';
+                n_count = 1;
+            }
+            else if(n_count == 3){
+                document.querySelector('.container').style.transform = 'translate(-200vw)';
+                n_count =2;
+            }
+        })
+
+
+    </script>
+
+

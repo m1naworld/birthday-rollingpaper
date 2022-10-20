@@ -115,6 +115,7 @@ body{
 .msg:focus{
     outline: none;
 }
+
 .submit_name{
     width: 173px;
     height:33px;

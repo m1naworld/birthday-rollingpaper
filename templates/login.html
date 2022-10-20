@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style type="text/css">
+        @font-face {
+            font-family: 'Cafe24Ssurround';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'S-CoreDream-5Light';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'LeeSeoyun';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            --color-background: #FFF7BB;
+            --color-background-2: #B8E2E8;
+            --color-point-1: #FFA3B5;
+            --color-point-2: #6ED2C4;
+            --color-point-3: #FBEB54;
+            --color-black: #949494;
+            --font-point: Cafe24Ssurround;
+            --font-basic: S-CoreDream-3Light;
+            --font-handwriting: LeeSeoyun;
+        }
+
+        body {
+            background-image: url("/static/img/background.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100vw;
+            height: 100vh;
+
+        }
+
+        .login-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .title-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: var(--color-background);
+        }
+
+        .title-container .title {
+            font-family: var(--font-point);
+            font-size: 5rem;
+            margin-bottom: 5px;
+            text-align: center;
+
+        }
+
+        .title-container .title div:nth-child(1) {
+            color: var(--color-point-1);
+        }
+
+        .title-container .title div:nth-child(2) {
+            color: var(--color-point-2);
+        }
+
+        .title-container .sub-title {
+            font-family: var(--font-basic);
+            color: var(--color-black);
+            margin-top: 0;
+            font-size: 1.7rem;
+            background-color: var(--color-background);
+        }
+
+        .title-container .sign-up-button {
+            margin-top: 10px;
+            font-family: var(--font-point);
+            color: var(--color-point-1);
+            padding: 20px 40px 20px 40px;
+            font-size: 1.7rem;
+            border-radius: 3rem;
+            background-color: transparent;
+            border: solid 3px var(--color-point-1);
+        }
+
+        .input-container {
+            margin-top: 20vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: var(--color-background);
+        }
+
+        .input-container input {
+            height: 40px;
+            margin-top: 20px;
+            font-family: var(--font-basic);
+            font-size: 1.5rem;
+            padding: 10px 10px 10px 20px;
+            border: none;
+            border-radius: 1rem;
+            width: 40vw;
+        }
+
+        .input-container input::placeholder {
+            color: var(--color-point-1);
+        }
+
+        .input-container button {
+            margin-top: 50px;
+            width: 40vw;
+            color: white;
+            background-color: var(--color-point-1);
+            border: none;
+            border-radius: 3rem;
+            font-family: var(--font-point);
+            font-size: 2rem;
+            padding: 20px 10px 20px 10px;
+        }
+
+    </style>
+    <script>
+        $(function(){
+            $('.sign-up-button').click(function(){
+                location.href ='/sign-up'
+            })
+        })
+    </script>
+    <title>login</title>
+</head>
+<body>
+<div class="login-container">
+    <div class="title-container">
+        <div class="title">
+            <div>얘두라</div>
+            <div>고마어어어</div>
+        </div>
+        <p class="sub-title">친구들아 생일 축하 해줄래...?</p>
+        <button class="sign-up-button">회원가입 하기</button>
+    </div>
+
+    <div class="input-container">
+        <input type="text" id="id" placeholder="아이디" required>
+        <input type="text" id="password" placeholder="비밀번호" required>
+        <button>내 케이크 보러 가기</button>
+    </div>
+</div>
+</body>
+</html>

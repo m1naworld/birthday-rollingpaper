@@ -12,6 +12,7 @@ messageBP = Blueprint("message", __name__, template_folder="templates")
 def msg():
     return render_template("message.html")
 
+
 @messageBP.route("/save_msg", methods=["GET"])
 def test_fn():
     return jsonify({'msg':'GET 연결 완료!'})

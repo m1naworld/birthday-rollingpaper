@@ -21,11 +21,6 @@ def hello_world():
 @app.route("/message")
 def msg():
     return render_template("message.html")
-#
-# @message.route("/test", methods=["GET"])
-# def test_fn():
-#     return jsonify({'msg':'GET 연결 완료!'})
 
 if __name__ == '__main__':
-    # 초기세팅
     app.run('0.0.0.0', port=5000, debug=True)

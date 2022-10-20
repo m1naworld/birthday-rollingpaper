@@ -116,6 +116,10 @@
             width: 40vw;
         }
 
+          .input-container input:focus {
+              outline: solid 3px var(--color-point-1);
+          }
+
         .input-container input::placeholder {
             color: var(--color-point-1);
         }
@@ -153,11 +157,11 @@
         <button class="sign-up-button">회원가입 하기</button>
     </div>
 
-    <div class="input-container">
-        <input type="text" id="id" placeholder="아이디" required>
-        <input type="text" id="password" placeholder="비밀번호" required>
+    <form method="get" id="login" class="input-container">
+        <input type="id" id="loginId"  placeholder="아이디" required>
+        <input type="password" id="loginPw" placeholder="비밀번호" required>
         <button>내 케이크 보러 가기</button>
-    </div>
+    </form>
 </div>
 </body>
 </html>

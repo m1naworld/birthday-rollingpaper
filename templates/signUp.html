@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style type="text/css">
+        @font-face {
+            font-family: 'Cafe24Ssurround';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'S-CoreDream-5Light';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'LeeSeoyun';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            --color-background: #FFF7BB;
+            --color-background-2: #B8E2E8;
+            --color-point-1: #FFA3B5;
+            --color-point-2: #6ED2C4;
+            --color-point-3: #FBEB54;
+            --color-black: #949494;
+            --font-point: Cafe24Ssurround;
+            --font-basic: S-CoreDream-3Light;
+            --font-handwriting: LeeSeoyun;
+        }
+
+        body {
+             background-image: url("/static/backgroundImg.png");
+             background-repeat: no-repeat;
+            background-size: cover;
+            width: 100vw;
+            height: 100vh;
+
+        }
+
+        .login-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .title-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: var(--color-background);
+        }
+
+        .title-container .title {
+            font-family: var(--font-point);
+            font-size: 5rem;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .title-container .title div:nth-child(1) {
+            color: var(--color-point-1);
+        }
+
+        .title-container .title div:nth-child(2) {
+            color: var(--color-point-2);
+        }
+
+        .title-container .sub-title {
+            font-family: var(--font-basic);
+            color: var(--color-black);
+            margin-top: 0;
+            font-size: 1.7rem;
+        }
+
+        .title-container .login-button {
+            margin-top: 10px;
+            font-family: var(--font-point);
+            color: var(--color-point-1);
+            padding: 20px 40px 20px 40px;
+            font-size: 1.7rem;
+            border-radius: 3rem;
+            background-color: transparent;
+            border: solid 3px var(--color-point-1);
+        }
+
+        .input-container {
+            margin-top: 12vw;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 40vw;
+            background-color: var(--color-background);
+        }
+
+        .input-container input {
+            height: 40px;
+            margin-top: 20px;
+            font-family: var(--font-basic);
+            font-size: 1.5rem;
+            padding: 10px 10px 10px 19px;
+            border: none;
+            border-radius: 1rem;
+            width: 95%;
+        }
+
+        .input-container .id-container{
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+
+        }
+
+        .input-container .id-container .id-input{
+          width: 25vw;
+        }
+
+        .input-container .id-container .id-button{
+            width: 10vw;
+            height: 6vw;
+            color: white;
+            background-color: var(--color-point-2);
+            border: none;
+            border-radius: 2rem;
+            font-family: var(--font-point);
+            font-size: 1rem;
+            padding: 20px 10px 20px 10px;
+            margin-left: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .input-container input::placeholder {
+            color: var(--color-point-1);
+        }
+
+        .submit-button {
+            margin-top: 50px;
+            width: 40vw;
+            color: white;
+            background-color: var(--color-point-1);
+            border: none;
+            border-radius: 3rem;
+            font-family: var(--font-point);
+            font-size: 2rem;
+            padding: 20px 10px 20px 10px;
+        }
+
+    </style>
+    <script>
+        $(function(){
+            $('.login-button').click(function(){
+                location.href ='/login'
+            })
+        })
+    </script>
+    <title>Sign in</title>
+</head>
+<body>
+<div class="login-container">
+  <div class="title-container">
+    <div class="title">
+      <div>얘두라</div>
+      <div>고마어어어</div>
+    </div>
+    <p class="sub-title">친구들아 생일 축하 해줄래...?</p>
+      <button class="login-button">로그인 하기</button>
+  </div>
+  <div class="input-container">
+    <div class="id-container">
+      <input type="text" id="id" class="id-input" placeholder="아이디" required>
+      <button class="id-button">중복 체크</button>
+    </div>
+    <input type="text" id="password" placeholder="비밀번호" required>
+    <input type="text" id="checkPassword" placeholder="비밀번호 확인" required>
+  </div>
+  <button class="submit-button">생일 케이크 만들기</button>
+</div>
+</body>
+</html>

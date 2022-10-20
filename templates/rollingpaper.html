@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+    <style>
+        @font-face {
+            font-family: 'Cafe24Ssurround';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'S-CoreDream-3Light';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'LeeSeoyun';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            --color-background: #FFF7BB;
+            --color-background-2: #B8E2E8;
+            --color-point-1: #FFA3B5;
+            --color-point-2: #6ED2C4;
+            --color-point-3: #FBEB54;
+            --color-black: 949494;
+            --font-point: Cafe24Ssurround;
+            --font-basic: S-CoreDream-3Light;
+            --font-handwriting: LeeSeoyun;
+
+        }
+
+        body {
+            background-image: url("/static/background.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .header {
+            height: 150px;
+            padding: 130px 100px 100px 100px;
+            display: flex;
+
+        }
+
+        .header p {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: gray;
+
+        }
+
+
+        .bi-list {
+            background-color: var(--color-background);
+            position: absolute;
+            left: 80%;
+        }
+
+
+        .rollingpaper-body {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+
+            background-size: 50%;
+            text-align: center;
+        }
+
+        .menu {
+            display: none;
+            width: 100%;
+            height: 70%;
+
+        }
+
+        .menu-list {
+            display: inline-block;
+            margin-top: 13%;
+            border-radius: 40px;
+
+            width: 60%;
+            height: 80%;
+
+
+            background-color: var(--color-point-3);
+        }
+
+        .menu-list > p {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--color-point-2);
+
+        }
+
+        .menu-p1 {
+            margin-top: 30%;
+        }
+
+        .menu-p2 {
+            margin-top: 20%;
+        }
+
+
+        .menu-list > button {
+            width: 300px;
+
+            background-color: var(--color-background);
+            border: 3px solid var(--color-background);
+            color: var(--color-point-1);
+            font-size: 2rem;
+            font-weight: bold;
+
+            border-radius: 15px;
+            padding: 3%;
+            margin: 3%;
+        }
+
+        .menu-list > button:hover {
+            border: 3px solid white;
+        }
+
+
+        .swiper-container {
+            width: 100%;
+            height: 70%;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            display: flex;
+            align-items: center; /* 위아래 기준 중앙정렬 */
+            justify-content: center; /* 좌우 기준 중앙정렬 */
+        }
+
+
+        .cake-img {
+            margin-top: 8%;
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-pagination {
+            width: 80vw;
+            height: 20vh;
+            margin-bottom: 17vh;
+        }
+
+
+        .swiper-pagination-bullet {
+            width: 16px;
+            height: 16px;
+            background: transparent;
+            border: 2px solid pink;
+            opacity: 1;
+        }
+
+        .swiper-pagination-bullet-active {
+            width: 40px;
+            transition: width .5s;
+            border-radius: 5px;
+            background: pink;
+            border: 2px solid transparent;
+        }
+
+
+        .swiper-button-next {
+            background: url(/static/angle-right.png) no-repeat;
+            background-size: 50% auto;
+            position: absolute;
+            left: 85%;
+            top: 30%;
+            width: 200px;
+            height: 200px;
+
+        }
+
+        .swiper-button-prev {
+            background: url(/static/angle-left.png) no-repeat;
+            background-size: 50% auto;
+            position: absolute;
+            right: 60%;
+            top: 30%;
+            width: 200px;
+            height: 200px;
+        }
+
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
+            display: none;
+        }
+
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 20%;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .footer > p > button {
+
+            width: 300px;
+            height: 80px;
+
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+
+            border-radius: 10px;
+            padding: 12px;
+            margin: 3%;
+        }
+
+        .footer > p > button:hover {
+            border: 3px solid white;
+        }
+
+
+        .congratulation-button {
+            border: 1px solid var(--color-point-1);
+            background-color: var(--color-point-1);
+
+        }
+
+        .make-button {
+            border: 1px solid var(--color-background-2);
+            background-color: var(--color-background-2);
+        }
+
+
+    </style>
+    <script>
+
+        $(document).ready(function () {
+
+            var mySwiper = new Swiper('.swiper-container', {
+
+                slidePerView: 1, // 한 슬라이드에 보여줄 갯수
+                spaceBetween: 300,  // 슬라이드 사이 여백
+                centeredSlides: true, // 슬라이드 센터모드
+
+                loop: true,
+                loopAdditionalSlides: 1,
+
+                // effect: "fade",
+                effect: 'slide', // 기본 슬라이드 전환
+                // effect: 'fade' // 희미해지면서 슬라이드 전환
+                // effect: 'cube', // 큐브 형태로 전환
+                // effect: 'coverflow', // 약간의 그림자와 함께 슬라이드를 밀어내며 전환
+                // effect: 'flip', // 카드를 뒤집듯이 전환
+
+
+                // If we need pagination
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                    type: 'bullets',
+                },
+
+
+                // Navigation arrows
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+
+
+            })
+
+        })
+
+
+        function open_list() {
+
+            $('#menu').toggle();
+
+            const display = document.getElementById('menu').style.display;
+            console.log(display)
+
+            if (display === "block") {
+                $('.swiper-container').hide()
+            } else {
+                $('.swiper-container').show()
+            }
+        }
+
+        function close_list() {
+            $('#menu').hide();
+            $('.swiper-container').show();
+
+
+        }
+
+
+    </script>
+</head>
+<body>
+<div class="header">
+    <p> ${nickname}을에게 <br/>
+        ${num}명의 축하가 도착했어요!
+    <p>
+        <svg onclick="open_list()" xmlns="http://www.w3.org/2000/svg" width="100" height="90" fill="currentColor"
+             id="bi-list"
+             class="bi bi-list"
+             viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                  d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+        </svg>
+
+</div>
+
+<div onclick="close_list()" class="rollingpaper-body">
+    <div class="menu" id="menu">
+        <div class="menu-list">
+            <p class="menu-p1">사람들에게<br/>
+                공유하여 편지를 받아보세요!</p>
+            <button>공유하기</button>
+            <p class="menu-p2">--------------</p>
+            <button>새로 만들기</button>
+            <button>삭제하기</button>
+        </div>
+    </div>
+    <div class="swiper-container">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+                <img class="cake-img" src="/static/pumpkin.png">
+            </div>
+            <div class="swiper-slide">
+                <img class="cake-img" src="/static/strawberry.png">
+            </div>
+            <div class="swiper-slide">
+                <img class="cake-img" src="/static/strawberry.png">
+            </div>
+
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+</div>
+<div onclick="close_list()" class="footer">
+    <p>
+        <button class="congratulation-button">공유하기</button>
+    </p>
+    <p>
+        <button class="make-button">마이 페이지</button>
+    </p>
+</div>
+</body>
+</html>
+
+<!--유저가 아닐때! -->
+<!-- <div class="menu-list">-->
+<!--            <p class="menu-p1">여러분도!<br/>-->
+<!--                여러분의 롤링페이퍼를 만들어보세요!</p>-->
+<!--            <button>나도 만들기</button>-->
+<!--            <p class="menu-p2"> 아니면, <br/>-->
+<!--                이미 있으신가요?</p>-->
+<!--            <button>내 롤링페이퍼 <br/> 보러가기</button>-->
+<!--        </div>-->
+
+<!--<p>-->
+<!--        <button class="congratulation-button">축하하기</button>-->
+<!--    </p>-->
+<!--    <p>-->
+<!--        <button class="make-button">나도 만들기</button>-->
+<!--    </p>-->

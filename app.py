@@ -1,24 +1,16 @@
-from flask import Flask, render_template, request, jsonify
-
-from routes.message import messageBP
-
-
+from flask import Flask
+from routes.homework import homework
+from routes.mars import mars
+from routes.message import message
 app = Flask(__name__)
 
-app.register_blueprint(messageBP, url_prefix="/message")
+app.register_blueprint(homework, url_prefix='/homework')
+app.register_blueprint(mars, url_prefix="/mars")
+app.register_blueprint(message, url_prefix="/message")
 
 @app.route("/")
 def hello_world():
     return "hello world"
 
-@app.route("/message")
-def msg():
-    return render_template("message.html")
-#
-# @message.route("/test", methods=["GET"])
-# def test_fn():
-#     return jsonify({'msg':'GET 연결 완료!'})
-
 if __name__ == '__main__':
-    # 초기세팅
-    app.run('0.0.0.0', port=9999, debug=True)
+    app.run('0.0.0.0', port=5002, debug=True)

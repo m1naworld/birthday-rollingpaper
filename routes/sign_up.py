@@ -25,11 +25,11 @@ def check_id():
         print(result == None)
 
         if(result == None):
-            message = "사용 가능한 아이디 입니다."
+            doc = {"message": "사용 가능한 아이디 입니다.", "success": True}
         else:
-            message = "이미 사용 중인 아이디 입니다."
+            doc = {"message": "이미 사용 중인 아이디 입니다.", "success": False}
 
-        return jsonify("message", message)
+        return jsonify(doc)
 
 
 load_dotenv()

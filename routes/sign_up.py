@@ -12,15 +12,18 @@ bcrypt = Bcrypt()
 def question():
     return render_template("signUp.html")
 
+# 회원가입 아이디 중복 확인 API
+@sign_up.route("/check", methods=["GET"])
+def check_id():
+        # 프론트에서 요청: /sign-up/check?id=값
+        user_id = request.args.get('id')
+        print(user_id)
 
-
-@sign_up.route("/check/<id>", methods=["GET"])
-def check_id(id):
-
-        result = db.user.find_one({'user_id': id})
+        result = db.user.find_one({'user_id': user_id})
         print(result)
         print(type(result))
         print(result == None)
+
         if(result == None):
             message = "사용 가능한 아이디 입니다."
         else:
@@ -32,12 +35,14 @@ def check_id(id):
 load_dotenv()
 salt = os.getenv('password_salt')
 
+
+# 회원가입 API
 @sign_up.route("/", methods=["POST"])
 def join():
     print(request.form)
     # user_id = request.form['user_id']
     # password = request.form['password']
-    # print(id)
+    # print(user_id)
     # print(password)
     user_id = "mina" # 임의 지정! 지워주세영!!
     password = "mina"  # 임의 지정! 지워주세영!!

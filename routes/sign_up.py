@@ -7,9 +7,11 @@ from flask_bcrypt import Bcrypt
 sign_up = Blueprint("sign_up", __name__, template_folder="templates")
 
 bcrypt = Bcrypt()
+
 @sign_up.route('/')
 def question():
     return render_template("signUp.html")
+
 
 
 @sign_up.route("/check/<id>", methods=["GET"])
@@ -47,3 +49,4 @@ def join():
     db.user.insert_one({'user_id': user_id, 'password': hashed_password})
 
     return jsonify("message", "회원가입 성공!")
+

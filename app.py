@@ -6,6 +6,9 @@ from routes.login import login
 from routes.rollingpaper import rolling
 from routes.sign_up import sign_up
 
+from flask_jwt_extended import JWTManager
+import os
+
 app = Flask(__name__)
 
 app.register_blueprint(login, url_prefix="/login")
@@ -13,6 +16,10 @@ app.register_blueprint(cake, url_prefix="/cake")
 app.register_blueprint(message, url_prefix="/message")
 app.register_blueprint(rolling, url_prefix="/rolling")
 app.register_blueprint(sign_up, url_prefix="/sign-up")
+
+# jwt 관련
+app.config["JWT_SECRET_KEY"] = os.getenv('JWT_SECRET')
+jwt = JWTManager(app)
 
 @app.route("/")
 def hello_world():

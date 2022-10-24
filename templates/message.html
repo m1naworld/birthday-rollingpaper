@@ -18,6 +18,22 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+<!--    <script>-->
+<!--        function save(){-->
+<!--        let name = $('#msg_name').val()-->
+<!--        let pwd = $('#msg_pw').val()-->
+<!--        let content = $('#msg_content').val()-->
+
+<!--        $.ajax({-->
+<!--        type: "POST",-->
+<!--        url: "/save_msg",-->
+<!--        data: {msg_give: content, nick_give: name, pwd_give: pwd, candle_give: candle_id},-->
+<!--        success: function (response) {-->
+
+<!--            }-->
+<!--        });-->
+<!--    }-->
+<!--    </script>-->
 </head>
 <body>
     <div class="nav_btn">< 이전으로</div>
@@ -42,12 +58,10 @@
                 cols="10" rows="3"
                 placeholder="&#13;&#10;&#13;&#10;따뜻한 메시지를 남겨주세요!&#13;&#10;&#13;&#10;150자 이내"></textarea>
     </div>
-    <form class="submit">
         <input id="msg_name" class="submit_name" type="text" maxlength="9" placeholder="10자 이내로 입력하세요">
         <input id="msg_pw" class="submit_pw" type="password" maxlength="4" placeholder="4자리">
         <div class="submit_btn_section">
-            <button id="submit_btn" type="button" class="btn btn-outline-warning">작성하기</button>
+            <button id="submit_btn" onclick="save_msg()" type="button" class="btn btn-outline-warning">작성하기</button>
         </div>
-    </form>
 </body>
 </html>

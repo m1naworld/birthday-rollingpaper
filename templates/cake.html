@@ -294,24 +294,4 @@ const cakeSelBtn = document.querySelector('.cakeSelBtn');
         console.log('Works!', n_count);
     }
     cakeSelBtn.addEventListener('click', save_cake);
-
-    /*
-    function testIdSave () {
-        let testID = $('#testID').val();
-        let testPW = $('#testPW').val();
-
-        $.ajax({
-                type: "POST",
-                url: "/cake/test",
-                data: {'id_give': testID, 'pw_give': testPW},
-                success: function (response) {
-                    alert(response['msg'])
-                    window.location.reload()
-                }
-            })
-    }
-    const testBtn = document.querySelector('#testBtn');
-    testBtn.addEventListener('click', testIdSave);
-    */
-
     </script>

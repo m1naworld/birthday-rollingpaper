@@ -38,7 +38,7 @@
         }
 
         body {
-             background-image: url("/static/backgroundImg.png");
+             background-image: url("/static/img/background.png");
              background-repeat: no-repeat;
             background-size: cover;
             width: 100vw;
@@ -115,6 +115,10 @@
             width: 95%;
         }
 
+         .input-container input:focus {
+              outline: solid 3px var(--color-point-1);
+          }
+
         .input-container .id-container{
             display: flex;
             justify-content: space-between;
@@ -178,15 +182,16 @@
     <p class="sub-title">친구들아 생일 축하 해줄래...?</p>
       <button class="login-button">로그인 하기</button>
   </div>
-  <div class="input-container">
+  <form  method="get" id="sign-up"  class="input-container">
     <div class="id-container">
-      <input type="text" id="id" class="id-input" placeholder="아이디" required>
+      <input type="id" id="id" class="id-input" placeholder="아이디" required>
       <button class="id-button">중복 체크</button>
     </div>
-    <input type="text" id="password" placeholder="비밀번호" required>
-    <input type="text" id="checkPassword" placeholder="비밀번호 확인" required>
-  </div>
-  <button class="submit-button">생일 케이크 만들기</button>
+    <input type="password" id="password" placeholder="비밀번호" required>
+    <input type="password" id="checkPassword" placeholder="비밀번호 확인" required>
+    <button type="submit" class="submit-button">생일 케이크 만들기</button>
+  </form>
+
 </div>
 </body>
 </html>

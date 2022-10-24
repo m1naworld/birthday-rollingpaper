@@ -242,11 +242,19 @@ const cakeSelBtn = document.querySelector('.cakeSelBtn');
         if(count % 2 != 0){
             document.getElementById("square1").style.height = "685px";
             document.getElementById("square1").style.border = "8px solid var(--color-point-1)";
+<<<<<<< HEAD
         }
         else if(count % 2 == 0){
             document.getElementById("square1").style.height = "700px";
             document.getElementById("square1").style.border = "white";
         }
+=======
+        }
+        else if(count % 2 == 0){
+            document.getElementById("square1").style.height = "700px";
+            document.getElementById("square1").style.border = "white";
+        }
+>>>>>>> 2e15a35748dd77e3fc279b67eb28316235a9cdb7
     }
 
     let n_count = 0;
@@ -275,6 +283,7 @@ const cakeSelBtn = document.querySelector('.cakeSelBtn');
                 cake_location = cake_location + 100;
             }
             document.querySelector('.container').style.transform = `translate(${cake_location}vw)`;
+<<<<<<< HEAD
 
             if(n_count > 0) {n_count--; console.log(n_count, cake_location)}
         })
@@ -294,4 +303,25 @@ const cakeSelBtn = document.querySelector('.cakeSelBtn');
         console.log('Works!', n_count);
     }
     cakeSelBtn.addEventListener('click', save_cake);
+=======
+
+            if(n_count > 0) {n_count--; console.log(n_count, cake_location)}
+        })
+
+    function testGET () {
+        $.ajax({
+                type: "GET",
+                url: "/cake/test",
+                data: {},
+                success: function (response) {
+                    console.log(response)
+                }
+            })
+    }
+
+    function save_cake () {
+        console.log('Works!', n_count);
+    }
+    cakeSelBtn.addEventListener('click', save_cake);
+
     </script>

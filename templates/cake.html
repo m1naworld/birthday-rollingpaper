@@ -17,6 +17,12 @@
              font-weight: normal;
              font-style: normal;
         }
+        @font-face {
+            font-family: 'LeeSeoyun';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
         :root {
             --color-background: #FFF7BB;
             --color-background-2: #B8E2E8;
@@ -29,13 +35,14 @@
             --font-handwriting: LeeSeoyun;
         }
         body{
-            background-image: url("../static/img/backimage.png");
+            background-image: url("/static/img/background.png");
         }
         .back {
             /* background-color: green; */
             font-family: var(--font-basic);
             font-size: 43px;
             margin-top: 43px;
+            margin-left: 20px;
         }
         .title {
             /* background-color: red; */
@@ -44,15 +51,17 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin-top: 143px;
-            font-size: 42px;
+            margin-top: 23px;
+            margin-left: -9px;
+            font-size: 33px;
         }
 
         .c_name {
             height: 50px;
             font-family: var(--font-basic);
             font-size: 44px;
-            margin-top: -89px;
+            margin-top: -61px;
+            margin-left: -200px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -60,13 +69,13 @@
         }
         .button {
             /* background-color: blue; */
-            margin-top: 144px;
+            margin-top: 84px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
         }
-        .btn {
+        .cakeSelBtn {
             background-color: var(--color-point-1);
             border: none;
             text-align: center;
@@ -79,13 +88,14 @@
             transition-duration: 0.1s;
             color: white;
         }
-        .btn:active {
+        .cakeSelBtn:active {
             margin-left: 5px;
             margin-top: 5px;
             box-shadow: none;
         }
         .container {
           width: 400vw;
+          height: 400px;
           transition: transform 0.5s;
         }
         .inner {
@@ -96,46 +106,81 @@
           justify-content: center;
 
           width: 100vw;
+          height: 400px;
           float: left;
         }
         .inner img {
           background-color: white;
-          width: 100%;
-          height: 700px;
+          width: 70%;
+          height: 400px;
           border-radius: 80px;
         }
         .b_cake {
-
-          width: 70%;
-          height: 700px;
+        /* background-color: orange; */
+        width: 70%;
+        height: 400px;
+        margin-left: 200px;
         }
         .prev {
             font-size: 108px;
             width: 30px;
-            margin-left: 30px;
-            margin-top: -430px;
+            margin-left: 102px;
+            margin-top: -319px;
         }
         .next {
             font-size: 108px;
-            margin-left: 887px;
-            margin-top: -284px;
+            margin-left: 845px;
+            margin-top: -280px;
         }
         .controller {
             position: absolute;
             margin-top: 30px;
         }
-<!--        .next:hover {-->
-<!--            color: var(&#45;&#45;color-point-1);-->
-<!--        }-->
-<!--        .prev:hover {-->
-<!--            color: var(&#45;&#45;color-point-1);-->
-<!--        }-->
+        .title2 {
+            font-family: var(--font-point);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 23px;
+            margin-left: -15px;
+            font-size: 33px;
+        }
+        .title3 {
+            font-family: var(--font-point);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 23px;
+            margin-left: 14px;
+            font-size: 33px;
+        }
+        #nick {
+            width: 815px;
+            height: 168px;
+            font-size: 76px;
+            font-family: 'LeeSeoyun';
+            border-radius: 40px;
+            margin-left: 37px;
+            border: none;
+        }
+        #b_day {
+            width: 815px;
+            font-size: 77px;
+            font-family: 'LeeSeoyun';
+            border-radius: 40px;
+            margin-left: 13px;
+            border: none;
+            height: 168px;
+        }
+
     </style>
 </head>
 <body>
 
-    <div class="back">
-        <p>&nbsp<로그인 화면으로</p>
+    <div class="goLogInBtn">
+        <p>&nbsp < 로그인 화면으로</p>
     </div>
 
     <div class="title">
@@ -144,18 +189,18 @@
 
 <div>
     <div style="overflow: hidden;" >
-        <div class="container" style="background-color: blue;">
+        <div class="container">
               <div class="inner">
-                <div class="b_cake"><img src="../static/img/strawberry.png" alt=""><p class="c_name"><b>딸기 케이크</b></p></div>
+                  <div class="b_cake"><img src="/static/img/cake_strawberry.png" alt=""><p class="c_name"><b>딸기 케이크</b></p></div>
               </div>
             <div class="inner">
-                <div class="b_cake"><img src="../static/img/choco.png" alt=""><p class="c_name"><b>초코 케이크</b></div>
+                <div class="b_cake"><img src="/static/img/cake_choco.png" alt=""><p class="c_name"><b>초코 케이크</b></div>
             </div>
             <div class="inner">
-                <div class="b_cake"><img src="../static/img/sweetpotato.png" alt=""><p class="c_name"><b>고구마 케이크</b></div>
+                <div class="b_cake"><img src="/static/img/cake_sweetpotato.png" alt=""><p class="c_name"><b>고구마 케이크</b></div>
             </div>
             <div class="inner">
-                <div class="b_cake"><img src="../static/img/Halloween.png" alt=""><p class="c_name"><b>할로윈 케이크</b></div>
+                <div class="b_cake"><img src="/static/img/cake_halloween.png" alt=""><p class="c_name"><b>할로윈 케이크</b></div>
             </div>
         </div>
     </div>
@@ -165,67 +210,108 @@
         </div>
 </div>
 
-
-
-    <div class="button">
-        <button class="btn"><b>케이크 선택하기</b></button>
+     <div class="title2">
+        <h1>닉네임을 입력해주세요!</h1>
+         <input id="nick" type="text">
     </div>
 
+    <div class="title3" >
+        <h1>생년월일을 입력해주세요!</h1>
+        <input id="b_day" type="date" min="1900-01-01" max="2022-12-31">
+    </div>
+
+    <div class="button">
+        <button class="cakeSelBtn"><b>케이크 선택하기</b></button>
+    </div>
 </body>
 </html>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        let count = 0
-        function change() {
-            count ++
-            if(count % 2 != 0){
-                document.getElementById("square1").style.height = "685px";
-                document.getElementById("square1").style.border = "8px solid var(--color-point-1)";
-            }
-            else if(count % 2 == 0){
-                document.getElementById("square1").style.height = "700px";
-                document.getElementById("square1").style.border = "white";
-            }
+const cakeSelBtn = document.querySelector('.cakeSelBtn');
+
+    function goLogIn () {
+    location.href="http://localhost:5000/login";
+    }
+    document.querySelector('.goLogInBtn').addEventListener("click", goLogIn);
+
+
+    let count = 0
+    function change() {
+        count ++
+        if(count % 2 != 0){
+            document.getElementById("square1").style.height = "685px";
+            document.getElementById("square1").style.border = "8px solid var(--color-point-1)";
+        }
+        else if(count % 2 == 0){
+            document.getElementById("square1").style.height = "700px";
+            document.getElementById("square1").style.border = "white";
+        }
+    }
+
+    let n_count = 0;
+
+    document.querySelector('.next').addEventListener('click', function(){
+        let cake_transform = document.querySelector('.container').style.transform;
+        let cake_location = Number(cake_transform.substr(cake_transform.indexOf('-'), 4));
+        // let temp_location = cake_location;
+        if (cake_location > -300) {
+            cake_location = cake_location - 100;
+            document.querySelector('.container').style.transform = `translate(${cake_location}vw)`;
+        } else if (cake_transform == 'translate(0vw)') {
+            cake_location = -100;
+            document.querySelector('.container').style.transform = `translate(${cake_location}vw)`;
         }
 
-        let n_count = 0;
-
-        document.querySelector('.next').addEventListener('click', function(){
-
-            if(n_count == 0){
-              document.querySelector('.container').style.transform = 'translate(-100vw)';
-              n_count = 1;
-            }
-            else if(n_count == 1){
-              document.querySelector('.container').style.transform = 'translate(-200vw)';
-              n_count = 2;
-            }
-            else if(n_count == 2){
-              document.querySelector('.container').style.transform = 'translate(-300vw)';
-              n_count = 3;
-            }
+        if(n_count < 3) {n_count++;
+            console.log(n_count, cake_location)}
         })
 
         document.querySelector('.prev').addEventListener('click', function(){
-            if(n_count == 0){
-                document.querySelector('.container').style.transform = 'translate(+0vw)';
+            let cake_transform = document.querySelector('.container').style.transform;
+            let cake_location = Number(cake_transform.substr(cake_transform.indexOf('-'), 4));
+            // let temp_location = cake_location;
+            if (cake_location < 0) {
+                cake_location = cake_location + 100;
             }
-            else if(n_count == 1){
-                document.querySelector('.container').style.transform = 'translate(+0vw)';
-                n_count = 0;
-            }
-            else if(n_count == 2){
-                document.querySelector('.container').style.transform = 'translate(-100vw)';
-                n_count = 1;
-            }
-            else if(n_count == 3){
-                document.querySelector('.container').style.transform = 'translate(-200vw)';
-                n_count =2;
-            }
+            document.querySelector('.container').style.transform = `translate(${cake_location}vw)`;
+
+            if(n_count > 0) {n_count--; console.log(n_count, cake_location)}
         })
 
+    function testGET () {
+        $.ajax({
+                type: "GET",
+                url: "/cake/test",
+                data: {},
+                success: function (response) {
+                    console.log(response)
+                }
+            })
+    }
+
+    function save_cake () {
+        console.log('Works!', n_count);
+    }
+    cakeSelBtn.addEventListener('click', save_cake);
+
+    /*
+    function testIdSave () {
+        let testID = $('#testID').val();
+        let testPW = $('#testPW').val();
+
+        $.ajax({
+                type: "POST",
+                url: "/cake/test",
+                data: {'id_give': testID, 'pw_give': testPW},
+                success: function (response) {
+                    alert(response['msg'])
+                    window.location.reload()
+                }
+            })
+    }
+    const testBtn = document.querySelector('#testBtn');
+    testBtn.addEventListener('click', testIdSave);
+    */
 
     </script>
-
-

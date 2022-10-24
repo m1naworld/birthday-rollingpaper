@@ -5,10 +5,8 @@
     <title>카드 페이지</title>
 
     <meta name="viewport" content="width=375px, initial-scale=1.0">
-{#    css, js파일 임포트#}
     <script defer src="/static/main_message.js"></script>
     <link rel="stylesheet" href="/static/style_message.css">
-{#    부트스트랩 임포트#}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -18,22 +16,6 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<!--    <script>-->
-<!--        function save(){-->
-<!--        let name = $('#msg_name').val()-->
-<!--        let pwd = $('#msg_pw').val()-->
-<!--        let content = $('#msg_content').val()-->
-
-<!--        $.ajax({-->
-<!--        type: "POST",-->
-<!--        url: "/save_msg",-->
-<!--        data: {msg_give: content, nick_give: name, pwd_give: pwd, candle_give: candle_id},-->
-<!--        success: function (response) {-->
-
-<!--            }-->
-<!--        });-->
-<!--    }-->
-<!--    </script>-->
 </head>
 <body>
     <div class="nav_btn">< 이전으로</div>
@@ -58,8 +40,14 @@
                 cols="10" rows="3"
                 placeholder="&#13;&#10;&#13;&#10;따뜻한 메시지를 남겨주세요!&#13;&#10;&#13;&#10;150자 이내"></textarea>
     </div>
+
         <input id="msg_name" class="submit_name" type="text" maxlength="9" placeholder="10자 이내로 입력하세요">
         <input id="msg_pw" class="submit_pw" type="password" maxlength="4" placeholder="4자리">
+
+    <form class="submit">
+        <input id="msg_name" class="submit_name" type="text" maxlength="9" placeholder="닉네임">
+        <input id="msg_pw" class="submit_pw" type="password" maxlength="4" placeholder="비밀번호 4자리">
+
         <div class="submit_btn_section">
             <button id="submit_btn" onclick="save_msg()" type="button" class="btn btn-outline-warning">작성하기</button>
         </div>

@@ -17,6 +17,12 @@
              font-weight: normal;
              font-style: normal;
         }
+        @font-face {
+            font-family: 'LeeSeoyun';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
         :root {
             --color-background: #FFF7BB;
             --color-background-2: #B8E2E8;
@@ -36,6 +42,7 @@
             font-family: var(--font-basic);
             font-size: 43px;
             margin-top: 43px;
+            margin-left: 20px;
         }
         .title {
             /* background-color: red; */
@@ -44,15 +51,17 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin-top: 143px;
-            font-size: 42px;
+            margin-top: 23px;
+            margin-left: -9px;
+            font-size: 33px;
         }
 
         .c_name {
             height: 50px;
             font-family: var(--font-basic);
             font-size: 44px;
-            margin-top: -89px;
+            margin-top: -61px;
+            margin-left: -200px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -60,7 +69,7 @@
         }
         .button {
             /* background-color: blue; */
-            margin-top: 144px;
+            margin-top: 84px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -86,6 +95,7 @@
         }
         .container {
           width: 400vw;
+          height: 400px;
           transition: transform 0.5s;
         }
         .inner {
@@ -96,46 +106,81 @@
           justify-content: center;
 
           width: 100vw;
+          height: 400px;
           float: left;
         }
         .inner img {
           background-color: white;
-          width: 100%;
-          height: 700px;
+          width: 70%;
+          height: 400px;
           border-radius: 80px;
         }
         .b_cake {
-
-          width: 70%;
-          height: 700px;
+        /* background-color: orange; */
+        width: 70%;
+        height: 400px;
+        margin-left: 200px;
         }
         .prev {
             font-size: 108px;
             width: 30px;
-            margin-left: 30px;
-            margin-top: -430px;
+            margin-left: 102px;
+            margin-top: -319px;
         }
         .next {
             font-size: 108px;
-            margin-left: 887px;
-            margin-top: -284px;
+            margin-left: 845px;
+            margin-top: -280px;
         }
         .controller {
             position: absolute;
             margin-top: 30px;
         }
-<!--        .next:hover {-->
-<!--            color: var(--color-point-1);-->
-<!--        }-->
-<!--        .prev:hover {-->
-<!--            color: var(--color-point-1);-->
-<!--        }-->
+        .title2 {
+            font-family: var(--font-point);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 23px;
+            margin-left: -15px;
+            font-size: 33px;
+        }
+        .title3 {
+            font-family: var(--font-point);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 23px;
+            margin-left: 14px;
+            font-size: 33px;
+        }
+        #nick {
+            width: 815px;
+            height: 168px;
+            font-size: 76px;
+            font-family: 'LeeSeoyun';
+            border-radius: 40px;
+            margin-left: 37px;
+            border: none;
+        }
+        #b_day {
+            width: 815px;
+            font-size: 77px;
+            font-family: 'LeeSeoyun';
+            border-radius: 40px;
+            margin-left: 13px;
+            border: none;
+            height: 168px;
+        }
+
     </style>
 </head>
 <body>
 
     <div class="back">
-        <p>&nbsp 로그인 화면으로</p>
+        <p>&lang; 이전으로</p>
     </div>
 
     <div class="title">
@@ -144,9 +189,9 @@
 
 <div>
     <div style="overflow: hidden;" >
-        <div class="container" style="background-color: blue;">
+        <div class="container">
               <div class="inner">
-                <div class="b_cake"><img src="/static/img/cake_strawberry.png" alt=""><p class="c_name"><b>딸기 케이크</b></p></div>
+                  <div class="b_cake"><img src="/static/img/cake_strawberry.png" alt=""><p class="c_name"><b>딸기 케이크</b></p></div>
               </div>
             <div class="inner">
                 <div class="b_cake"><img src="/static/img/cake_choco.png" alt=""><p class="c_name"><b>초코 케이크</b></div>
@@ -165,10 +210,18 @@
         </div>
 </div>
 
+     <div class="title2">
+        <h1>닉네임을 입력해주세요!</h1>
+         <input id="nick" type="text">
+    </div>
 
+    <div class="title3" >
+        <h1>생년월일을 입력해주세요!</h1>
+        <input id="b_day" type="date" min="1900-01-01" max="2022-12-31">
+    </div>
 
     <div class="button">
-        <button class="btn"><b>케이크 선택하기</b></button>
+        <button class="btn"><b>케이크 만들기</b></button>
     </div>
 
 </body>
@@ -176,18 +229,6 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        let count = 0
-        function change() {
-            count ++
-            if(count % 2 != 0){
-                document.getElementById("square1").style.height = "685px";
-                document.getElementById("square1").style.border = "8px solid var(--color-point-1)";
-            }
-            else if(count % 2 == 0){
-                document.getElementById("square1").style.height = "700px";
-                document.getElementById("square1").style.border = "white";
-            }
-        }
 
         let n_count = 0;
 
@@ -225,7 +266,4 @@
             }
         })
 
-
     </script>
-
-

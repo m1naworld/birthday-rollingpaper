@@ -156,16 +156,21 @@
                     }),
                     success: function (response, testStatus, xhr) {
                         if (xhr.status == 200) {
-                            return console.log(response)
-                            
+                            window.sessionStorage.setItem('token', response.access_token)
+                            window.sessionStorage.setItem('refresh-token', response.refresh_token)
+                            location.href ='/rolling'
+                            return true
                         } else {
                             alert("there has been some error")
+                            return true
                         }
                     },
                     error: function () {
                         console.error('there is an error!', this.error)
                     }
                 })
+                $('#loginId').val('')
+                $('#loginPw').val('')
             })
         })
 

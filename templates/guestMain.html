@@ -332,31 +332,30 @@
 <body>
 <div class="root">
     <div class="header">
-        <h2> ${nickname}님 에게 <br/>
+        <h2 onclick="open_message()"> ${nickname}님 에게 <br/>
             ${num}명의 축하가 도착했어요!
         </h2>
-<!--        <svg onclick="open_list()" xmlns="http://www.w3.org/2000/svg" width="100" height="90" fill="currentColor"-->
-<!--             id="bi-list"-->
-<!--             class="bi bi-list"-->
-<!--             viewBox="0 0 16 16">-->
-<!--            <path fill-rule="evenodd"-->
-<!--                  d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>-->
-<!--        </svg>-->
+        <!--        <svg onclick="open_list()" xmlns="http://www.w3.org/2000/svg" width="100" height="90" fill="currentColor"-->
+        <!--             id="bi-list"-->
+        <!--             class="bi bi-list"-->
+        <!--             viewBox="0 0 16 16">-->
+        <!--            <path fill-rule="evenodd"-->
+        <!--                  d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>-->
+        <!--        </svg>-->
 
     </div>
 
     <div onclick="close_list()" class="rollingpaper-body">
-
-<!--        <div class="menu" id="menu">-->
-<!--            <div class="menu-list">-->
-<!--                <p class="menu-p1">사람들에게<br/>-->
-<!--                    공유하여 편지를 받아보세요!</p>-->
-<!--                <button>공유하기</button>-->
-<!--                <p class="menu-p2">&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</p>-->
-<!--                <button>새로 만들기</button>-->
-<!--                <button>삭제하기</button>-->
-<!--            </div>-->
-<!--        </div>-->
+        <!--        <div class="menu" id="menu">-->
+        <!--            <div class="menu-list">-->
+        <!--                <p class="menu-p1">여러분도!<br/>-->
+        <!--                    여러분의 롤링페이퍼를 만들어보세요!</p>-->
+        <!--                <button onclick="location.href='/sign-up'">나도 만들기</button>-->
+        <!--                <p class="menu-p2"> 아니면, <br/>-->
+        <!--                    이미 있으신가요?</p>-->
+        <!--                <button onclick="location.href='/login'">내 롤링페이퍼 <br/> 보러가기</button>-->
+        <!--            </div>-->
+        <!--        </div>-->
         <div class="swiper-container">
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
@@ -380,8 +379,10 @@
         </div>
     </div>
     <div onclick="close_list()" class="footer">
-        <button class="congratulation-button">공유하기</button>
-        <button class="make-button">마이 페이지</button>
+
+        <button class="congratulation-button" onclick="location.href='/message'">축하하기</button>
+        <button class="make-button" onclick="location.href='/sign-up'">나도 만들기</button>
+
     </div>
 </div>
 </body>

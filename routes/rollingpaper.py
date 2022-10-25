@@ -20,3 +20,12 @@ def get_rollingpaper(url):
     print(message_count)
 
     return render_template("guestMain.html", mainpage_info=result, message_count=message_count), 200
+
+
+# 롤링 페이지 캔들 정보 get
+@rolling.route('/detail-data/<url>/<rolling_id>')
+def get_candle(url, rolling_id):
+    print(type(rolling_id))
+    message_list = list(db.message.find({'rolling_id': int(rolling_id)}, {'_id': False}))
+    print(message_list)
+    return jsonify({'message_list': message_list}), 200

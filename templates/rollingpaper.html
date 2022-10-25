@@ -49,30 +49,34 @@
 
         body {
             background-image: url("/static/img/background.png");
-            background-repeat: no-repeat;
             background-size: cover;
-            background-attachment: fixed;
+            /*width: 800px;*/
         }
 
+        .root{
+            max-width: 900px;
+        }
         .header {
-            height: 150px;
-            padding: 130px 100px 100px 100px;
-            display: flex;
-
-        }
-
-        .header p {
-            font-size: 2.5rem;
-            font-weight: bold;
+            height: 2%;
+            margin: 15% 0 0 15%;
             color: gray;
+            display: flex;
+            flex-direction: column;
+             /*align-items: center; !* 위아래 기준 중앙정렬 *!*/
+            justify-content: center; /* 좌우 기준 중앙정렬 */
+            position: relative;
 
         }
 
+        .header h2 {
+            font-size: 2rem;
+            font-weight: bold;
+        }
 
         .bi-list {
             background-color: var(--color-background);
             position: absolute;
-            left: 80%;
+            left: 65vw;
         }
 
 
@@ -154,14 +158,16 @@
 
         .cake-img {
             margin-top: 8%;
-            width: 100%;
+            max-width: 900px;
             height: 100%;
         }
 
         .swiper-pagination {
             width: 80vw;
             height: 20vh;
-            margin-bottom: 18vh;
+
+            margin-bottom: 15vh;
+
         }
 
 
@@ -186,7 +192,7 @@
             background: url(/static/img/main_angle-right.png) no-repeat;
             background-size: 50% auto;
             position: absolute;
-            left: 85%;
+            left: 88%;
             top: 30%;
             width: 200px;
             height: 200px;
@@ -222,21 +228,21 @@
 
         }
 
-        .footer > p > button {
+        .footer > button {
 
             width: 300px;
             height: 80px;
 
             color: white;
-            font-size: 2rem;
+            font-size: 30px;
             font-weight: bold;
 
             border-radius: 10px;
             padding: 12px;
-            margin: 3%;
+            margin: 1rem;
         }
 
-        .footer > p > button:hover {
+        .footer > button:hover {
             border: 3px solid white;
         }
 
@@ -296,85 +302,92 @@
 
 
         function open_list() {
-
             $('#menu').toggle();
 
             const display = document.getElementById('menu').style.display;
             console.log(display)
 
             if (display === "block") {
-                $('.swiper-container').hide()
+                $('.swiper-container').hide();
+                $('.footer').hide();
             } else {
-                $('.swiper-container').show()
+                $('.swiper-container').show();
+                $('.footer').show();
             }
         }
 
         function close_list() {
-            $('#menu').hide();
-            $('.swiper-container').show();
+            $('.rollingpaper-body').click(function (e) {
+                let result = e.target.matches('button') // 클릭한 곳의 태그가 button일 때 true
+                console.log(result)
+                if (!result) {
+                    $('#menu').hide();
+                    $('.swiper-container').show();
+                    $('.footer').show();
+                }
 
-
+            })
         }
 
 
     </script>
 </head>
 <body>
-<div class="header">
-    <p> ${nickname}을에게 <br/>
-        ${num}명의 축하가 도착했어요!
-    <p>
-        <svg onclick="open_list()" xmlns="http://www.w3.org/2000/svg" width="100" height="90" fill="currentColor"
-             id="bi-list"
-             class="bi bi-list"
-             viewBox="0 0 16 16">
-            <path fill-rule="evenodd"
-                  d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-        </svg>
+<div class="root">
+    <div class="header">
+        <h2> ${nickname}님 에게 <br/>
+            ${num}명의 축하가 도착했어요!
+        </h2>
+            <svg onclick="open_list()" xmlns="http://www.w3.org/2000/svg" width="100" height="90" fill="currentColor"
+                 id="bi-list"
+                 class="bi bi-list"
+                 viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                      d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+            </svg>
 
-</div>
+    </div>
 
-<div onclick="close_list()" class="rollingpaper-body">
-    <div class="menu" id="menu">
-        <div class="menu-list">
-            <p class="menu-p1">사람들에게<br/>
-                공유하여 편지를 받아보세요!</p>
-            <button>공유 하기</button>
-            <p class="menu-p2">--------------</p>
-            <button>새로 만들기</button>
-            <button>삭제하기</button>
+    <div onclick="close_list()" class="rollingpaper-body">
+        <div class="menu" id="menu">
+            <div class="menu-list">
+                <p class="menu-p1">여러분도!<br/>
+                    여러분의 롤링페이퍼를 만들어보세요!</p>
+                <button onclick="location.href='signUp.html'">나도 만들기</button>
+                <p class="menu-p2"> 아니면, <br/>
+                    이미 있으신가요?</p>
+                <button onclick="location.href='login.html'">내 롤링페이퍼 <br/> 보러가기</button>
+            </div>
+        </div>
+        <div class="swiper-container">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide">
+                    <img class="cake-img" src="/static/img/cake_halloween.png">
+                </div>
+                <div class="swiper-slide">
+                    <img class="cake-img" src="/static/img/cake_strawberry.png">
+                </div>
+                <div class="swiper-slide">
+                    <img class="cake-img" src="/static/img/cake_choco.png">
+                </div>
+                <div class="swiper-slide">
+                    <img class="cake-img" src="/static/img/cake_sweetpotato.png">
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
         </div>
     </div>
-    <div class="swiper-container">
-        <!-- Additional required wrapper -->
-        <div class="swiper-wrapper">
-            <!-- Slides -->
-            <div class="swiper-slide">
-                <img class="cake-img" src="/static/img/cake_halloween.png">
-            </div>
-            <div class="swiper-slide">
-                <img class="cake-img" src="/static/img/cake_strawberry.png">
-            </div>
-            <div class="swiper-slide">
-                <img class="cake-img" src="/static/img/cake_choco.png">
-            </div>
-             <div class="swiper-slide">
-                <img class="cake-img" src="/static/img/cake_sweetpotato.png">
-            </div>
+    <div onclick="close_list()" class="footer">
 
-        </div>
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
+        <button class="congratulation-button" onclick="location.href='message.html'">축하하기</button>
+
+        <button class="make-button" onclick="location.href='signUp.html'">나도 만들기</button>
+
     </div>
-</div>
-<div onclick="close_list()" class="footer">
-    <p>
-        <button class="congratulation-button">공유하기</button>
-    </p>
-    <p>
-        <button class="make-button">마이 페이지</button>
-    </p>
 </div>
 </body>
 </html>
@@ -395,3 +408,22 @@
 <!--    <p>-->
 <!--        <button class="make-button">나도 만들기</button>-->
 <!--    </p>-->
+
+
+<!--유저 일 때-->
+<!--   <div class="menu-list">-->
+<!--            <p class="menu-p1">사람들에게<br/>-->
+<!--                공유하여 편지를 받아보세요!</p>-->
+<!--            <button>공유하기</button>-->
+<!--            <p class="menu-p2">&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</p>-->
+<!--            <button>새로 만들기</button>-->
+<!--            <button>삭제하기</button>-->
+<!--        </div>-->
+
+
+<!--<p>-->
+<!--    <button class="congratulation-button">공유하기</button>-->
+<!--</p>-->
+<!--<p>-->
+<!--    <button class="make-button">마이 페이지</button>-->
+<!--</p>-->

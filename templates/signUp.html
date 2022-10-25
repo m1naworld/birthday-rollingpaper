@@ -226,14 +226,13 @@
                 alert('비밀번호가 일치하지 않습니다');
             }
             else{
-                location.href ='/cake';
                 $.ajax({
                     type: "POST",
                     url: "/sign-up/",
                     data: {user_id : ID, password: pwd},
                     success: function (response) {
-<!--                        window.location.href = "/cake";-->
-                        console.log("response['message']");
+                        console.log("response");
+                        window.location.href = "/cake";
                     }
                 })
             }

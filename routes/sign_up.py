@@ -40,13 +40,6 @@ def join():
     print(user_id)
     print(password)
 
-    # print(request.form)
-    # user_id = request.form['user_id']
-    # password = request.form['password']
-    # print(user_id)
-    # print(password)
-    user_id = "mina"  # 임의 지정! 지워주세영!!
-    password = "minaa"  # 임의 지정! 지워주세영!!
 
     user = db.user.find_one({'user_id': user_id})
 

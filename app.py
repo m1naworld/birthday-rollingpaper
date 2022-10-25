@@ -1,8 +1,8 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template
 
-from routes.message import message
 from routes.cake import cake
 from routes.login import login
+from routes.message import message
 from routes.rollingpaper import rolling
 from routes.sign_up import sign_up
 from routes.mypage import mypage

@@ -206,6 +206,13 @@
             })
         })
 
+        var cakes = [
+            {'cake_id': 0, 'cake_name': 'strawberry' },
+             {'cake_id': 1, 'cake_name': 'choco' },
+             {'cake_id': 2, 'cake_name': 'sweetpotato' },
+             {'cake_id': 3, 'cake_name': 'halloween' },
+        ]
+
         var n_count = 0;
         $(function () {
             $('.next').click(function () {
@@ -240,12 +247,18 @@
 
         {#케이크 선택 한 후 이동#}
         $(function () {
-            $('.cake-choice-btn').click(function () {
+            $('.cakeSelBtn').click(function () {
+                var current_cake = cakes.filter((cake)=>cake.cake_id === n_count)
+                var current_cake_name = current_cake[0]['cake_name']
+                var nickname = $('#nick').val()
+                var birthday = $('#b_day').val()
+
                 {#/cake로 관련 정보 보내기#}
+                {#console.log(current_cake_name, nickname, birthday)#}
                 $.ajax({
                     type: 'POST',
                     url: '/cake',
-                    data: {num_cake: n_count, nickname: 'id_nickname'},
+                    data: {birth: birthday, user_nickname: nickname, cake_id: current_cake_name},
                     success: function (response) {
                         if(response['success']) {
                             alert('선택 완료!')
@@ -253,7 +266,7 @@
                             alert('선택 오류!')
                         }
                     }
-                });
+                 });
                 location.href = '/rolling'
             })
         })
@@ -313,7 +326,6 @@
 
     <div class="button">
         <button class="cakeSelBtn"><b>케이크 선택하기</b></button>
-
     </div>
 </body>
 </html>

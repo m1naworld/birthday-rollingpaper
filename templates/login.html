@@ -67,7 +67,6 @@
             font-size: 5rem;
             margin-bottom: 5px;
             text-align: center;
-
         }
 
         .title-container .title div:nth-child(1) {
@@ -124,7 +123,7 @@
             color: var(--color-point-1);
         }
 
-        .input-container button {
+        .input-container .login-button {
             margin-top: 50px;
             width: 40vw;
             color: white;
@@ -143,6 +142,38 @@
                 location.href ='/sign-up'
             })
         })
+
+        $(function(){
+            $('.login-button').click(function(){
+                $.ajax({
+                    type: "POST",
+                    url: "/login/token",
+                    headers: {'Content-Type': 'application/json'},
+                    data:JSON.stringify({
+                        'user_id': $('#loginId').val(),
+                        'password': $('#loginPw').val(),
+                    }),
+                    success: function (response, testStatus, xhr) {
+                        if (xhr.status == 200) {
+                            window.sessionStorage.setItem('token', response.access_token)
+                            window.sessionStorage.setItem('refresh-token', response.refresh_token)
+                            location.href ='/rolling'
+                        } else {
+                            alert(response['responseJSON']['msg'])
+                            console.log('There has been some error')
+                            return false
+                        }
+                    },
+                    error: function (response) {
+                        alert(response['responseJSON']['msg'])
+                        console.log('there is an error login in!')
+                    }
+                })
+                $('#loginId').val('')
+                $('#loginPw').val('')
+            })
+        })
+
     </script>
     <title>login</title>
 </head>
@@ -157,11 +188,11 @@
         <button class="sign-up-button">회원가입 하기</button>
     </div>
 
-    <form method="get" id="login" class="input-container">
+    <div method="get" id="login" class="input-container">
         <input type="id" id="loginId"  placeholder="아이디" required>
         <input type="password" id="loginPw" placeholder="비밀번호" required>
-        <button>내 케이크 보러 가기</button>
-    </form>
+        <button class="login-button">내 케이크 보러 가기</button>
+    </div>
 </div>
 </body>
 </html>

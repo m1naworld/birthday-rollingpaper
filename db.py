@@ -9,6 +9,5 @@ client = MongoClient(DB, tlsCAFile=certifi.where())
 
 db = client.dbrollingPage
 
-# db.test.insert_one({"user": "미나"})
 print("success")
 

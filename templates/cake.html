@@ -333,12 +333,13 @@
 
 <!--
 
+
     let n_count = 0;
 
     document.querySelector('.next').addEventListener('click', function(){
         let cake_transform = document.querySelector('.container').style.transform;
         let cake_location = Number(cake_transform.substr(cake_transform.indexOf('-'), 4));
-        // let temp_location = cake_location;
+
         if (cake_location > -300) {
             cake_location = cake_location - 100;
             document.querySelector('.container').style.transform = `translate(${cake_location}vw)`;
@@ -348,19 +349,20 @@
         }
 
         if(n_count < 3) {n_count++;
-            console.log(n_count, cake_location)}
-        })
+            }
+    })
 
         document.querySelector('.prev').addEventListener('click', function(){
             let cake_transform = document.querySelector('.container').style.transform;
             let cake_location = Number(cake_transform.substr(cake_transform.indexOf('-'), 4));
-            // let temp_location = cake_location;
+
             if (cake_location < 0) {
                 cake_location = cake_location + 100;
             }
             document.querySelector('.container').style.transform = `translate(${cake_location}vw)`;
-
             if(n_count > 0) {n_count--; console.log(n_count, cake_location)}
         })
 
+
  -->
+

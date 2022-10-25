@@ -169,6 +169,31 @@
                 location.href ='/login'
             })
         })
+
+        function id_check(){
+            let ID = $('#id').val()
+
+            if(ID == ""){
+                alert("아이디를 입력해주세요!");
+            }
+            else{
+                $.ajax({
+                type: "GET",
+                url: "/sign-up/check?id="+ID,
+                data: {id: ID},
+                success: function (response) {
+                    console.log(response);
+                    alert(response['message']);
+
+                    var input = document.getElementById("id");
+                    input.value = null;
+                }
+		    });
+            }
+
+
+        }
+
     </script>
     <title>Sign in</title>
 </head>
@@ -185,7 +210,7 @@
   <form  method="get" id="sign-up"  class="input-container">
     <div class="id-container">
       <input type="id" id="id" class="id-input" placeholder="아이디" required>
-      <button class="id-button">중복 체크</button>
+      <button class="id-button" onclick="id_check()">중복 체크</button>
     </div>
     <input type="password" id="password" placeholder="비밀번호" required>
     <input type="password" id="checkPassword" placeholder="비밀번호 확인" required>

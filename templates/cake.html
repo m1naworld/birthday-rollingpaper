@@ -281,7 +281,7 @@ const cakeSelBtn = document.querySelector('.cakeSelBtn');
             document.querySelector('.container').style.transform = `translate(${cake_location}vw)`;
             if(n_count > 0) {n_count--; console.log(n_count, cake_location)}
         })
-/*  케이크 저장 POST 함수
+
     function save_cake () {
         let nick = $('#nick').val()
         let b_day = $('#b_day').val()
@@ -289,7 +289,7 @@ const cakeSelBtn = document.querySelector('.cakeSelBtn');
         $.ajax({
             type: 'POST',
             url: '/cake/cake',
-            data: {'cake_give': n_count, 'nickname_give': nick, 'birth_give': b_day, 'temp_user': 'test_id4'},
+            data: {'cake_give': n_count, 'nickname_give': nick, 'birth_give': b_day, 'temp_user': temp_user},
             success: function (response) {
                 alert(response['msg'])
                 window.location.reload()
@@ -297,7 +297,7 @@ const cakeSelBtn = document.querySelector('.cakeSelBtn');
         })
     }
 
- */
+
     cakeSelBtn.addEventListener('click', save_cake);
 
     </script>

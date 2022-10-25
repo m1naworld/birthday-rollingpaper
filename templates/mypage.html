@@ -66,9 +66,9 @@
             font-size: 2rem;
             padding: 20px 10px 20px 10px;
         }
-        .header .delete {
+        .header .logout {
             margin-top: 70px;
-            width: 15vw;
+            width: 18vw;
             color: white;
             background-color: var(--color-point-1);
             border: none;
@@ -146,6 +146,30 @@
             display: flex;
             justify-content: center;
         }
+        .delete {
+            margin-top: 13px;
+            margin-left: 71px;
+            width: 13vw;
+            color: white;
+            background-color: #FF465F;
+            border: none;
+            border-radius: 3rem;
+            font-family: var(--font-point);
+            font-size: 2rem;
+            padding: 20px 10px 20px 10px;
+        }
+        .show {
+            margin-top: 13px;
+            margin-left: 16px;
+            width: 14vw;
+            color: white;
+            background-color: #2B63DE;
+            border: none;
+            border-radius: 3rem;
+            font-family: var(--font-point);
+            font-size: 2rem;
+            padding: 20px 10px 20px 10px;
+        }
 
         input + label {
             display: inline-block;
@@ -164,54 +188,63 @@
         }
     </style>
     <script>
+        $(document).ready(function(){
+             $.ajax({
+                type: "GET",
+                url: "/mypage/show",
+                data: {},
+                success: function (response) {
+                    console.log(response['rollings']);
 
+                    let rows = response['rollings']
+                    for(let i=0; i < rows.length; i++){
+                        let birth = rows[i]['birth'];
+                        let nick = rows[i]['user_nickname'];
+                        let cake = rows[i]['cake_id'];
+                        let c_img = 0;
+
+                        if(cake == 'strawberry'){
+                            c_img = "/static/img/cake_strawberry.png";
+                        }
+                        else if(cake == 'choco'){
+                            c_img = "/static/img/cake_choco.png";
+                        }
+                        else if(cake == 'sweetpotato'){
+                            c_img = "/static/img/cake_sweetpotato.png";
+                        }
+                        else if(cake == 'halloween'){
+                            c_img = "/static/img/cake_halloween.png";
+                        }
+
+                        let temp_html = `<div class="cake-card">
+                                            <img src=${c_img}>
+                                            <div class="cake-comment">
+                                                <div class="cake-name">${nick}의</div>
+                                                <div class="cake-name">생일 케이크</div>
+                                                <div class="cake-date">${birth}</div>
+                                            </div>
+                                            <div class="buttons">
+                                                <button class="delete">삭제</button>
+                                                <button class="show">자세히</button>
+                                            </div>
+                                        </div>`
+
+                        $('.card-container').append(temp_html)
+                    }
+                }
+            });
+        });
     </script>
 </head>
 <body>
 <div class="header">
-    <button class="back"><</button>
-    <button class="delete">삭제</button>
+    <button class="back" onclick="window.location.href = '/rolling';"><</button>
+    <button class="logout">로그아웃</button>
 </div>
 <div class="cake-card-container">
     <div class="card-container">
         <div class="new-cake-card">
             <button class="new-cake-button">+</button>
-        </div>
-        <div class="cake-card">
-            <div class="checked-box-container">
-                <input type="checkbox" id="cb1">
-                <label for="cb1"></label>
-            </div>
-            <img src="../static/img/cake_choco.png">
-            <div class="cake-comment">
-                <div class="cake-name">미나의</div>
-                <div class="cake-name">생일 케이크</div>
-                <div class="cake-date">11/30</div>
-            </div>
-        </div>
-        <div class="cake-card">
-            <div class="checked-box-container">
-                <input type="checkbox" id="cb2">
-                <label for="cb2"></label>
-            </div>
-            <img src="../static/img/cake_choco.png">
-            <div class="cake-comment">
-                <div class="cake-name">수빈의</div>
-                <div class="cake-name">생일 케이크</div>
-                <div class="cake-date">02/29</div>
-            </div>
-        </div>
-        <div class="cake-card">
-            <div class="checked-box-container">
-                <input type="checkbox" id="cb3">
-                <label for="cb3"></label>
-            </div>
-            <img src="../static/img/cake_choco.png">
-            <div class="cake-comment">
-                <div class="cake-name">에진의</div>
-                <div class="cake-name">생일 케이크</div>
-                <div class="cake-date">09/08</div>
-            </div>
         </div>
     </div>
 </div>

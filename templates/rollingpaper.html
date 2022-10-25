@@ -227,7 +227,7 @@
 
         }
 
-        .footer > button {
+        .footer > button{
 
             width: 300px;
             height: 80px;
@@ -326,6 +326,19 @@
             })
         }
 
+        // url 복사 함수
+        function clip(){
+            let url = '';
+            const textarea = document.createElement("textarea");
+            document.body.appendChild(textarea);
+            url = window.document.location.href;
+            textarea.value = url;
+            textarea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textarea);
+            alert("링크가 복사되었습니다.")
+        }
+
 
     </script>
 </head>
@@ -380,7 +393,7 @@
         </div>
     </div>
     <div onclick="close_list()" class="footer">
-        <button class="congratulation-button">공유하기</button>
+        <button class="congratulation-button" onclick="clip()">공유하기</button>
         <button class="make-button">마이 페이지</button>
     </div>
 </div>

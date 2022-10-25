@@ -40,12 +40,10 @@ salt = os.getenv('password_salt')
 @sign_up.route("/", methods=["POST"])
 def join():
     print(request.form)
-    # user_id = request.form['user_id']
-    # password = request.form['password']
-    # print(user_id)
-    # print(password)
-    user_id = "mina" # 임의 지정! 지워주세영!!
-    password = "mina"  # 임의 지정! 지워주세영!!
+    user_id = request.form['user_id']
+    password = request.form['password']
+    print(user_id)
+    print(password)
 
     # 비밀번호 해쉬
     hashed_password = bcrypt.generate_password_hash(password, int(salt))

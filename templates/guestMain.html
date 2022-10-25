@@ -361,32 +361,47 @@
 
         })
 
+        // 메뉴바 삭제 고민중
+        // function open_list() {
+        //     $('#menu').toggle();
+        //
+        //     const display = document.getElementById('menu').style.display;
+        //     console.log(display)
+        //
+        //     if (display === "block") {
+        //         $('.swiper-container').hide();
+        //         $('.footer').hide();
+        //     } else {
+        //         $('.swiper-container').show();
+        //         $('.footer').show();
+        //     }
+        // }
 
-        function open_list() {
-            $('#menu').toggle();
+        //  function close_list() {
+        //     $('.rollingpaper-body').click(function (e) {
+        //         let result = e.target.matches('button') // 클릭한 곳의 태그가 button일 때 true
+        //         console.log(result)
+        //         if (!result) {
+        //             $('#menu').hide();
+        //             $('.swiper-container').show();
+        //             $('.footer').show();
+        //         }
+        //
+        //     })
+        // }
 
-            const display = document.getElementById('menu').style.display;
-            console.log(display)
 
-            if (display === "block") {
-                $('.swiper-container').hide();
-                $('.footer').hide();
-            } else {
-                $('.swiper-container').show();
-                $('.footer').show();
-            }
-        }
-
-        function close_list() {
+        function close_message() {
             $('.rollingpaper-body').click(function (e) {
-                let result = e.target.matches('button') // 클릭한 곳의 태그가 button일 때 true
+
+                let result = e.target.getAttribute('class');
                 console.log(result)
-                if (!result) {
-                    $('#menu').hide();
+                if (result != 'candle-img') {
+
+                    $('.message-div').hide();
                     $('.swiper-container').show();
                     $('.footer').show();
                 }
-
             })
         }
 
@@ -405,30 +420,44 @@
                     console.log(response);
                     messageAllData = response['message_list'];
                     console.log(messageAllData);
+                    for (let i = 0; i < messageAllData.length; i++) {
+                        let temp_html = `<img onClick="open_message(${messageAllData[i].message_id})" class="candle-img" src="/static/img/candle_${messageAllData[i].candle_id}.png">`
+                        $('.swiper-slide').append(temp_html)
+                    }
                 }
             })
         })
 
 
+        // function message_modify(num){
+        //      let temp_html = ` <div class="message-detail">
+        //                         <p>FROM. ${result.nickname}</p>
+        //                         <p class="message">${result.content}</p>
+        //
+        //                         <button onclick="message_modify(${num})">수정하기</button>
+        //                     </div>`
+        // }
+
 
         // 캔들 클릭시 메시지 보기
         function open_message(num) {
-        // function open_message() { // 테스트 코드
+            // function open_message() { // 테스트 코드
             $('.swiper-container').hide();
             $('.footer').hide()
-            $('.message-div').show();
+
             console.log("캔들 클릭시 확인" + messageAllData)
             let result = messageAllData.find(m => m['message_id'] === num)
             // let result = messageAllData.find(m => m['message_id'] === 4)
             console.log("메시지 결과 확인" + result)
+//
             let temp_html = ` <div class="message-detail">
                                 <p>FROM. ${result.nickname}</p>
                                 <p class="message">${result.content}</p>
-                                <button onclick="message_modify(num)">수정하기</button>
+<!--                                <button onclick="message_modify(num)">수정하기</button>-->
                             </div>`
-            $('.message-box').append(temp_html)
 
-
+            $('.message-box').html(temp_html);
+            $('.message-div').show();
         }
 
 
@@ -450,9 +479,10 @@
 
     </div>
 
-    <div onclick="close_list()" class="rollingpaper-body">
+    <div onclick="close_message()" class="rollingpaper-body">
         <div class="message-div">
             <div class="message-box">
+
             </div>
         </div>
         <!--        <div class="menu" id="menu">-->
@@ -484,7 +514,7 @@
             <div class="swiper-button-next"></div>
         </div>
     </div>
-    <div onclick="close_list()" class="footer">
+    <div onclick="close_message()" class="footer">
 
         <button class="congratulation-button" onclick="location.href='/message'">축하하기</button>
         <button class="make-button" onclick="location.href='/sign-up'">나도 만들기</button>

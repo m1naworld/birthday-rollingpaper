@@ -242,19 +242,15 @@ const cakeSelBtn = document.querySelector('.cakeSelBtn');
         if(count % 2 != 0){
             document.getElementById("square1").style.height = "685px";
             document.getElementById("square1").style.border = "8px solid var(--color-point-1)";
-<<<<<<< HEAD
         }
         else if(count % 2 == 0){
             document.getElementById("square1").style.height = "700px";
             document.getElementById("square1").style.border = "white";
         }
-=======
-        }
         else if(count % 2 == 0){
             document.getElementById("square1").style.height = "700px";
             document.getElementById("square1").style.border = "white";
         }
->>>>>>> 2e15a35748dd77e3fc279b67eb28316235a9cdb7
     }
 
     let n_count = 0;
@@ -262,7 +258,7 @@ const cakeSelBtn = document.querySelector('.cakeSelBtn');
     document.querySelector('.next').addEventListener('click', function(){
         let cake_transform = document.querySelector('.container').style.transform;
         let cake_location = Number(cake_transform.substr(cake_transform.indexOf('-'), 4));
-        // let temp_location = cake_location;
+
         if (cake_location > -300) {
             cake_location = cake_location - 100;
             document.querySelector('.container').style.transform = `translate(${cake_location}vw)`;
@@ -272,56 +268,36 @@ const cakeSelBtn = document.querySelector('.cakeSelBtn');
         }
 
         if(n_count < 3) {n_count++;
-            console.log(n_count, cake_location)}
-        })
+            }
+    })
 
         document.querySelector('.prev').addEventListener('click', function(){
             let cake_transform = document.querySelector('.container').style.transform;
             let cake_location = Number(cake_transform.substr(cake_transform.indexOf('-'), 4));
-            // let temp_location = cake_location;
+
             if (cake_location < 0) {
                 cake_location = cake_location + 100;
             }
             document.querySelector('.container').style.transform = `translate(${cake_location}vw)`;
-<<<<<<< HEAD
-
             if(n_count > 0) {n_count--; console.log(n_count, cake_location)}
         })
-
-    function testGET () {
-        $.ajax({
-                type: "GET",
-                url: "/cake/test",
-                data: {},
-                success: function (response) {
-                    console.log(response)
-                }
-            })
-    }
-
+/*  케이크 저장 POST 함수
     function save_cake () {
-        console.log('Works!', n_count);
-    }
-    cakeSelBtn.addEventListener('click', save_cake);
-=======
+        let nick = $('#nick').val()
+        let b_day = $('#b_day').val()
 
-            if(n_count > 0) {n_count--; console.log(n_count, cake_location)}
+        $.ajax({
+            type: 'POST',
+            url: '/cake/cake',
+            data: {'cake_give': n_count, 'nickname_give': nick, 'birth_give': b_day, 'temp_user': 'test_id4'},
+            success: function (response) {
+                alert(response['msg'])
+                window.location.reload()
+            }
         })
-
-    function testGET () {
-        $.ajax({
-                type: "GET",
-                url: "/cake/test",
-                data: {},
-                success: function (response) {
-                    console.log(response)
-                }
-            })
     }
 
-    function save_cake () {
-        console.log('Works!', n_count);
-    }
+ */
     cakeSelBtn.addEventListener('click', save_cake);
 
     </script>

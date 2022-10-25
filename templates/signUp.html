@@ -161,14 +161,99 @@
             font-size: 2rem;
             padding: 20px 10px 20px 10px;
         }
+        #check {
+            font-family: var(--font-point);
+            font-size: 27px;
+            margin-top: -14px;
+            margin-left: 9px;
+        }
 
     </style>
     <script>
+        var a =0;
+        var c = 0;
+        let p_check = 0;
         $(function(){
             $('.login-button').click(function(){
                 location.href ='/login'
             })
         })
+
+<!--        아이디 중복체크-->
+        function id_check(){
+            let ID = $('#id').val()
+
+            if(ID == ""){
+                alert("아이디를 입력해주세요!");
+            }
+            else{
+                $.ajax({
+                type: "GET",
+                url: "/sign-up/check?id="+ID,
+                data: {id: ID},
+                success: function (response) {
+                    console.log(response);
+                    alert(response['message']);
+                    a = response['success'];
+                    c = 1;
+                    console.log(a);
+                    if(a == false){
+                        var input = document.getElementById("id");
+                        input.value = null;
+                        }
+                    }
+		        });
+            }
+        }
+
+<!--        아이디, 비밀번호 저장-->
+        function save(){
+            let ID = $('#id').val()
+            let pwd = $('#password').val()
+
+            let regPass = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/;
+            if(c ==0){
+                alert('아이디 중복확인을 해주세요');
+            }
+            else if(ID.length>12){
+                alert('아이디는 12글자 이하만 이용 가능합니다');
+            }
+            else if(pwd.length<6||pwd.length>16){
+                alert('비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다');
+            }
+            else if(!regPass.test(pwd)) alert("영문, 숫자 조합으로 입력해주세요")
+            else if(p_check == 0){
+                alert('비밀번호가 일치하지 않습니다');
+            }
+            else{
+                $.ajax({
+                    type: "POST",
+                    url: "/sign-up/",
+                    data: {user_id : ID, password: pwd},
+                    success: function (response) {
+                        console.log("response");
+                        window.location.href = "/cake";
+                    }
+                })
+            }
+        }
+<!--비밀번호 일치확인-->
+        function check_pw(){
+            let p1 = $('#password').val()
+            let p2 = $('#checkPassword').val()
+
+            if(p1 == p2){
+                $("#check *").remove();
+                $("#check").append('<p style="color:blue;">비밀번호 일치</p>');
+                p_check = 1;
+            }
+            else{
+                $("#check *").remove();
+                $("#check").append('<p style="color:red;">비밀번호 불일치</p>');
+                p_check = 0;
+            }
+        }
+
     </script>
     <title>Sign in</title>
 </head>
@@ -185,11 +270,11 @@
   <form  method="get" id="sign-up"  class="input-container">
     <div class="id-container">
       <input type="id" id="id" class="id-input" placeholder="아이디" required>
-      <button class="id-button">중복 체크</button>
+      <button class="id-button" onclick="id_check()">중복 체크</button>
     </div>
-    <input type="password" id="password" placeholder="비밀번호" required>
-    <input type="password" id="checkPassword" placeholder="비밀번호 확인" required>
-    <button type="submit" class="submit-button">생일 케이크 만들기</button>
+    <input type="password" id="password" onchange="check_pw()" placeholder="비밀번호" required>
+    <td><input type="password" id="checkPassword" onchange="check_pw()" placeholder="비밀번호 확인" required>&nbsp;<span id="check"><p style="color:red;">비밀번호 불일치</p></span></td>
+    <button type="button" class="submit-button" onclick="save()">생일 케이크 만들기</button>
   </form>
 
 </div>

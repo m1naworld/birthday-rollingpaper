@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <title>Mypage</title>
+    <style>
+        @font-face {
+            font-family: 'Cafe24Ssurround';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'S-CoreDream-5Light';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'LeeSeoyun';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            --color-background: #FFF7BB;
+            --color-background-2: #B8E2E8;
+            --color-point-1: #FFA3B5;
+            --color-point-2: #6ED2C4;
+            --color-point-3: #FBEB54;
+            --color-black: #949494;
+            --font-point: Cafe24Ssurround;
+            --font-basic: S-CoreDream-3Light;
+            --font-handwriting: LeeSeoyun;
+        }
+
+        body {
+            background-image: url("/static/img/background.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            margin: 40px;
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+
+        }
+        .header .back {
+            width: 8vw;
+            color: white;
+            background-color: var(--color-point-1);
+            border: none;
+            border-radius: 3rem;
+            font-family: var(--font-point);
+            font-size: 2rem;
+            padding: 20px 10px 20px 10px;
+        }
+        .header .delete {
+            margin-top: 70px;
+            width: 15vw;
+            color: white;
+            background-color: var(--color-point-1);
+            border: none;
+            border-radius: 3rem;
+            font-family: var(--font-point);
+            font-size: 2rem;
+            padding: 20px 10px 20px 10px;
+        }
+        .cake-card-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card-container {
+            margin-top: 30px;
+            width: 90vw;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-auto-rows: 700px;
+            grid-gap: 30px;
+        }
+
+        .card-container .new-cake-card{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: solid 4px var(--color-point-3);
+            background-color: rgba(253, 226, 100, 0.41);
+            border-radius: 10px;
+        }
+
+        .card-container .new-cake-card .new-cake-button {
+            width: 8vw;
+            color: white;
+            background-color: var(--color-point-2);
+            border: none;
+            border-radius: 4rem;
+            font-family: var(--font-basic);
+            font-size: 3rem;
+            padding: 10px;
+        }
+        .card-container .cake-card{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: solid 4px var(--color-point-3);
+            background-color: rgba(253, 226, 100, 0.41);
+            border-radius: 10px;
+        }
+
+        .card-container .cake-card img{
+            width: 100%;
+        }
+
+        .card-container .cake-card .cake-comment {
+            margin-top: -50px;
+            text-align: center;
+        }
+
+        .card-container .cake-card .cake-comment .cake-name {
+            color: var(--color-point-2);
+            font-family: var(--font-point);
+            font-size: 2rem;
+        }
+
+        .card-container .cake-card .cake-comment .cake-date{
+            margin-top: 10px;
+            color: var(--color-point-1);
+            font-family: var(--font-basic);
+            font-size: 2rem;
+        }
+        .checked-box-container {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        input + label {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 3px solid var(--color-point-2);
+            cursor: pointer;
+        }
+
+        input:checked + label {
+            background-color: var(--color-point-2);
+        }
+
+        input {
+            display: none;
+        }
+    </style>
+    <script>
+
+    </script>
+</head>
+<body>
+<div class="header">
+    <button class="back"><</button>
+    <button class="delete">삭제</button>
+</div>
+<div class="cake-card-container">
+    <div class="card-container">
+        <div class="new-cake-card">
+            <button class="new-cake-button">+</button>
+        </div>
+        <div class="cake-card">
+            <div class="checked-box-container">
+                <input type="checkbox" id="cb1">
+                <label for="cb1"></label>
+            </div>
+            <img src="../static/img/cake_choco.png">
+            <div class="cake-comment">
+                <div class="cake-name">미나의</div>
+                <div class="cake-name">생일 케이크</div>
+                <div class="cake-date">11/30</div>
+            </div>
+        </div>
+        <div class="cake-card">
+            <div class="checked-box-container">
+                <input type="checkbox" id="cb2">
+                <label for="cb2"></label>
+            </div>
+            <img src="../static/img/cake_choco.png">
+            <div class="cake-comment">
+                <div class="cake-name">수빈의</div>
+                <div class="cake-name">생일 케이크</div>
+                <div class="cake-date">02/29</div>
+            </div>
+        </div>
+        <div class="cake-card">
+            <div class="checked-box-container">
+                <input type="checkbox" id="cb3">
+                <label for="cb3"></label>
+            </div>
+            <img src="../static/img/cake_choco.png">
+            <div class="cake-comment">
+                <div class="cake-name">에진의</div>
+                <div class="cake-name">생일 케이크</div>
+                <div class="cake-date">09/08</div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

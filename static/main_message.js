@@ -51,33 +51,29 @@
 
 	function save_msg() {
 			console.log(candle_id)
-            let msg = $('#msg_content').val();
-            let name = $('#msg_name').val();
-            let pw = $('#msg_pw').val();
+            let name = $('#msg_name').val()
+            let pwd = $('#msg_pw').val()
+            let content = $('#msg_content').val()
 
 			if (candle_id == "") {
 				alert("전달할 캔들을 선택해주세요");
-			} else if (msg == "") {
+			} else if (content == "") {
 				alert("메시지를 입력해주세요");
 			} else if (name == "") {
 				alert("닉네임을 입력해주세요");
-			} else if (pw == "") {
+			} else if (pwd == "") {
 				alert("비밀번호를 입력해주세요");
 			} else {
 				$.ajax({
-                type: 'POST',
-                url: '/message/save_msg',
-                data: {name_give: name, pw_give: pw, candle_give: candle_id, msg_give: msg},
-                success: function (response) {
-                    alert(response['msg']);
-                    window.location.reload();
-                }
-            });
+                    type: "POST",
+                    url: "/message/save_msg",
+                    data: {msg_give: content, nick_give: name, pwd_give: pwd, candle_give: candle_id},
+                    success: function (response) {
+                        }
+                    });
 			}
 	}
 
-
-	submit_btn.addEventListener("click", save_msg);
 
 
 

@@ -161,11 +161,18 @@
             font-size: 2rem;
             padding: 20px 10px 20px 10px;
         }
+        #check {
+            font-family: var(--font-point);
+            font-size: 27px;
+            margin-top: -14px;
+            margin-left: 9px;
+        }
 
     </style>
     <script>
         var a =0;
         var c = 0;
+        let p_check = 0;
         $(function(){
             $('.login-button').click(function(){
                 location.href ='/login'
@@ -215,6 +222,9 @@
                 alert('비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다');
             }
             else if(!regPass.test(pwd)) alert("영문, 숫자 조합으로 입력해주세요")
+            else if(p_check == 0){
+                alert('비밀번호가 일치하지 않습니다');
+            }
             else{
                 $.ajax({
                     type: "POST",
@@ -224,6 +234,22 @@
                         alert("계정 생성 완료!");
                     }
                 })
+            }
+        }
+
+        function check_pw(){
+            let p1 = $('#password').val()
+            let p2 = $('#checkPassword').val()
+
+            if(p1 == p2){
+                $("#check *").remove();
+                $("#check").append('<p style="color:blue;">비밀번호 일치</p>');
+                p_check = 1;
+            }
+            else{
+                $("#check *").remove();
+                $("#check").append('<p style="color:red;">비밀번호 불일치</p>');
+                p_check = 0;
             }
         }
 
@@ -245,8 +271,8 @@
       <input type="id" id="id" class="id-input" placeholder="아이디" required>
       <button class="id-button" onclick="id_check()">중복 체크</button>
     </div>
-    <input type="password" id="password" placeholder="비밀번호" required>
-    <input type="password" id="checkPassword" placeholder="비밀번호 확인" required>
+    <input type="password" id="password" onchange="check_pw()" placeholder="비밀번호" required>
+    <td><input type="password" id="checkPassword" onchange="check_pw()" placeholder="비밀번호 확인" required>&nbsp;<span id="check"><p style="color:red;">비밀번호 불일치</p></span></td>
     <button type="submit" class="submit-button" onclick="save()">생일 케이크 만들기</button>
   </form>
 

@@ -4,7 +4,7 @@ import os
 from dotenv import load_dotenv
 import bcrypt
 from flask_jwt_extended import (
-    create_access_token, create_refresh_token, jwt_required, get_jwt_identity,
+    create_access_token, unset_jwt_cookies, set_access_cookies
 )
 
 login = Blueprint("login", __name__, template_folder="templates")
@@ -28,7 +28,7 @@ def create_token():
     if not password:
         return jsonify({"msg": "비밀번호를 입력해주세요"}), 400
 
-    user = db.user.find_one({'user_id': user_id}) # 나중에 수정!
+    user = db.user.find_one({'user_id': user_id})
     userId = user['user_id']
     passWord = user['password']
 
@@ -37,7 +37,14 @@ def create_token():
     if user_id != userId or ispasswordcorrect != True:
         return jsonify({'msg': '아이디가 없거나 일치하는 비밀번호가 없습니다'}), 401
 
+    response = jsonify({"msg": "로그인 완료"})
     access_token = create_access_token(identity=user_id)
-    refresh_token = create_refresh_token(identity=user_id)
-    return jsonify(access_token=access_token, refresh_token=refresh_token), 200
+    set_access_cookies(response, access_token)
+    return response, 200
 
+
+@login.route("/tokenout", methods=["POST"])
+def token_out():
+    response = jsonify({"msg": "logout successful"})
+    unset_jwt_cookies(response)
+    return response

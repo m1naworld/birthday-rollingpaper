@@ -241,15 +241,20 @@
 
 <!--        삭제기능-->
         function cakedel(del_num){
-            $.ajax({
-                    type: "POST",
-                    url: "/mypage/delete",
-                    data: {del_num : del_num},
-                    success: function (response) {
-                        console.log(response);
-                        window.location.reload();
-                    }
-                })
+            if(!confirm("정말 삭제하시겠습니까?")){
+
+            }
+            else{
+                $.ajax({
+                        type: "POST",
+                        url: "/mypage/delete",
+                        data: {del_num : del_num},
+                        success: function (response) {
+                            console.log(response);
+                            window.location.reload();
+                        }
+                    })
+                }
         }
 
         function cakeshow(r_id){

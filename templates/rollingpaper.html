@@ -85,7 +85,6 @@
             position: fixed;
             width: 100%;
             height: 100%;
-
             background-size: 50%;
             text-align: center;
         }
@@ -145,32 +144,173 @@
 
 
         .swiper-container {
-            width: 100%;
-            height: 70%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .swiper-slide {
-            text-align: center;
-            display: flex;
-            align-items: center; /* 위아래 기준 중앙정렬 */
-            justify-content: center; /* 좌우 기준 중앙정렬 */
+            position: relative;
         }
 
+        .cake-candle-wrapper{
+            width: 500px;
+        }
 
         .cake-img {
-            margin-top: 8%;
-            max-width: 900px;
-            height: 100%;
+            position: absolute;
+            width: 1000px;
+            margin-top: 20vw;
+            top: 50vw;
+            left: 50vw;
+            transform: translate(-50%, -50%);
         }
+
+        .swiper-slide .candle {
+            position: absolute;
+            width: 50px;
+            z-index: 1;
+        }
+
+        .swiper-slide .nickname {
+            position: absolute;
+            z-index: 2;
+            font-family: var(--font-point);
+            color: white;
+            background-color: var(--color-point-1);
+            font-size: 2rem;
+            padding-left: 10px;
+            padding-right: 10px;
+            border-radius: 10px;
+        }
+
+        .swiper-slide .candle1 {
+            top: 20vw;
+            left: 50vw;
+            transform: translate(-50%, -50%);
+        }
+
+        .swiper-slide .nickname1 {
+            top: 31vw;
+            left: 50vw;
+            transform: translate(-50%, -50%);
+        }
+
+        .swiper-slide .candle2 {
+            top: 46vw;
+            left: 32vw;
+            transform: translate(-50%, -50%);
+        }
+
+        .swiper-slide .nickname2 {
+            top: 58vw;
+            left: 32vw;
+            transform: translate(-50%, -50%);
+        }
+
+        .swiper-slide .candle3 {
+            top: 46vw;
+            left: 44vw;
+            transform: translate(-50%, -50%);
+        }
+
+        .swiper-slide .nickname3 {
+            top: 58vw;
+            left: 44vw;
+            transform: translate(-50%, -50%);
+        }
+
+        .swiper-slide .candle4 {
+            top: 46vw;
+            left: 56vw;
+            transform: translate(-50%, -50%);
+        }
+
+        .swiper-slide .nickname4 {
+            top: 58vw;
+            left: 56vw;
+            transform: translate(-50%, -50%);
+        }
+
+        .swiper-slide .candle5 {
+            top: 46vw;
+            left: 68vw;
+            transform: translate(-50%, -50%);
+        }
+
+         .swiper-slide .nickname5 {
+            top: 58vw;
+            left: 68vw;
+            transform: translate(-50%, -50%);
+        }
+
+        .swiper-slide .candle6 {
+            top: 68vw;
+            left: 23vw;
+            transform: translate(-50%, -50%);
+        }
+
+        .swiper-slide .nickname6 {
+            top: 80vw;
+            left: 23vw;
+            transform: translate(-50%, -50%);
+        }
+
+        .swiper-slide .candle7 {
+            top: 68vw;
+            left: 36vw;
+            transform: translate(-50%, -50%);
+        }
+
+         .swiper-slide .nickname7 {
+            top: 80vw;
+            left: 36vw;
+            transform: translate(-50%, -50%);
+        }
+
+        .swiper-slide .candle8 {
+            top: 68vw;
+            left: 50vw;
+            transform: translate(-50%, -50%);
+        }
+
+        .swiper-slide .nickname8 {
+            top: 80vw;
+            left: 50vw;
+            transform: translate(-50%, -50%);
+        }
+
+        .swiper-slide .candle9 {
+            top: 68vw;
+            left: 63vw;
+            transform: translate(-50%, -50%);
+        }
+
+        .swiper-slide .nickname9 {
+            top: 80vw;
+            left: 63vw;
+            transform: translate(-50%, -50%);
+        }
+
+        .swiper-slide .candle10 {
+            top: 68vw;
+            left: 76vw;
+            transform: translate(-50%, -50%);
+        }
+
+        .swiper-slide .nickname10 {
+            top: 80vw;
+            left: 76vw;
+            transform: translate(-50%, -50%);
+        }
+
+
 
         .swiper-pagination {
             width: 80vw;
             height: 20vh;
-
             margin-bottom: 15vh;
-
         }
-
 
         .swiper-pagination-bullet {
             width: 16px;
@@ -187,7 +327,6 @@
             background: pink;
             border: 2px solid transparent;
         }
-
 
         .swiper-button-next {
             background: url(/static/img/main_angle-right.png) no-repeat;
@@ -214,7 +353,6 @@
         .swiper-button-prev::after {
             display: none;
         }
-
 
         .footer {
             position: absolute;
@@ -247,7 +385,6 @@
             border: 3px solid white;
         }
 
-
         .congratulation-button {
             border: 1px solid var(--color-point-1);
             background-color: var(--color-point-1);
@@ -258,6 +395,8 @@
             border: 1px solid var(--color-background-2);
             background-color: var(--color-background-2);
         }
+
+
     </style>
     <script>
 
@@ -299,7 +438,6 @@
 
         })
 
-
         function open_list() {
             $('#menu').toggle();
 
@@ -315,18 +453,18 @@
             }
         }
 
-        function close_list() {
-            $('.rollingpaper-body').click(function (e) {
-                let result = e.target.matches('button') // 클릭한 곳의 태그가 button일 때 true
-                console.log(result)
-                if (!result) {
-                    $('#menu').hide();
-                    $('.swiper-container').show();
-                    $('.footer').show();
-                }
-
-            })
-        }
+        {#function close_list() {#}
+        {#    $('.rollingpaper-body').click(function (e) {#}
+        {#        let result = e.target.matches('button') // 클릭한 곳의 태그가 button일 때 true#}
+        {#        console.log(result)#}
+        {#        if (!result) {#}
+        {#            $('#menu').hide();#}
+        {#            $('.swiper-container').show();#}
+        {#            $('.footer').show();#}
+        {#        }#}
+        {##}
+        {#    })#}
+        {#}#}
 
         // url 복사 함수
         function clip(){
@@ -342,13 +480,52 @@
         }
 
 
+        // 메세시 수에 따른 캔들과 아이디, 페이지 만들기
+        let messageAllData;
+        // 페이지 렌더링 시 message 데이터 불러오기
+        $(document).ready(function set() {
+            $.ajax({
+                type: "GET",
+                url: "/rolling/detail-data/{{mainpage_info.url}}/{{mainpage_info.rolling_id}}",
+                data: {},
+                success: function (response) {
+                    console.log(response);
+                    messageAllData = response['message_list'];
+                    console.log(messageAllData);
+                    let msgLength = messageAllData.length
+                    let pagesNumber = parseInt(msgLength / 10)+1
+                    console.log(msgLength,pagesNumber)
+                        for (let j = 0; j < pagesNumber; j++) {
+                            let temp_html = `<div class="swiper-slide swiper-slide${j + 1}">
+
+                                                    <div class="cake-candle-wrapper cake-candle-wrapper${j + 1}">
+<img class="cake-img" src="/static/img/cake_{{mainpage_info.cake_id}}.png">
+                                                    </div>
+                                                 </div>`
+                            $('.swiper-wrapper').append(temp_html)
+                        }
+                    for (let i = 0; i < msgLength; i++) {
+
+                         let candlePagesNumber = parseInt(i/10)+1
+                        let candleLocation = (i%10)+1
+                          console.log(candlePagesNumber,candleLocation)
+                        let temp_html = `<img class="candle candle${candleLocation}" src="/static/img/candle_${messageAllData[i].candle_id}.png"/>
+                        <div class="nickname nickname${candleLocation}">${messageAllData[i].nickname}</div>`
+                        $(`.swiper-slide${candlePagesNumber}`).append(temp_html)
+                    }
+
+                }
+            })
+        })
+
+
     </script>
 </head>
 <body>
 <div class="root">
     <div class="header">
-        <h2> ${nickname}님 에게 <br/>
-            ${num}명의 축하가 도착했어요!
+        <h2> {{mainpage_info.user_nickname}}님 에게 <br/>
+            {{message_count}}명의 축하가 도착했어요!
         </h2>
 <!--        <svg onclick="open_list()" xmlns="http://www.w3.org/2000/svg" width="100" height="90" fill="currentColor"-->
 <!--             id="bi-list"-->
@@ -360,7 +537,7 @@
 
     </div>
 
-    <div onclick="close_list()" class="rollingpaper-body">
+    <div  class="rollingpaper-body">
 
 <!--        <div class="menu" id="menu">-->
 <!--            <div class="menu-list">-->
@@ -376,25 +553,48 @@
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
                 <!-- Slides -->
-                <div class="swiper-slide">
-                    <img class="cake-img" src="/static/img/cake_halloween.png">
-                </div>
-                <div class="swiper-slide">
-                    <img class="cake-img" src="/static/img/cake_strawberry.png">
-                </div>
-                <div class="swiper-slide">
-                    <img class="cake-img" src="/static/img/cake_choco.png">
-                </div>
-                <div class="swiper-slide">
-                    <img class="cake-img" src="/static/img/cake_sweetpotato.png">
-                </div>
+{#                <div class="swiper-slide swiper-slide1">#}
+{#                    <div class="cake-candle-wrapper cake-candle-wrapper1">#}
+{#                        <img class="cake-img" src="/static/img/cake_strawberry.png">#}
+{#                        <img class="candle candle1" src="../static/img/candle_purple.png">#}
+{#                        <div class="nickname nickname1">민아</div>#}
+{#                        <img class="candle candle2" src="../static/img/candle_purple.png">#}
+{#                        <div class="nickname nickname2">현정쓰</div>#}
+{#                        <img class="candle candle3" src="../static/img/candle_purple.png">#}
+{#                        <div class="nickname nickname3">안씨</div>#}
+{#                        <img class="candle candle4" src="../static/img/candle_purple.png">#}
+{#                        <div class="nickname nickname4">무결이</div>#}
+{#                        <img class="candle candle5" src="../static/img/candle_purple.png">#}
+{#                        <div class="nickname nickname5">민아쓰</div>#}
+{#                        <img class="candle candle6" src="../static/img/candle_purple.png">#}
+{#                         <div class="nickname nickname6">현정쓰</div>#}
+{#                        <img class="candle candle7" src="../static/img/candle_purple.png">#}
+{#                         <div class="nickname nickname7">안씨</div>#}
+{#                        <img class="candle candle8" src="../static/img/candle_purple.png">#}
+{#                        <div class="nickname nickname8">무결이</div>#}
+{#                        <img class="candle candle9" src="../static/img/candle_purple.png">#}
+{#                         <div class="nickname nickname9">민아쓰</div>#}
+{#                        <img class="candle candle10" src="../static/img/candle_purple.png">#}
+{#                         <div class="nickname nickname10">현정쓰</div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="swiper-slide">#}
+{#                    <img class="cake-img" src="/static/img/cake_strawberry.png">#}
+{#                </div>#}
+{#                <div class="swiper-slide">#}
+{#                    <img class="cake-img" src="/static/img/cake_choco.png">#}
+{#                </div>#}
+{#                <div class="swiper-slide">#}
+{#                    <img class="cake-img" src="/static/img/cake_sweetpotato.png">#}
+{#                </div>#}
+
             </div>
             <div class="swiper-pagination"></div>
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
         </div>
     </div>
-    <div onclick="close_list()" class="footer">
+    <div  class="footer">
         <button class="congratulation-button" onclick="clip()">공유하기</button>
         <button class="make-button">마이 페이지</button>
     </div>

@@ -382,35 +382,6 @@
 
         })
 
-        // 메뉴바 삭제 고민중
-        // function open_list() {
-        //     $('#menu').toggle();
-        //
-        //     const display = document.getElementById('menu').style.display;
-        //     console.log(display)
-        //
-        //     if (display === "block") {
-        //         $('.swiper-container').hide();
-        //         $('.footer').hide();
-        //     } else {
-        //         $('.swiper-container').show();
-        //         $('.footer').show();
-        //     }
-        // }
-
-        //  function close_list() {
-        //     $('.rollingpaper-body').click(function (e) {
-        //         let result = e.target.matches('button') // 클릭한 곳의 태그가 button일 때 true
-        //         console.log(result)
-        //         if (!result) {
-        //             $('#menu').hide();
-        //             $('.swiper-container').show();
-        //             $('.footer').show();
-        //         }
-        //
-        //     })
-        // }
-
 
         // 메시지 창 닫기
         function close_message() {
@@ -436,7 +407,7 @@
         // 페이지 렌더링 시 message 데이터 불러오기
         $(document).ready(function set() {
             console.log(`{{mainpage_info}}`)
-            console.log(`{{mainpage_info.url}}`)
+            console.log(`{{mainpage_info.url}}` + `{{mainpage_info.rolling_id}}`)
             $.ajax({
                 type: "GET",
                 url: "/rolling/detail-data/{{mainpage_info.url}}/{{mainpage_info.rolling_id}}",
@@ -444,9 +415,9 @@
                 success: function (response) {
                     console.log(response);
                     messageAllData = response['message_list'];
-                    console.log(messageAllData);
+                    console.log(messageAllData)
                     for (let i = 0; i < messageAllData.length; i++) {
-                        let temp_html = `<img onClick="open_message(${messageAllData[i].message_id})" class="candle-img" src="/static/img/candle_${messageAllData[i].candle_id}.png">`
+                        let temp_html = `<img class="candle-img" onclick="open_message(${messageAllData[i].message_id})" src="/static/img/candle_${messageAllData[i].candle_id}.png">`
                         $('.swiper-slide').append(temp_html)
                     }
                 }
@@ -462,13 +433,15 @@
                 data: {'message_id': message_id, 'message_content': message_content},
                 success: function (response) {
                     alert(response['message']);
-                    let temp_html = ` <div class="message-detail">
-                                <p>FROM. ${nickname}</p>
-                                <p class="message">${message_content}</p>
-                                <button class="blue-button" id="update" onclick="password_check(${message_id}, \'update'\)">수정하기</button>
-                                <button class="pink-button" id="delete" onclick="password_check(${message_id}, \'delete'\)">삭제하기</button>
-                            </div>`
-                   $('.message-detail').replaceWith(temp_html);
+                    window.location.reload();
+                    // let temp_html = ` <div class="message-detail">
+                    //             <p>FROM. ${nickname}</p>
+                    //             <p class="message">${message_content}</p>
+                    //             <button class="blue-button" id="update" onclick="password_check(${message_id}, \'update'\)">수정하기</button>
+                    //             <button class="pink-button" id="delete" onclick="password_check(${message_id}, \'delete'\)">삭제하기</button>
+                    //         </div>`
+                    // $('.message-detail').replaceWith(temp_html);
+
                 }
             })
         }
@@ -488,53 +461,45 @@
 
         // 메시지 수정 비밀번호 확인 및 수정 데이터 보내기
         function message_update_and_delete(message_id, password, type) {
-            $.ajax({
-                type: "POST",
-                url: "/rolling/message/check",
-                data: {'rolling_id': message_id, 'message_password': password},
-                success: function (response) {
-                    // const success = response['success']
-                    // const success = false;
-                    //    const success = true
-                    // const result = response['result']
-                    // let result = {
-                    //         "message_id": 5,
-                    //         "nickname": "mina",
-                    //         "message_password": "adfslfs",
-                    //         "content": "안뇽안뇽 새잉ㄹ축하",
-                    //         "candle_id": "red",
-                    //         "rolling_id": 4
-                    // }
+            console.log(password);
+            console.log(typeof (password));
+            if (password != '') {
+                $.ajax({
+                    type: "POST",
+                    url: "/rolling/message/check",
+                    data: {'message_id': message_id, 'message_password': password},
+                    success: function (response) {
+                        // const success = response['success'];
+                        // const result = response['data'];
+                        const success = true;
+                        const result = {'rolling_id': 1, 'nickname': '민아!', 'message_password': '$2b$12$0guYCRx098lOVgxOnT47LOnW0lMioBfGnvHlH2opkgiyDFQCy0GE6', 'content': '안녕!', 'candle_id': 'blue', 'message_id': 55}
 
-                    if (success && type === "update") {
-                        // 테스트 코드
-                        console.log("여기2")
-
-                        let temp_html =
-                            ` <div class="message-detail">
+                        if (success && type === "update") {
+                            let temp_html =
+                                ` <div class="message-detail">
                                  <p>FROM. ${result.nickname}</p>
                                  <textarea type='text'id="message-textarea" maxLength = "140" wrap = "hard" cols = "10" rows = "3" >${result.content}</textarea>
                                 <button onclick="message_update_req(${result.message_id}, $('#message-textarea').val(), \'${result.nickname}'\)" class="pink-button" style="margin-top:20px">수정 완료</button>
                             </div>`
-                        $('.message-detail').replaceWith(temp_html);
+                            $('.message-detail').replaceWith(temp_html);
 
-                    } else if (success && type === "delete") {
-                        console.log("여기1")
-                        let temp_html =
-                            ` <div class="message-detail">
+                        } else if (success && type === "delete") {
+                            let temp_html =
+                                ` <div class="message-detail">
                                  <p>FROM. ${result.nickname}</p>
                                  <p class="message">${result.content}</p>
                                 <button onclick="message_delete_req(${result.message_id})" class="pink-button" style="margin-top:20px">삭제하기</button>
                             </div>`
-                        $('.message-detail').replaceWith(temp_html);
+                            $('.message-detail').replaceWith(temp_html);
 
-                    } else { // success가 false일 경우
-                        // alert(response['message']);
-                        alert('비밀번호가 틀렸습니다');
-                        console.log("여기3")
+                        } else { // success가 false일 경우
+                            alert(response['message']);
+                        }
                     }
-                }
-            })
+                })
+            } else {
+                alert("비밀번호를 입력해주세요!")
+            }
 
         }
 
@@ -542,8 +507,9 @@
         function password_check(message_id, type) {
             $('.message').hide();
             let temp_html = ` <div class="message">
-                <input type='text' id="input-password" style='width:80%;height:70px;' placeholder=" 비밀번호"/>
+                <input type='password' id="input-password" style='width:80%;height:70px;' placeholder=" 비밀번호" required/>
                 <button onclick="message_update_and_delete(${message_id}, $('#input-password').val(), \'${type}'\)" class="yellow-button" style="margin-top: 10px">비밀번호 확인</button>
+                </div>
                 </div>`
             $('.message-detail').html(temp_html)
         }

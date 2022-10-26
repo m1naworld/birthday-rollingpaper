@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, jsonify
 from db import db
-
+import bcrypt
 
 cake = Blueprint("cake", __name__, template_folder="templates")
 
@@ -10,17 +10,31 @@ def question():
 
 @cake.route("/cake", methods=["POST"])
 def sel_cake():
-    all_cake = list(db.rollingpaper.find({}, {'_id': False}))
-
     cake_receive = request.form['cake_give']
     nickname_receive = request.form['nickname_give']
     birth_receive = request.form['birth_give']
 
+    all_cake = list(db.rollingpaper.find({}, {'_id': False}))
+    last_cake_num = all_cake.pop()['rolling_id']
+
+    rolling_id = str(int(last_cake_num) + 1)
+
+    print(cake_receive, nickname_receive, birth_receive, rolling_id )
+    # 세션에서 현재 유저 받아오기
     user_id = request.form['temp_user']
-    # 콜렉터 신규 입력시
-    db.rollingpaper.insert_one({'user_id': user_id}, {'$set': {'rolling_id': user_id + int(len(all_cake) + 1)}})
-    db.rollingpaper.insert_one({'user_id': user_id}, {'$set': {'cake_id': cake_receive}})
-    db.rollingpaper.insert_one({'user_id': user_id}, {'$set': {'user_nickname': nickname_receive}})
-    db.rollingpaper.insert_one({'user_id': user_id}, {'$set': {'birth': birth_receive}})
+
+    url = str(bcrypt.hashpw(rolling_id.encode('utf-8'), bcrypt.gensalt()), 'utf-8')
+    # print(bcrypt.hashpw(rolling_id.encode('utf-8'), bcrypt.gensalt()))
+    print(url)
+    doc = {'rolling_id': rolling_id, 'birth': birth_receive, 'user_nickname': nickname_receive,
+           'user_id': user_id, 'cake_id': cake_receive, 'url': url}
+    db.rollingpaper.insert_one(doc)
 
     return jsonify({'msg': '케이크가 만들어졌어요!'})
+#
+# rolling_id = '1234';
+# print(bcrypt.hashpw(rolling_id.encode('utf-8'), bcrypt.gensalt()))
+#
+# bytes = bcrypt.hashpw(rolling_id.encode('utf-8'), bcrypt.gensalt())
+# result = str(bytes, 'utf-8')
+# print(result)

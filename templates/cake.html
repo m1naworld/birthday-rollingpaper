@@ -250,6 +250,7 @@
         })
 
         {#케이크 선택 한 후 이동#}
+
         $(function () {
             $('.cakeSelBtn').click(function () {
                 var current_cake = cakes.filter((cake)=>cake.cake_id === n_count)
@@ -258,22 +259,27 @@
                 var birthday = $('#b_day').val()
 
                 {#/cake로 관련 정보 보내기#}
-                {#console.log(current_cake_name, nickname, birthday)#}
+                console.log(current_cake_name, nickname, birthday)
                 $.ajax({
                     type: 'POST',
                     url: '/cake/cake',
+
+                    data: {birth_give: birthday,
+                        nickname_give: nickname,
+                        cake_give: current_cake_name,
+                        temp_user: 'palbaw5' },
+
                     data: {birth: birthday, user_nickname: nickname, cake_id: current_cake_name},
+
                     success: function (response) {
-                        if(response['success']) {
-                            alert('선택 완료!')
-                        }else{
-                            alert('선택 오류!')
-                        }
+                        alert(response['msg']);
+                        location.href = '/rolling'
                     }
                  });
-                location.href = '/rolling'
             })
         })
+
+
 
     </script>
 </head>
@@ -331,6 +337,7 @@
     <div class="button">
         <button class="cakeSelBtn"><b>케이크 선택하기</b></button>
     </div>
+
 </body>
 </html>
 

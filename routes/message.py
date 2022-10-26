@@ -16,6 +16,7 @@ def test_fn():
 
 @message.route("/save_msg", methods=["POST"])
 def msg_post():
+    rolling_id = 0
     name_receive = request.form['nick_give']
     msg_receive = request.form['msg_give']
     candle_receive = request.form['candle_give']
@@ -26,6 +27,7 @@ def msg_post():
     pw_receive = hashed_password.decode('utf-8')
 
     doc = {
+        'rolling_id' : int(rolling_id)+1,
         'nickname': name_receive,
         'message_password': pw_receive,
         'content': msg_receive,
@@ -34,6 +36,5 @@ def msg_post():
     db.message.insert_one(doc)
 
     return jsonify({'msg':'저장 완료!'})
-
 
 

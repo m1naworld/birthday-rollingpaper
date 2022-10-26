@@ -453,66 +453,97 @@
             })
         })
 
-
         // 메시지 수정 데이터 보내기
-        function message_update_req(message_id, message_content) {
-            console.log(message_id, message_content)
+        function message_update_req(message_id, message_content, nickname) {
+            console.log(message_id, message_content, nickname)
             $.ajax({
                 type: "POST",
                 url: "/rolling/message/update",
                 data: {'message_id': message_id, 'message_content': message_content},
                 success: function (response) {
                     alert(response['message']);
+                    let temp_html = ` <div class="message-detail">
+                                <p>FROM. ${nickname}</p>
+                                <p class="message">${message_content}</p>
+                                <button class="blue-button" id="update" onclick="password_check(${message_id}, \'update'\)">수정하기</button>
+                                <button class="pink-button" id="delete" onclick="password_check(${message_id}, \'delete'\)">삭제하기</button>
+                            </div>`
+                   $('.message-detail').replaceWith(temp_html);
                 }
             })
         }
 
+        // 메시지 삭제 데이터 보내기
+        function message_delete_req(message_id) {
+            $.ajax({
+                type: "POST",
+                url: "/rolling/message/removal",
+                data: {'message_id': message_id},
+                success: function (response) {
+                    alert(response['message']);
+                    window.location.reload();
+                }
+            })
+        }
 
         // 메시지 수정 비밀번호 확인 및 수정 데이터 보내기
-        function password_check(message_id, password) {
+        function message_update_and_delete(message_id, password, type) {
             $.ajax({
                 type: "POST",
                 url: "/rolling/message/check",
                 data: {'rolling_id': message_id, 'message_password': password},
                 success: function (response) {
-                    const success = response['success']
-                    const result = response['result']
+                    // const success = response['success']
+                    // const success = false;
+                    //    const success = true
+                    // const result = response['result']
+                    // let result = {
+                    //         "message_id": 5,
+                    //         "nickname": "mina",
+                    //         "message_password": "adfslfs",
+                    //         "content": "안뇽안뇽 새잉ㄹ축하",
+                    //         "candle_id": "red",
+                    //         "rolling_id": 4
+                    // }
 
-                    // const success = true
-                    if (success) {
+                    if (success && type === "update") {
                         // 테스트 코드
-                        // let result = {
-                        //     "message_id": 5,
-                        //     "nickname": "mina",
-                        //     "message_password": "adfslfs",
-                        //     "content": "안뇽안뇽 새잉ㄹ축하",
-                        //     "candle_id": "red",
-                        //     "rolling_id": 4
-                        // }
+                        console.log("여기2")
+
                         let temp_html =
                             ` <div class="message-detail">
                                  <p>FROM. ${result.nickname}</p>
                                  <textarea type='text'id="message-textarea" maxLength = "140" wrap = "hard" cols = "10" rows = "3" >${result.content}</textarea>
-                                <button onclick="message_update_req(${result.message_id}, $('#message-textarea').val())" class="pink-button" style="margin-top:20px">수정 완료</button>
+                                <button onclick="message_update_req(${result.message_id}, $('#message-textarea').val(), \'${result.nickname}'\)" class="pink-button" style="margin-top:20px">수정 완료</button>
                             </div>`
-
                         $('.message-detail').replaceWith(temp_html);
 
-                    } else {
-                        alert(response['message']);
+                    } else if (success && type === "delete") {
+                        console.log("여기1")
+                        let temp_html =
+                            ` <div class="message-detail">
+                                 <p>FROM. ${result.nickname}</p>
+                                 <p class="message">${result.content}</p>
+                                <button onclick="message_delete_req(${result.message_id})" class="pink-button" style="margin-top:20px">삭제하기</button>
+                            </div>`
+                        $('.message-detail').replaceWith(temp_html);
+
+                    } else { // success가 false일 경우
+                        // alert(response['message']);
+                        alert('비밀번호가 틀렸습니다');
+                        console.log("여기3")
                     }
                 }
             })
 
         }
 
-        // 수정하기
-        function message_modify(message_id) {
+        // 비밀번호 입력 창
+        function password_check(message_id, type) {
             $('.message').hide();
             let temp_html = ` <div class="message">
                 <input type='text' id="input-password" style='width:80%;height:70px;' placeholder=" 비밀번호"/>
-                <button onclick="password_check(${message_id}, $('#input-password').val())" class="yellow-button" style="margin-top: 10px">비밀번호 확인</button>
-<!--                <button onclick="password_check()" class="yellow-button" style="margin-top: 10px">비밀번호 확인</button>-->
+                <button onclick="message_update_and_delete(${message_id}, $('#input-password').val(), \'${type}'\)" class="yellow-button" style="margin-top: 10px">비밀번호 확인</button>
                 </div>`
             $('.message-detail').html(temp_html)
         }
@@ -531,15 +562,13 @@
             let temp_html = ` <div class="message-detail">
                                 <p>FROM. ${result.nickname}</p>
                                 <p class="message">${result.content}</p>
-                                <button class="blue-button" onclick="message_modify(${message_id})">수정하기</button>
+                                <button class="blue-button" id="update" onclick="password_check(${message_id}, \'update'\)">수정하기</button>
+                                <button class="pink-button" id="delete" onclick="password_check(${message_id}, \'delete'\)">삭제하기</button>
                             </div>`
 
             $('.message-box').html(temp_html);
             $('.message-div').show();
         }
-
-        // <button className="blue-button" onClick="message_modify(5)">수정하기</button>
-        // <!--                                <button class="pink-button" onclick="message_modify(${num})">삭제하기</button>-->
 
     </script>
 </head>

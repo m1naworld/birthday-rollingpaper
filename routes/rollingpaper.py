@@ -23,7 +23,7 @@ def get_rollingpaper(url):
     # return render_template("guestMain.html", mainpage_info=result, message_count=message_count), 200
 
     # else: # 토큰 있을 경우
-    return render_template("rollingpaper.html", mainpage_info=result, message_conut=message_count), 200
+    return render_template("rollingpaper.html", mainpage_info=result, message_count=message_count), 200
 
 # 롤링 페이지 캔들 정보 get
 @rolling.route('/detail-data/<url>/<rolling_id>')

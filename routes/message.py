@@ -2,6 +2,8 @@ from flask import Blueprint, render_template, request, jsonify
 
 from db import db
 
+import bcrypt
+
 message = Blueprint("message", __name__, template_folder="templates")
 
 @message.route('/')
@@ -15,10 +17,13 @@ def test_fn():
 @message.route("/save_msg", methods=["POST"])
 def msg_post():
     name_receive = request.form['nick_give']
-    pw_receive = request.form['pwd_give']
     msg_receive = request.form['msg_give']
     candle_receive = request.form['candle_give']
+    pw_receive = request.form['pwd_give']
 
+    pw_receive = pw_receive.encode('utf-8')
+    hashed_password = bcrypt.hashpw(pw_receive, bcrypt.gensalt())
+    pw_receive = hashed_password.decode('utf-8')
 
     doc = {
         'nickname': name_receive,

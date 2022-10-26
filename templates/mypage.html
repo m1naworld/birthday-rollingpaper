@@ -189,6 +189,7 @@
     </style>
     <script>
         $(document).ready(function(){
+        let rows = 0;
              $.ajax({
                 type: "GET",
                 url: "/mypage/show",
@@ -196,8 +197,9 @@
                 success: function (response) {
                     console.log(response['rollings']);
 
-                    let rows = response['rollings']
+                    rows = response['rollings']
                     for(let i=0; i < rows.length; i++){
+                        let r_id = rows[i]['rolling_id'];
                         let birth = rows[i]['birth'];
                         let nick = rows[i]['user_nickname'];
                         let cake = rows[i]['cake_id'];
@@ -224,7 +226,7 @@
                                                 <div class="cake-date">${birth}</div>
                                             </div>
                                             <div class="buttons">
-                                                <button class="delete">삭제</button>
+                                                <button onclick='cakedel(${r_id})'class="delete">삭제</button>
                                                 <button class="show">자세히</button>
                                             </div>
                                         </div>`
@@ -234,17 +236,30 @@
                 }
             });
         });
+
+<!--        삭제기능-->
+        function cakedel(del_num){
+            $.ajax({
+                    type: "POST",
+                    url: "/mypage/delete",
+                    data: {del_num : del_num},
+                    success: function (response) {
+                        console.log(response);
+                        window.location.reload();
+                    }
+                })
+        }
     </script>
 </head>
 <body>
 <div class="header">
-    <button class="back" onclick="window.location.href = '/rolling';"><</button>
+<!--    <button class="back"><</button>-->
     <button class="logout">로그아웃</button>
 </div>
 <div class="cake-card-container">
     <div class="card-container">
         <div class="new-cake-card">
-            <button class="new-cake-button">+</button>
+            <button onclick="window.location.href = '/cake';"class="new-cake-button" >+</button>
         </div>
     </div>
 </div>

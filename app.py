@@ -57,7 +57,7 @@ def protected():
     return jsonify(user_id=user_id), 200
 
 @app.route("/message")
-def msg()
+def msg():
     return render_template("message.html")
 
 if __name__ == '__main__':

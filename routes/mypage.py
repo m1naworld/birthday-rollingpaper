@@ -19,4 +19,12 @@ def cshow():
 
 @mypage.route('/delete', methods=["POST"])
 def cdelete():
-    return render_template("mypage.html")
+
+    del_num = request.form['del_num']
+    del_num = int(del_num)
+
+    print(type(del_num))
+
+    db.rollingpaper.delete_one({'rolling_id': del_num})
+
+    return "삭제가 완료되었습니다"

@@ -11,7 +11,7 @@ from datetime import datetime
 from datetime import timedelta
 from datetime import timezone
 
-from flask_jwt_extended import (JWTManager, get_jwt, create_access_token, get_jwt_identity, set_access_cookies)
+from flask_jwt_extended import (JWTManager, get_jwt, create_access_token, get_jwt_identity, set_access_cookies, jwt_required)
 import os
 
 app = Flask(__name__)
@@ -49,9 +49,15 @@ def refresh_expiring_jwts(response):
     except (RuntimeError, KeyError):
         return response
 
+#페이지별 확인
+@app.route('/protected', methods=['GET'])
+@jwt_required
+def protected():
+    user_id = get_jwt_identity()
+    return jsonify(user_id=user_id), 200
 
 @app.route("/message")
-def msg():
+def msg()
     return render_template("message.html")
 
 if __name__ == '__main__':

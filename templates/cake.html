@@ -261,7 +261,7 @@
                 {#console.log(current_cake_name, nickname, birthday)#}
                 $.ajax({
                     type: 'POST',
-                    url: '/cake',
+                    url: '/cake/cake',
                     data: {birth: birthday, user_nickname: nickname, cake_id: current_cake_name},
                     success: function (response) {
                         if(response['success']) {

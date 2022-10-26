@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Title</title>
 
     <style>
@@ -75,6 +76,9 @@
             align-items: center;
             justify-content: center;
         }
+
+/*         .cake-choice-btn { */
+
         .cakeSelBtn {
             background-color: var(--color-point-1);
             border: none;
@@ -88,6 +92,9 @@
             transition-duration: 0.1s;
             color: white;
         }
+
+/*         .cake-choice-btn:active { */
+
         .cakeSelBtn:active {
             margin-left: 5px;
             margin-top: 5px;
@@ -176,11 +183,109 @@
         }
 
     </style>
+    <script>
+        $(function () {
+
+        })
+
+        {#로그인 화면으로 이동#}
+        $(function(){
+            $('.back-text').click(function(){
+                location.href ='/login'
+            })
+        })
+
+        {#슬라이드 관련 함수#}
+        var count = 0
+        $(function () {
+            $(function change() {
+                count++
+                if (count % 2 != 0) {
+                    $('#square1').attr('style', 'height: 685px')
+                    $('#square1').attr('style', 'border: 8px solid var(--color-point-1)')
+                } else if (count % 2 == 0) {
+                    $('#square1').attr('style', 'height: 700px')
+                    $('#square1').attr('style', 'border: white')
+                }
+            })
+        })
+
+        var cakes = [
+            {'cake_id': 0, 'cake_name': 'strawberry' },
+             {'cake_id': 1, 'cake_name': 'choco' },
+             {'cake_id': 2, 'cake_name': 'sweetpotato' },
+             {'cake_id': 3, 'cake_name': 'halloween' },
+        ]
+
+        var n_count = 0;
+        $(function () {
+            $('.next').click(function () {
+                if (n_count == 0) {
+                    $('.container').attr('style', 'transform: translate(-100vw)');
+                    n_count = 1;
+                } else if (n_count == 1) {
+                    $('.container').attr('style', 'transform: translate(-200vw)');
+                    n_count = 2;
+                } else if (n_count == 2) {
+                    $('.container').attr('style', 'transform: translate(-300vw)');
+                    n_count = 3;
+                }
+            })
+        })
+        $(function () {
+            $('.prev').click(function () {
+                if (n_count == 0) {
+                    $('.container').attr('style', 'transform: translate(+0vw)');
+                } else if (n_count == 1) {
+                    $('.container').attr('style', 'transform: translate(+0vw)');
+                    n_count = 0;
+                } else if (n_count == 2) {
+                    $('.container').attr('style', 'transform: translate(-100vw)');
+                    n_count = 1;
+                } else if (n_count == 3) {
+                    $('.container').attr('style', 'transform: translate(-200vw)');
+                    n_count = 2;
+                }
+            })
+        })
+
+        {#케이크 선택 한 후 이동#}
+        $(function () {
+            $('.cakeSelBtn').click(function () {
+                var current_cake = cakes.filter((cake)=>cake.cake_id === n_count)
+                var current_cake_name = current_cake[0]['cake_name']
+                var nickname = $('#nick').val()
+                var birthday = $('#b_day').val()
+
+                {#/cake로 관련 정보 보내기#}
+                {#console.log(current_cake_name, nickname, birthday)#}
+                $.ajax({
+                    type: 'POST',
+                    url: '/cake',
+                    data: {birth: birthday, user_nickname: nickname, cake_id: current_cake_name},
+                    success: function (response) {
+                        if(response['success']) {
+                            alert('선택 완료!')
+                        }else{
+                            alert('선택 오류!')
+                        }
+                    }
+                 });
+                location.href = '/rolling'
+            })
+        })
+
+    </script>
 </head>
 <body>
 
+
+<!--     <div class="back">
+        <p class="back-text">&nbsp 로그인 화면으로</p> -->
+
     <div class="goLogInBtn">
         <p>&nbsp < 로그인 화면으로</p>
+
     </div>
 
     <div class="title">
@@ -191,16 +296,20 @@
     <div style="overflow: hidden;" >
         <div class="container">
               <div class="inner">
+
+<!--                 <div class="b_cake choice1"><img src="/static/img/cake_strawberry.png" alt=""><p class="c_name"><b>딸기 케이크</b></p></div> -->
+
                   <div class="b_cake"><img src="/static/img/cake_strawberry.png" alt=""><p class="c_name"><b>딸기 케이크</b></p></div>
+
               </div>
             <div class="inner">
-                <div class="b_cake"><img src="/static/img/cake_choco.png" alt=""><p class="c_name"><b>초코 케이크</b></div>
+                <div class="b_cake choice2"><img src="/static/img/cake_choco.png" alt=""><p class="c_name"><b>초코 케이크</b></div>
             </div>
             <div class="inner">
-                <div class="b_cake"><img src="/static/img/cake_sweetpotato.png" alt=""><p class="c_name"><b>고구마 케이크</b></div>
+                <div class="b_cake choice3"><img src="/static/img/cake_sweetpotato.png" alt=""><p class="c_name"><b>고구마 케이크</b></div>
             </div>
             <div class="inner">
-                <div class="b_cake"><img src="/static/img/cake_halloween.png" alt=""><p class="c_name"><b>할로윈 케이크</b></div>
+                <div class="b_cake choice4"><img src="/static/img/cake_halloween.png" alt=""><p class="c_name"><b>할로윈 케이크</b></div>
             </div>
         </div>
     </div>
@@ -209,7 +318,6 @@
             <p class="next">&rang;</p>
         </div>
 </div>
-
      <div class="title2">
         <h1>닉네임을 입력해주세요!</h1>
          <input id="nick" type="text">
@@ -226,35 +334,16 @@
 </body>
 </html>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-const cakeSelBtn = document.querySelector('.cakeSelBtn');
 
-    function goLogIn () {
-    location.href="http://localhost:5000/login";
-    }
-    document.querySelector('.goLogInBtn').addEventListener("click", goLogIn);
+<!--
 
-
-    let count = 0
-    function change() {
-        count ++
-        if(count % 2 != 0){
-            document.getElementById("square1").style.height = "685px";
-            document.getElementById("square1").style.border = "8px solid var(--color-point-1)";
-        }
-        else if(count % 2 == 0){
-            document.getElementById("square1").style.height = "700px";
-            document.getElementById("square1").style.border = "white";
-        }
-    }
 
     let n_count = 0;
 
     document.querySelector('.next').addEventListener('click', function(){
         let cake_transform = document.querySelector('.container').style.transform;
         let cake_location = Number(cake_transform.substr(cake_transform.indexOf('-'), 4));
-        // let temp_location = cake_location;
+
         if (cake_location > -300) {
             cake_location = cake_location - 100;
             document.querySelector('.container').style.transform = `translate(${cake_location}vw)`;
@@ -264,53 +353,20 @@ const cakeSelBtn = document.querySelector('.cakeSelBtn');
         }
 
         if(n_count < 3) {n_count++;
-            console.log(n_count, cake_location)}
-        })
+            }
+    })
 
         document.querySelector('.prev').addEventListener('click', function(){
             let cake_transform = document.querySelector('.container').style.transform;
             let cake_location = Number(cake_transform.substr(cake_transform.indexOf('-'), 4));
-            // let temp_location = cake_location;
+
             if (cake_location < 0) {
                 cake_location = cake_location + 100;
             }
             document.querySelector('.container').style.transform = `translate(${cake_location}vw)`;
-
             if(n_count > 0) {n_count--; console.log(n_count, cake_location)}
         })
 
-    function testGET () {
-        $.ajax({
-                type: "GET",
-                url: "/cake/test",
-                data: {},
-                success: function (response) {
-                    console.log(response)
-                }
-            })
-    }
 
-    function save_cake () {
-        console.log('Works!', n_count);
-    }
-    cakeSelBtn.addEventListener('click', save_cake);
-    /*
-    function testIdSave () {
-        let testID = $('#testID').val();
-        let testPW = $('#testPW').val();
+ -->
 
-        $.ajax({
-                type: "POST",
-                url: "/cake/test",
-                data: {'id_give': testID, 'pw_give': testPW},
-                success: function (response) {
-                    alert(response['msg'])
-                    window.location.reload()
-                }
-            })
-    }
-    const testBtn = document.querySelector('#testBtn');
-    testBtn.addEventListener('click', testIdSave);
-    */
-
-    </script>

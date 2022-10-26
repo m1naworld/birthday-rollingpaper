@@ -65,3 +65,4 @@ def message_delete():
     db.message.delete_one({'message_id': int(message_id_receive)})
 
     return jsonify({'message': '삭제 완료!'}), 200
+

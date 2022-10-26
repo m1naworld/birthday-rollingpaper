@@ -33,13 +33,13 @@ def check_id():
 # 회원가입 API
 @sign_up.route("/", methods=["POST"])
 def join():
-    # print(request.form)
-    # user_id = request.form['user_id']
-    # password = request.form['password']
-    # print(user_id)
-    # print(password)
-    user_id = "mina"  # 임의 지정! 지워주세영!!
-    password = "minaa"  # 임의 지정! 지워주세영!!
+
+    print(request.form)
+    user_id = request.form['user_id']
+    password = request.form['password']
+    print(user_id)
+    print(password)
+
 
     user = db.user.find_one({'user_id': user_id})
 
@@ -59,6 +59,7 @@ def join():
 
         # DB 저장
         db.user.insert_one({'user_id': user_id, 'password': insert_password_hash})
+
 
         # 프론트에서 받아온 값과 DB조회 비밀번호 값 일치 확인
         # print(bcrypt.checkpw(password, insert_password_hash.encode('utf-8')))

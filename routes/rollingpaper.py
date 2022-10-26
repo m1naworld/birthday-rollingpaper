@@ -11,8 +11,8 @@ def get_rollingpaper(url):
     print(url)
 
     # test 주석
-    result = {'url': 'mina', 'rolling_id': 4, 'user_nickname': "mina", "cake_id": "choco"}
-    message_count = db.message.count_documents({'rolling_id': 4})
+    result = {'url': 'mina', 'rolling_id': 1, 'user_nickname': "mina", "cake_id": "choco"}
+    message_count = db.message.count_documents({'rolling_id': 1})
 
     # result = db.rollingpaper.find_one({'url': url})
     # message_count = db.message.count_documents({'rolling_id': result['rolling_id']})
@@ -21,10 +21,10 @@ def get_rollingpaper(url):
     print(message_count)
 
     # if(# 토큰 없을 경우 ):
-    # return render_template("guestMain.html", mainpage_info=result, message_count=message_count), 200
+    return render_template("guestMain.html", mainpage_info=result, message_count=message_count), 200
 
     # else: # 토큰 있을 경우
-    return render_template("rollingpaper.html", mainpage_info=result, message_count=message_count), 200
+    # return render_template("rollingpaper.html", mainpage_info=result, message_count=message_count), 200
 
 # 롤링 페이지 캔들 정보 get
 @rolling.route('/detail-data/<url>/<rolling_id>')
@@ -36,24 +36,24 @@ def get_candle(url, rolling_id):
 
 
 # 메시지 비밀번호 확인
-# @rolling.route('/message/check', methods=['POST'])
-# def check_message_password():
-    # password = request.form['password']
-    # rolling_id = request.form['rolling_id']
-    #
-    # rows = db.message.find_one({'rolling_id': rolling_id})
+@rolling.route('/message/check', methods=['POST'])
+def check_message_password():
+    password = request.form['message_password']
+    message_id = request.form['message_id']
+
+    data = db.message.find_one({'message_id': int(message_id)}, {'_id': False})
     # data = db.rollingpaper.find_one({'rolling_id': rolling_id})
-    #
-    # password2 = rows['message_password'];
-    #
-    # if bcrypt.checkpw(password.encode('utf-8'), password2.encode('utf-8')):
-    #     success = True
-    #     message = '비밀번호 일치'
-    # else:
-    #     success = False
-    #     message = '비밀번호 일치하지 않음'
-    #
-    # return jsonify({'success': success, 'message': message, 'data': data})
+
+    password2 = data['message_password']
+
+    if bcrypt.checkpw(password.encode('utf-8'), password2.encode('utf-8')):
+        success = True
+        message = '비밀번호 일치'
+    else:
+        success = False
+        message = '비밀번호 불일치, 다시 입력해주세요!'
+
+    return jsonify({'success': success, 'message': message, 'data': data})
 
 
 

@@ -155,8 +155,6 @@
                     }),
                     success: function (response, testStatus, xhr) {
                         if (xhr.status == 200) {
-                            window.sessionStorage.setItem('token', response.access_token)
-                            window.sessionStorage.setItem('refresh-token', response.refresh_token)
                             location.href ='/rolling'
                         } else {
                             alert(response['responseJSON']['msg'])

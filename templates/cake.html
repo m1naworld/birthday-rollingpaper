@@ -184,6 +184,10 @@
 
     </style>
     <script>
+        $(function () {
+
+        })
+
         {#로그인 화면으로 이동#}
         $(function(){
             $('.back-text').click(function(){
@@ -205,6 +209,13 @@
                 }
             })
         })
+
+        var cakes = [
+            {'cake_id': 0, 'cake_name': 'strawberry' },
+             {'cake_id': 1, 'cake_name': 'choco' },
+             {'cake_id': 2, 'cake_name': 'sweetpotato' },
+             {'cake_id': 3, 'cake_name': 'halloween' },
+        ]
 
         var n_count = 0;
         $(function () {
@@ -240,12 +251,18 @@
 
         {#케이크 선택 한 후 이동#}
         $(function () {
-            $('.cake-choice-btn').click(function () {
+            $('.cakeSelBtn').click(function () {
+                var current_cake = cakes.filter((cake)=>cake.cake_id === n_count)
+                var current_cake_name = current_cake[0]['cake_name']
+                var nickname = $('#nick').val()
+                var birthday = $('#b_day').val()
+
                 {#/cake로 관련 정보 보내기#}
+                {#console.log(current_cake_name, nickname, birthday)#}
                 $.ajax({
                     type: 'POST',
                     url: '/cake',
-                    data: {num_cake: n_count, nickname: 'id_nickname'},
+                    data: {birth: birthday, user_nickname: nickname, cake_id: current_cake_name},
                     success: function (response) {
                         if(response['success']) {
                             alert('선택 완료!')
@@ -253,7 +270,7 @@
                             alert('선택 오류!')
                         }
                     }
-                });
+                 });
                 location.href = '/rolling'
             })
         })
@@ -313,7 +330,6 @@
 
     <div class="button">
         <button class="cakeSelBtn"><b>케이크 선택하기</b></button>
-
     </div>
 </body>
 </html>
@@ -321,12 +337,13 @@
 
 <!--
 
+
     let n_count = 0;
 
     document.querySelector('.next').addEventListener('click', function(){
         let cake_transform = document.querySelector('.container').style.transform;
         let cake_location = Number(cake_transform.substr(cake_transform.indexOf('-'), 4));
-        // let temp_location = cake_location;
+
         if (cake_location > -300) {
             cake_location = cake_location - 100;
             document.querySelector('.container').style.transform = `translate(${cake_location}vw)`;
@@ -336,19 +353,20 @@
         }
 
         if(n_count < 3) {n_count++;
-            console.log(n_count, cake_location)}
-        })
+            }
+    })
 
         document.querySelector('.prev').addEventListener('click', function(){
             let cake_transform = document.querySelector('.container').style.transform;
             let cake_location = Number(cake_transform.substr(cake_transform.indexOf('-'), 4));
-            // let temp_location = cake_location;
+
             if (cake_location < 0) {
                 cake_location = cake_location + 100;
             }
             document.querySelector('.container').style.transform = `translate(${cake_location}vw)`;
-
             if(n_count > 0) {n_count--; console.log(n_count, cake_location)}
         })
 
+
  -->
+

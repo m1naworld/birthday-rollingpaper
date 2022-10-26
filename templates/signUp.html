@@ -211,7 +211,6 @@
             let ID = $('#id').val()
             let pwd = $('#password').val()
 
-            let regPass = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/;
             if(c ==0){
                 alert('아이디 중복확인을 해주세요');
             }
@@ -221,7 +220,6 @@
             else if(pwd.length<6||pwd.length>16){
                 alert('비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다');
             }
-            else if(!regPass.test(pwd)) alert("영문, 숫자 조합으로 입력해주세요")
             else if(p_check == 0){
                 alert('비밀번호가 일치하지 않습니다');
             }

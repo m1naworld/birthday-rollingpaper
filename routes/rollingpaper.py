@@ -53,7 +53,7 @@ def message_update():
     message_id_receive = request.form['message_id']
     message_content_receive = request.form['message_content']
 
-    db.message.update_one({'message_id': int(message_id_receive)}, {'$set': {'message_content': message_content_receive}})
+    db.message.update_one({'message_id': int(message_id_receive)}, {'$set': {'content': message_content_receive}})
     return jsonify({'message': '수정 완료!'}), 200
 
 

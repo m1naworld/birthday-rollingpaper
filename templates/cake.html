@@ -184,6 +184,10 @@
 
     </style>
     <script>
+        $(function () {
+
+        })
+
         {#로그인 화면으로 이동#}
         $(function(){
             $('.back-text').click(function(){
@@ -259,10 +263,14 @@
                 $.ajax({
                     type: 'POST',
                     url: '/cake/cake',
+
                     data: {birth_give: birthday,
                         nickname_give: nickname,
                         cake_give: current_cake_name,
                         temp_user: 'palbaw5' },
+
+                    data: {birth: birthday, user_nickname: nickname, cake_id: current_cake_name},
+
                     success: function (response) {
                         alert(response['msg']);
                         location.href = '/rolling'

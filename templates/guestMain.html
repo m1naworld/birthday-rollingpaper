@@ -166,9 +166,7 @@
         .swiper-pagination {
             width: 80vw;
             height: 20vh;
-
             margin-bottom: 15vh;
-
         }
 
 
@@ -229,7 +227,7 @@
 
         }
 
-        .footer > button{
+        .footer > button {
 
             width: 300px;
             height: 80px;
@@ -258,6 +256,77 @@
             border: 1px solid var(--color-background-2);
             background-color: var(--color-background-2);
         }
+
+        .candle-img {
+            position: absolute;
+            width: 40px;
+
+            top: 500px;
+
+        }
+
+        .message-div {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .message-box {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+
+            width: 100%;
+            height: 70%;
+
+            max-font-size: 50px;
+            font-size: 1.5rem;
+
+        }
+
+        .message-detail {
+
+            /*margin-top: 30px;*/
+            border-radius: 40px;
+
+            width: 60%;
+            height: 80%;
+            padding: 10% 5% 10% 5%;
+
+            border: 4px solid var(--color-point-1);
+            background-color: var(--color-background);
+        }
+
+        .message {
+            /*width: 55%;*/
+            height: 70%;
+            margin: 10%
+        }
+
+        .message-detail button {
+            width: 200px;
+            height: 80px;
+            margin-right: 10px;
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+
+            border-radius: 10px;
+            padding: 12px;
+        }
+
+        .message-update {
+            border: 1px solid var(--color-background-2);
+            background-color: var(--color-background-2);
+        }
+
+        .message-delete {
+            border: 1px solid var(--color-point-1);
+            background-color: var(--color-point-1);
+        }
+
+
     </style>
     <script>
 
@@ -299,46 +368,108 @@
 
         })
 
+        // 메뉴바 삭제 고민중
+        // function open_list() {
+        //     $('#menu').toggle();
+        //
+        //     const display = document.getElementById('menu').style.display;
+        //     console.log(display)
+        //
+        //     if (display === "block") {
+        //         $('.swiper-container').hide();
+        //         $('.footer').hide();
+        //     } else {
+        //         $('.swiper-container').show();
+        //         $('.footer').show();
+        //     }
+        // }
 
-        function open_list() {
-            $('#menu').toggle();
+        //  function close_list() {
+        //     $('.rollingpaper-body').click(function (e) {
+        //         let result = e.target.matches('button') // 클릭한 곳의 태그가 button일 때 true
+        //         console.log(result)
+        //         if (!result) {
+        //             $('#menu').hide();
+        //             $('.swiper-container').show();
+        //             $('.footer').show();
+        //         }
+        //
+        //     })
+        // }
 
-            const display = document.getElementById('menu').style.display;
-            console.log(display)
 
-            if (display === "block") {
-                $('.swiper-container').hide();
-                $('.footer').hide();
-            } else {
-                $('.swiper-container').show();
-                $('.footer').show();
-            }
-        }
-
-        function close_list() {
+        // 메시지 창 닫기
+        function close_message() {
             $('.rollingpaper-body').click(function (e) {
-                let result = e.target.matches('button') // 클릭한 곳의 태그가 button일 때 true
-                console.log(result)
-                if (!result) {
-                    $('#menu').hide();
+
+                let result = e.target.getAttribute('class');
+                let buttonResult = e.target.matches('button');
+                console.log(buttonResult)
+                if (result != 'candle-img' && result != 'message' && !buttonResult) {
+                    $('.message-div').hide();
                     $('.swiper-container').show();
                     $('.footer').show();
                 }
-
             })
         }
 
-        // url 복사 함수
-        function clip(){
-            let url = '';
-            const textarea = document.createElement("textarea");
-            document.body.appendChild(textarea);
-            url = window.document.location.href;
-            textarea.value = url;
-            textarea.select();
-            document.execCommand("copy");
-            document.body.removeChild(textarea);
-            alert("링크가 복사되었습니다.")
+        // 메시지 데이터
+        let messageAllData;
+
+        // 페이지 렌더링 시 message 데이터 불러오기
+        $(document).ready(function set() {
+            console.log(`{{mainpage_info}}`)
+            console.log(`{{mainpage_info.url}}`)
+            $.ajax({
+                type: "GET",
+                url: "/rolling/detail-data/{{mainpage_info.url}}/{{mainpage_info.rolling_id}}",
+                data: {},
+                success: function (response) {
+                    console.log(response);
+                    messageAllData = response['message_list'];
+                    console.log(messageAllData);
+                    for (let i = 0; i < messageAllData.length; i++) {
+                        let temp_html = `<img onClick="open_message(${messageAllData[i].message_id})" class="candle-img" src="/static/img/candle_${messageAllData[i].candle_id}.png">`
+                        $('.swiper-slide').append(temp_html)
+                    }
+                }
+            })
+        })
+
+
+        // 수정하기
+        function message_modify(num) {
+            $('.message').hide();
+            let temp_html = ` <div class="message">
+                <input type='text' id='password-$(num)' sytle='width:200px;height:50px; placeholder='비밀번호를 입력해주세요'/>
+                </input>
+                <button>비밀번호 확인</button>
+                </div>`
+            $('.message-detail').html(temp_html)
+
+        }
+
+
+        // 캔들 클릭시 메시지 보기
+        function open_message(num) {
+            // function open_message() { // 테스트 코드
+            $('.swiper-container').hide();
+            $('.footer').hide()
+
+            console.log("캔들 클릭시 확인" + messageAllData)
+            let result = messageAllData.find(m => m['message_id'] === num)
+            // let result = messageAllData.find(m => m['message_id'] === 4)
+            console.log("메시지 결과 확인" + result)
+//
+            let temp_html = ` <div class="message-detail">
+                                <p>FROM. ${result.nickname}</p>
+                                <p class="message">${result.content}</p>
+                                <button class="message-update" onclick="message_modify(${num})">수정하기</button>
+                                <button class="message-delete" onclick="message_modify(${num})">삭제하기</button>
+                            </div>`
+
+            $('.message-box').html(temp_html);
+            $('.message-div').show();
         }
 
 
@@ -347,46 +478,47 @@
 <body>
 <div class="root">
     <div class="header">
-        <h2> ${nickname}님 에게 <br/>
-            ${num}명의 축하가 도착했어요!
+        <h2> {{mainpage_info.user_nickname}}님 에게 <br/>
+            {{message_count}}명의 축하가 도착했어요!
         </h2>
-<!--        <svg onclick="open_list()" xmlns="http://www.w3.org/2000/svg" width="100" height="90" fill="currentColor"-->
-<!--             id="bi-list"-->
-<!--             class="bi bi-list"-->
-<!--             viewBox="0 0 16 16">-->
-<!--            <path fill-rule="evenodd"-->
-<!--                  d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>-->
-<!--        </svg>-->
+        <!--        <svg onclick="open_list()" xmlns="http://www.w3.org/2000/svg" width="100" height="90" fill="currentColor"-->
+        <!--             id="bi-list"-->
+        <!--             class="bi bi-list"-->
+        <!--             viewBox="0 0 16 16">-->
+        <!--            <path fill-rule="evenodd"-->
+        <!--                  d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>-->
+        <!--        </svg>-->
 
     </div>
 
-    <div onclick="close_list()" class="rollingpaper-body">
+    <div onclick="close_message()" class="rollingpaper-body">
+        <div class="message-div">
+            <div class="message-box">
 
-<!--        <div class="menu" id="menu">-->
-<!--            <div class="menu-list">-->
-<!--                <p class="menu-p1">사람들에게<br/>-->
-<!--                    공유하여 편지를 받아보세요!</p>-->
-<!--                <button>공유하기</button>-->
-<!--                <p class="menu-p2">&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</p>-->
-<!--                <button>새로 만들기</button>-->
-<!--                <button>삭제하기</button>-->
-<!--            </div>-->
-<!--        </div>-->
+            </div>
+        </div>
+        <!--        <div class="menu" id="menu">-->
+        <!--            <div class="menu-list">-->
+        <!--                <p class="menu-p1">여러분도!<br/>-->
+        <!--                    여러분의 롤링페이퍼를 만들어보세요!</p>-->
+        <!--                <button onclick="location.href='/sign-up'">나도 만들기</button>-->
+        <!--                <p class="menu-p2"> 아니면, <br/>-->
+        <!--                    이미 있으신가요?</p>-->
+        <!--                <button onclick="location.href='/login'">내 롤링페이퍼 <br/> 보러가기</button>-->
+        <!--            </div>-->
+        <!--        </div>-->
         <div class="swiper-container">
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
                 <!-- Slides -->
                 <div class="swiper-slide">
-                    <img class="cake-img" src="/static/img/cake_halloween.png">
+                    <img class="cake-img" src="/static/img/cake_{{mainpage_info.cake_id}}.png">
                 </div>
                 <div class="swiper-slide">
-                    <img class="cake-img" src="/static/img/cake_strawberry.png">
+                    <img class="cake-img" src="/static/img/cake_{{mainpage_info.cake_id}}.png">
                 </div>
                 <div class="swiper-slide">
-                    <img class="cake-img" src="/static/img/cake_choco.png">
-                </div>
-                <div class="swiper-slide">
-                    <img class="cake-img" src="/static/img/cake_sweetpotato.png">
+                    <img class="cake-img" src="/static/img/cake_{{mainpage_info.cake_id}}.png">
                 </div>
             </div>
             <div class="swiper-pagination"></div>
@@ -394,9 +526,11 @@
             <div class="swiper-button-next"></div>
         </div>
     </div>
-    <div onclick="close_list()" class="footer">
-        <button class="congratulation-button" onclick="clip()">공유하기</button>
-        <button class="make-button">마이 페이지</button>
+    <div onclick="close_message()" class="footer">
+
+        <button class="congratulation-button" onclick="location.href='/message'">축하하기</button>
+        <button class="make-button" onclick="location.href='/sign-up'">나도 만들기</button>
+
     </div>
 </div>
 </body>

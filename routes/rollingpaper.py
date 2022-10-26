@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, jsonify
 from db import db
+import bcrypt
 
 rolling = Blueprint("rolling", __name__, template_folder="templates")
 
@@ -37,14 +38,23 @@ def get_candle(url, rolling_id):
 # 메시지 비밀번호 확인
 # @rolling.route('/message/check', methods=['POST'])
 # def check_message_password():
-#     if(#비밀번호 일치시):
-#         success = True
-#         message = '비밀번호 일치'
-#     else:
-#         success = False
-#         message = '비밀번호 일치하지 않음'
-#     return jsonify({'success': success, 'message': message})
-#
+    # password = request.form['password']
+    # rolling_id = request.form['rolling_id']
+    #
+    # rows = db.message.find_one({'rolling_id': rolling_id})
+    # data = db.rollingpaper.find_one({'rolling_id': rolling_id})
+    #
+    # password2 = rows['message_password'];
+    #
+    # if bcrypt.checkpw(password.encode('utf-8'), password2.encode('utf-8')):
+    #     success = True
+    #     message = '비밀번호 일치'
+    # else:
+    #     success = False
+    #     message = '비밀번호 일치하지 않음'
+    #
+    # return jsonify({'success': success, 'message': message, 'data': data})
+
 
 
 # 메시지 내용 수정

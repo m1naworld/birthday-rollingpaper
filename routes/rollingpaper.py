@@ -21,7 +21,7 @@ def get_my_rollingpaper():
 
 # 롤링 페이퍼 페이지 기본 정보 get
 # 로그인 안한 유저(게스트용)
-@rolling.route('/guest')
+@rolling.route('/guest/')
 def get_rollingpaper():
 
     url = request.args.get('key')

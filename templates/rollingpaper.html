@@ -479,7 +479,11 @@
             const textarea = document.createElement("textarea");
             document.body.appendChild(textarea);
             url = window.document.location.href;
-            textarea.value = '/guest/' + url;
+            console.log(url.split("/"))
+            url_list = url.split("/")
+            url_list.splice(4, 0, "guest")
+            result = (url_list.join()).replace(/[',']/g,'/')
+            textarea.value = result
             textarea.select();
             document.execCommand("copy");
             document.body.removeChild(textarea);

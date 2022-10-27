@@ -41,7 +41,7 @@ def join():
     user = db.user.find_one({'user_id': user_id})
 
     if (user):
-        return jsonify("message", "다시 시도 해 주세요.")
+        return jsonify({"message": "다시 시도 해 주세요."})
 
     else:
         # 비밀번호 해쉬
@@ -54,4 +54,4 @@ def join():
         # DB 저장
         db.user.insert_one({'user_id': user_id, 'password': insert_password_hash})
 
-    return jsonify("message", "회원가입 성공!")
+    return jsonify({"message": "회원가입 성공!"})

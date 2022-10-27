@@ -84,15 +84,15 @@
             background-size: 50%;
             text-align: center;
         }
+      
 
-
-        .swiper-container {
+         .swiper-container {
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .swiper-slide {
+         .swiper-slide {
             position: relative;
         }
 
@@ -108,8 +108,8 @@
             left: 50vw;
             transform: translate(-50%, -50%);
         }
-
-        .swiper-slide .candle {
+        
+          .swiper-slide .candle {
             position: absolute;
             width: 50px;
             z-index: 1;
@@ -254,6 +254,7 @@
             margin-bottom: 15vh;
         }
 
+
         .swiper-pagination-bullet {
             width: 16px;
             height: 16px;
@@ -269,6 +270,7 @@
             background: pink;
             border: 2px solid transparent;
         }
+
 
         .swiper-button-next {
             display: none;
@@ -345,6 +347,7 @@
             border: 1px solid var(--color-point-3);
             background-color: var(--color-point-3);
         }
+
 
         .message-div {
             display: none;
@@ -436,34 +439,34 @@
                         spaceBetween: 300,  // 슬라이드 사이 여백
                         centeredSlides: true, // 슬라이드 센터모드
 
-                        loop: true,
-                        loopAdditionalSlides: 1,
+                loop: true,
+                loopAdditionalSlides: 1,
 
-                        watchOverflow: false,
-                        // effect: "fade",
-                        effect: 'slide', // 기본 슬라이드 전환
-                        // effect: 'fade' // 희미해지면서 슬라이드 전환
-                        // effect: 'cube', // 큐브 형태로 전환
-                        // effect: 'coverflow', // 약간의 그림자와 함께 슬라이드를 밀어내며 전환
-                        // effect: 'flip', // 카드를 뒤집듯이 전환
-
-
-                        // If we need pagination
-                        pagination: {
-                            el: '.swiper-pagination',
-                            clickable: true,
-                            type: 'bullets',
-                        },
+                // effect: "fade",
+                effect: 'slide', // 기본 슬라이드 전환
+                // effect: 'fade' // 희미해지면서 슬라이드 전환
+                // effect: 'cube', // 큐브 형태로 전환
+                // effect: 'coverflow', // 약간의 그림자와 함께 슬라이드를 밀어내며 전환
+                // effect: 'flip', // 카드를 뒤집듯이 전환
 
 
-                        // Navigation arrows
-                        navigation: {
-                            nextEl: '.swiper-button-next',
-                            prevEl: '.swiper-button-prev',
-                        },
+                // If we need pagination
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                    type: 'bullets',
+                },
 
-                        observe: true,
-                        observeParents: true
+
+                // Navigation arrows
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                
+                observe: true,
+                observeParents: true
+
 
 
                     })
@@ -506,16 +509,17 @@
                         $(`.cake-candle-wrapper${candlePagesNumber}`).append(temp_html)
                     }
                 }
+
             })
 
-
         })
+
 
         // 메시지 창 닫기
         function close_message() {
             $('.rollingpaper-body').click(function (e) {
 
-                let result = e.target.getAttribute('id');
+                let result = e.target.getAttribute('class');
                 let buttonResult = e.target.matches('button');
                 let inputResult = e.target.matches('input');
                 let textareaResult = e.target.matches('textarea');
@@ -529,7 +533,6 @@
                 }
             })
         }
-
 
         // 메시지 수정 데이터 보내기
         function message_update_req(message_id, message_content, nickname) {
@@ -567,13 +570,11 @@
                 $.ajax({
                     type: "POST",
                     url: "/rolling/message/check",
-                    data: {'message_id': message_id, 'message_password': password},
+                    data: {'message_id': 0, 'message_password': password},
                     success: function (response) {
-                        // const success = response['success'];
-                        // const result = response['data'];
-                        console.log("여기까지는 왔나")
-                        success = true;
-                        result = {'message_id': 96, 'nickname': 'mina', 'content': '하이잉'}
+                         const success = response['success'];
+                         const result = response['data'];
+
                         if (success && type === "update") {
                             // alert("비밀번호 일치!")
                             let temp_html =
@@ -651,6 +652,7 @@
             <br/>
             <span style="color:var(--color-point-2); font-weight: bold;">{{message_count}}</span>명의 축하가 도착했어요!
         </h2>
+   
     </div>
 
     <div onclick="close_message()" class="rollingpaper-body">
@@ -670,8 +672,8 @@
     </div>
     <div onclick="close_message()" class="footer">
 
-        <button class="pink-button" onclick="location.href='/message?rolling={{mainpage_info.rolling_id}}'">축하하기
-        </button>
+
+        <button class="pink-button" onclick="location.href='/message?rolling={{mainpage_info.rolling_id}}'">축하하기</button>
         <button class="blue-button" onclick="location.href='/sign-up'">나도 만들기</button>
 
     </div>

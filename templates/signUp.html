@@ -230,7 +230,8 @@
                     data: {user_id : ID, password: pwd},
                     success: function (response) {
                         console.log("response");
-                        window.location.href = "/cake";
+                        alert(response['message'])
+                        window.location.href = "/login";
                     }
                 })
             }

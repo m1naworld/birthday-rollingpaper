@@ -384,58 +384,64 @@
             border: 3px solid white;
         }
 
-        .congratulation-button {
+        .pink-button {
             border: 1px solid var(--color-point-1);
             background-color: var(--color-point-1);
 
         }
 
-        .make-button {
+        .blue-button {
             border: 1px solid var(--color-background-2);
             background-color: var(--color-background-2);
+        }
+
+        .yellow-button {
+            border: 1px solid var(--color-point-3);
+            background-color: var(--color-point-3);
         }
 
 
     </style>
     <script>
 
-        $(document).ready(function () {
 
-            var mySwiper = new Swiper('.swiper-container', {
-
-                slidePerView: 1, // 한 슬라이드에 보여줄 갯수
-                spaceBetween: 300,  // 슬라이드 사이 여백
-                centeredSlides: true, // 슬라이드 센터모드
-
-                loop: true,
-                loopAdditionalSlides: 1,
-
-                // effect: "fade",
-                effect: 'slide', // 기본 슬라이드 전환
-                // effect: 'fade' // 희미해지면서 슬라이드 전환
-                // effect: 'cube', // 큐브 형태로 전환
-                // effect: 'coverflow', // 약간의 그림자와 함께 슬라이드를 밀어내며 전환
-                // effect: 'flip', // 카드를 뒤집듯이 전환
-
-
-                // If we need pagination
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                    type: 'bullets',
-                },
-
-
-                // Navigation arrows
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-
-
-            })
-
-        })
+        //        const mySwiper = new Swiper('.swiper-container', {
+        //
+        //                slidePerView: 1, // 한 슬라이드에 보여줄 갯수
+        //                spaceBetween: 300,  // 슬라이드 사이 여백
+        //                centeredSlides: true, // 슬라이드 센터모드
+        //
+        //                loop: true,
+        //                loopAdditionalSlides: 1,
+        //
+        //                watchOverflow: false,
+        //                // effect: "fade",
+        //                effect: 'slide', // 기본 슬라이드 전환
+        //                // effect: 'fade' // 희미해지면서 슬라이드 전환
+        //                // effect: 'cube', // 큐브 형태로 전환
+        //                // effect: 'coverflow', // 약간의 그림자와 함께 슬라이드를 밀어내며 전환
+        //                // effect: 'flip', // 카드를 뒤집듯이 전환
+        //
+        //
+        //                // If we need pagination
+        //                pagination: {
+        //                    el: '.swiper-pagination',
+        //                    clickable: true,
+        //                    type: 'bullets',
+        //                },
+        //
+        //
+        //                // Navigation arrows
+        //                navigation: {
+        //                    nextEl: '.swiper-button-next',
+        //                    prevEl: '.swiper-button-prev',
+        //                },
+        //
+        //                observe: true,
+        //                observeParents: true
+        //
+        //
+        //            })
 
         function open_list() {
             $('#menu').toggle();
@@ -489,19 +495,65 @@
                 data: {},
                 success: function (response) {
                     console.log(response);
+
+                    const mySwiper = new Swiper('.swiper-container', {
+
+                        slidePerView: 1, // 한 슬라이드에 보여줄 갯수
+                        spaceBetween: 300,  // 슬라이드 사이 여백
+                        centeredSlides: true, // 슬라이드 센터모드
+
+                        loop: true,
+                        loopAdditionalSlides: 1,
+
+                        watchOverflow: false,
+                        // effect: "fade",
+                        effect: 'slide', // 기본 슬라이드 전환
+                        // effect: 'fade' // 희미해지면서 슬라이드 전환
+                        // effect: 'cube', // 큐브 형태로 전환
+                        // effect: 'coverflow', // 약간의 그림자와 함께 슬라이드를 밀어내며 전환
+                        // effect: 'flip', // 카드를 뒤집듯이 전환
+
+
+                        // If we need pagination
+                        pagination: {
+                            el: '.swiper-pagination',
+                            clickable: true,
+                            type: 'bullets',
+                        },
+
+
+                        // Navigation arrows
+                        navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        },
+
+                        observe: true,
+                        observeParents: true
+
+
+                    })
+
                     messageAllData = response['message_list'];
                     console.log(messageAllData);
                     let msgLength = messageAllData.length
                     let pagesNumber = parseInt(msgLength / 10) + 1
                     console.log(msgLength, pagesNumber)
+
+
                     for (let j = 0; j < pagesNumber; j++) {
-                        let temp_html = `<div class="swiper-slide swiper-slide${j + 1}">
+                        let temp_html = `
+                                          <div class="swiper-slide swiper-slide${j + 1}">
                                             <div class="cake-candle-wrapper cake-candle-wrapper${j + 1}">
                                                 <img class="cake-img" src="/static/img/cake_{{mainpage_info.cake_id}}.png">
                                              </div>
-                                          </div>`
+                                          </div>
+                                          `
+
+                        // mySwiper.appendSlide(temp_html);
                         $('.swiper-wrapper').append(temp_html)
                     }
+
                     for (let i = 0; i < msgLength; i++) {
 
                         let candlePagesNumber = parseInt(i / 10) + 1
@@ -509,11 +561,12 @@
                         console.log(candlePagesNumber, candleLocation)
                         let temp_html = `<img class="candle candle${candleLocation}" src="/static/img/candle_${messageAllData[i].candle_id}.png"/>
                         <div class="nickname nickname${candleLocation}">${messageAllData[i].nickname}</div>`
-                        $(`.swiper-slide${candlePagesNumber}`).append(temp_html)
+                        $(`.cake-candle-wrapper${candlePagesNumber}`).append(temp_html)
                     }
-
                 }
             })
+
+
         })
 
 
@@ -550,42 +603,6 @@
         <div class="swiper-container">
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
-                <!-- Slides -->
-                <div class="swiper-slide swiper-slide1">
-                    <div class="cake-candle-wrapper cake-candle-wrapper1">
-                        <img class="cake-img" src="/static/img/cake_strawberry.png">
-                        <img class="candle candle1" src="../static/img/candle_purple.png">
-                        <div class="nickname nickname1">민아</div>
-                        <img class="candle candle2" src="../static/img/candle_purple.png">
-                        <div class="nickname nickname2">현정쓰</div>
-                        <img class="candle candle3" src="../static/img/candle_purple.png">
-                        <div class="nickname nickname3">안씨</div>
-                        <img class="candle candle4" src="../static/img/candle_purple.png">
-                        <div class="nickname nickname4">무결이</div>
-                        <img class="candle candle5" src="../static/img/candle_purple.png">
-                        <div class="nickname nickname5">민아쓰</div>
-                        <img class="candle candle6" src="../static/img/candle_purple.png">
-                        <div class="nickname nickname6">현정쓰</div>
-                        <img class="candle candle7" src="../static/img/candle_purple.png">
-                        <div class="nickname nickname7">안씨</div>
-                        <img class="candle candle8" src="../static/img/candle_purple.png">
-                        <div class="nickname nickname8">무결이</div>
-                        <img class="candle candle9" src="../static/img/candle_purple.png">
-                        <div class="nickname nickname9">민아쓰</div>
-                        <img class="candle candle10" src="../static/img/candle_purple.png">
-                        <div class="nickname nickname10">현정쓰</div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <img class="cake-img" src="/static/img/cake_strawberry.png">
-                </div>
-                <div class="swiper-slide">
-                    <img class="cake-img" src="/static/img/cake_choco.png">
-                </div>
-                <div class="swiper-slide">
-                    <img class="cake-img" src="/static/img/cake_sweetpotato.png">
-                </div>
-
             </div>
             <div class="swiper-pagination"></div>
             <div class="swiper-button-prev"></div>
@@ -593,9 +610,45 @@
         </div>
     </div>
     <div class="footer">
-        <button class="congratulation-button" onclick="clip()">공유하기</button>
-        <button class="make-button" onclick="location.href='/mypage'">마이 페이지</button>
+        <button class="pink-button" onclick="clip()">공유하기</button>
+        <button class="blue-button" onclick="location.href='/mypage'">마이 페이지</button>
     </div>
 </div>
 </body>
 </html>
+
+<!-- Slides -->
+<!--                <div class="swiper-slide swiper-slide1">/-->
+<!--                    <div class="cake-candle-wrapper cake-candle-wrapper1">-->
+<!--                        <img class="cake-img" src="/static/img/cake_strawberry.png">-->
+<!--                        <img class="candle candle1" src="../static/img/candle_purple.png">-->
+<!--                        <div class="nickname nickname1">민아</div>-->
+<!--                        <img class="candle candle2" src="../static/img/candle_purple.png">-->
+<!--                        <div class="nickname nickname2">현정쓰</div>-->
+<!--                        <img class="candle candle3" src="../static/img/candle_purple.png">-->
+<!--                        <div class="nickname nickname3">안씨</div>-->
+<!--                        <img class="candle candle4" src="../static/img/candle_purple.png">-->
+<!--                        <div class="nickname nickname4">무결이</div>-->
+<!--                        <img class="candle candle5" src="../static/img/candle_purple.png">-->
+<!--                        <div class="nickname nickname5">민아쓰</div>-->
+<!--                        <img class="candle candle6" src="../static/img/candle_purple.png">-->
+<!--                        <div class="nickname nickname6">현정쓰</div>-->
+<!--                        <img class="candle candle7" src="../static/img/candle_purple.png">-->
+<!--                        <div class="nickname nickname7">안씨</div>-->
+<!--                        <img class="candle candle8" src="../static/img/candle_purple.png">-->
+<!--                        <div class="nickname nickname8">무결이</div>-->
+<!--                        <img class="candle candle9" src="../static/img/candle_purple.png">-->
+<!--                        <div class="nickname nickname9">민아쓰</div>-->
+<!--                        <img class="candle candle10" src="../static/img/candle_purple.png">-->
+<!--                        <div class="nickname nickname10">현정쓰</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="swiper-slide">-->
+<!--                    <img class="cake-img" src="/static/img/cake_strawberry.png">-->
+<!--                </div>-->
+<!--                <div class="swiper-slide">-->
+<!--                    <img class="cake-img" src="/static/img/cake_choco.png">-->
+<!--                </div>-->
+<!--                <div class="swiper-slide">-->
+<!--                    <img class="cake-img" src="/static/img/cake_sweetpotato.png">-->
+<!--                </div>-->

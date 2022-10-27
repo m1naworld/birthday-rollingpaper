@@ -369,13 +369,6 @@
             background-color: var(--color-point-3);
         }
 
-        /*.candle-img {*/
-        /*    position: absolute;*/
-        /*    width: 40px;*/
-        /*    top: 500px;*/
-
-        /*}*/
-
         .message-div {
             display: none;
             width: 100%;
@@ -502,7 +495,12 @@
                     messageAllData = response['message_list'];
                     console.log(messageAllData);
                     let msgLength = messageAllData.length
-                    let pagesNumber = parseInt(msgLength / 10) + 1
+                    let pagesNumber;
+                    if((msgLength % 10) === 0){
+                        pagesNumber  = parseInt(msgLength / 10)
+                    }else{
+                        pagesNumber = parseInt(msgLength / 10) + 1
+                    }
                     console.log(msgLength, pagesNumber)
 
 
@@ -514,8 +512,6 @@
                                              </div>
                                           </div>
                                           `
-
-                        // mySwiper.appendSlide(temp_html);
                         $('.swiper-wrapper').append(temp_html)
                     }
 
@@ -563,13 +559,6 @@
                 success: function (response) {
                     alert(response['message']);
                     window.location.reload();
-                    // let temp_html = ` <div class="message-detail">
-                    //             <p>FROM. ${nickname}</p>
-                    //             <p class="message">${message_content}</p>
-                    //             <button class="blue-button" id="update" onclick="password_check(${message_id}, \'update'\)">수정하기</button>
-                    //             <button class="pink-button" id="delete" onclick="password_check(${message_id}, \'delete'\)">삭제하기</button>
-                    //         </div>`
-                    // $('.message-detail').replaceWith(temp_html);
 
                 }
             })

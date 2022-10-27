@@ -477,44 +477,6 @@
     <script>
 
 
-        //        const mySwiper = new Swiper('.swiper-container', {
-        //
-        //                slidePerView: 1, // 한 슬라이드에 보여줄 갯수
-        //                spaceBetween: 300,  // 슬라이드 사이 여백
-        //                centeredSlides: true, // 슬라이드 센터모드
-        //
-        //                loop: true,
-        //                loopAdditionalSlides: 1,
-        //
-        //                watchOverflow: false,
-        //                // effect: "fade",
-        //                effect: 'slide', // 기본 슬라이드 전환
-        //                // effect: 'fade' // 희미해지면서 슬라이드 전환
-        //                // effect: 'cube', // 큐브 형태로 전환
-        //                // effect: 'coverflow', // 약간의 그림자와 함께 슬라이드를 밀어내며 전환
-        //                // effect: 'flip', // 카드를 뒤집듯이 전환
-        //
-        //
-        //                // If we need pagination
-        //                pagination: {
-        //                    el: '.swiper-pagination',
-        //                    clickable: true,
-        //                    type: 'bullets',
-        //                },
-        //
-        //
-        //                // Navigation arrows
-        //                navigation: {
-        //                    nextEl: '.swiper-button-next',
-        //                    prevEl: '.swiper-button-prev',
-        //                },
-        //
-        //                observe: true,
-        //                observeParents: true
-        //
-        //
-        //            })
-
         function open_list() {
             $('#menu').toggle();
 
@@ -631,6 +593,8 @@
 
         })
 
+
+        // 메시지, 메뉴 창 닫기 함수
         function close_window() {
             $('.rollingpaper-body').click(function (e) {
 
@@ -651,6 +615,7 @@
             })
         }
 
+
         // 메시지 삭제 데이터 보내기
         function message_delete_req(message_id) {
             $.ajax({
@@ -664,7 +629,6 @@
             })
         }
 
-
         // 메시지 삭제 확인 버튼
         function message_delete_check_button(message_id) {
             let temp_html = `<div class="message">
@@ -677,13 +641,11 @@
 
         // 캔들 클릭시 메시지 보기
         function open_message(message_id) {
-            // function open_message() { // 테스트 코드
             $('.swiper-container').hide();
             $('.footer').hide()
 
             console.log("캔들 클릭시 확인" + messageAllData)
             let result = messageAllData.find(m => m['message_id'] === message_id)
-            // let result = messageAllData.find(m => m['message_id'] === 5)
             console.log("메시지 결과 확인" + result)
             let temp_html = ` <div class="message-detail">
                                 <p>FROM. ${result.nickname}</p>
@@ -781,39 +743,3 @@
 </div>
 </body>
 </html>
-
-<!-- Slides -->
-<!--                <div class="swiper-slide swiper-slide1">/-->
-<!--                    <div class="cake-candle-wrapper cake-candle-wrapper1">-->
-<!--                        <img class="cake-img" src="/static/img/cake_strawberry.png">-->
-<!--                        <img class="candle candle1" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname1">민아</div>-->
-<!--                        <img class="candle candle2" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname2">현정쓰</div>-->
-<!--                        <img class="candle candle3" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname3">안씨</div>-->
-<!--                        <img class="candle candle4" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname4">무결이</div>-->
-<!--                        <img class="candle candle5" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname5">민아쓰</div>-->
-<!--                        <img class="candle candle6" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname6">현정쓰</div>-->
-<!--                        <img class="candle candle7" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname7">안씨</div>-->
-<!--                        <img class="candle candle8" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname8">무결이</div>-->
-<!--                        <img class="candle candle9" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname9">민아쓰</div>-->
-<!--                        <img class="candle candle10" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname10">현정쓰</div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="swiper-slide">-->
-<!--                    <img class="cake-img" src="/static/img/cake_strawberry.png">-->
-<!--                </div>-->
-<!--                <div class="swiper-slide">-->
-<!--                    <img class="cake-img" src="/static/img/cake_choco.png">-->
-<!--                </div>-->
-<!--                <div class="swiper-slide">-->
-<!--                    <img class="cake-img" src="/static/img/cake_sweetpotato.png">-->
-<!--                </div>-->

@@ -662,7 +662,7 @@
         //     })
         // }
 
-        function close() {
+        function close_window() {
             $('.rollingpaper-body').click(function (e) {
 
                 let result = e.target.getAttribute('id');
@@ -673,8 +673,8 @@
                 console.log(result)
                 console.log(buttonResult)
 
-                if (result != 'candle-img' && result != 'message' && !buttonResult && !inputResult && !textareaResult) {
-                    $('.menu-div').hide();
+                if (result != 'candle-img' && result != 'menu-list' && result != 'message' && !buttonResult && !inputResult && !textareaResult) {
+                    $('.menu').hide();
                     $('.message-div').hide();
                     $('.swiper-container').show();
                     $('.footer').show();
@@ -783,7 +783,7 @@
 
     </div>
 
-    <div onclick="close()" class="rollingpaper-body">
+    <div onclick="close_window()" class="rollingpaper-body">
 
         <div class="menu" id="menu">
             <div class="menu-list">
@@ -809,7 +809,7 @@
             <div class="swiper-button-next"></div>
         </div>
     </div>
-    <div onclick="close()" class="footer">
+    <div onclick="close_window()" class="footer">
         <button class="pink-button" onclick="clip()">공유하기</button>
         <button class="blue-button" onclick="location.href='/mypage'">마이 페이지</button>
     </div>

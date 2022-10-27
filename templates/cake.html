@@ -250,10 +250,9 @@
         })
 
         {#케이크 선택 한 후 이동#}
-
-        $(function () {
+        $(function() {
             $('.cakeSelBtn').click(function () {
-                var current_cake = cakes.filter((cake)=>cake.cake_id === n_count)
+                var current_cake = cakes.filter((cake) => cake.cake_id === n_count)
                 var current_cake_name = current_cake[0]['cake_name']
                 var nickname = $('#nick').val()
                 var birthday = $('#b_day').val()
@@ -278,16 +277,15 @@
                     {#    'X-CSRF-TOKEN': getCookie('csrf_access_token'),#}
                     {# },#}
                     data: {birth: birthday, user_nickname: nickname, cake_id: current_cake_name},
+
                     success: function (response) {
-                        alert(response['msg']);
-                        location.href = '/rolling'
+                        console.log(response);
+                        const url = response['url']
+                        location.href =`/rolling/${url}`;
                     }
-                 });
+                })
             })
         })
-
-
-
     </script>
 </head>
 <body>
@@ -343,7 +341,6 @@
     <div class="button">
         <button class="cakeSelBtn"><b>케이크 선택하기</b></button>
     </div>
-
 </body>
 </html>
 

@@ -471,7 +471,7 @@
             const textarea = document.createElement("textarea");
             document.body.appendChild(textarea);
             url = window.document.location.href;
-            textarea.value = url;
+            textarea.value = '/guest/'+url;
             textarea.select();
             document.execCommand("copy");
             document.body.removeChild(textarea);
@@ -485,7 +485,7 @@
         $(document).ready(function set() {
             $.ajax({
                 type: "GET",
-                url: "/rolling/detail-data/{{mainpage_info.url}}/{{mainpage_info.rolling_id}}",
+                url: "/rolling/detail-data/{{mainpage_info.rolling_id}}?key={{mainpage_info.url}}",
                 data: {},
                 success: function (response) {
                     console.log(response);

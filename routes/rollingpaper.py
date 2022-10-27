@@ -9,30 +9,65 @@ def question():
     return render_template('rollingpaper.html')
 
 # 롤링 페이퍼 페이지 기본 정보 get
-@rolling.route('/<url>')
-def get_rollingpaper(url):
+# @rolling.route('/<url>')
+# def get_rollingpaper(url):
+#     print(url)
+#
+#     # test 주석
+#     result = {'url': 'mina', 'rolling_id': 1, 'user_nickname': "mina", "cake_id": "choco"}
+#     message_count = db.message.count_documents({'rolling_id': 1})
+#
+#     # result = db.rollingpaper.find_one({'url': url})
+#     # message_count = db.message.count_documents({'rolling_id': result['rolling_id']})
+#
+#     print(result)
+#     print(message_count)
+#
+#     # if(# 토큰 없을 경우 ):
+#     return render_template("guestMain.html", mainpage_info=result, message_count=message_count), 200
+#
+#     # else: # 토큰 있을 경우
+#     # return render_template("rollingpaper.html", mainpage_info=result, message_count=message_count), 200
+
+
+# 롤링 페이퍼 페이지 기본 정보 get
+# 로그인 유저용
+@rolling.route('/')
+def get_my_rollingpaper():
+
+    url = request.args.get('key')
     print(url)
-
     # test 주석
-    result = {'url': 'mina', 'rolling_id': 1, 'user_nickname': "mina", "cake_id": "choco"}
-    message_count = db.message.count_documents({'rolling_id': 1})
+    # result = {'url': 'mina', 'rolling_id': 1, 'user_nickname': "mina", "cake_id": "choco"}
+    # message_count = db.message.count_documents({'rolling_id': 1})
 
-    # result = db.rollingpaper.find_one({'url': url})
-    # message_count = db.message.count_documents({'rolling_id': result['rolling_id']})
-
+    result = db.rollingpaper.find_one({'url': url}, {'_id': False})
     print(result)
+
+    message_count = db.message.count_documents({'rolling_id': result['rolling_id']})
     print(message_count)
 
-    # if(# 토큰 없을 경우 ):
+    return render_template("rollingpaper.html", mainpage_info=result, message_count=message_count), 200
+
+
+# 롤링 페이퍼 페이지 기본 정보 get
+# 로그인 안한 유저(게스트용)
+@rolling.route('/guest')
+def get_rollingpaper():
+
+    url = request.args.get('key')
+
+    result = db.rollingpaper.find_one({'url': url})
+    message_count = db.message.count_documents({'rolling_id': result['rolling_id']})
     return render_template("guestMain.html", mainpage_info=result, message_count=message_count), 200
 
-    # else: # 토큰 있을 경우
-    # return render_template("rollingpaper.html", mainpage_info=result, message_count=message_count), 200
+
 
 # 롤링 페이지 캔들 정보 get
-@rolling.route('/detail-data/<url>/<rolling_id>')
-def get_candle(url, rolling_id):
+@rolling.route('/detail-data/<rolling_id>')
+def get_candle(rolling_id):
     print(type(rolling_id))
+    url = request.args.get('key')
     message_list = list(db.message.find({'rolling_id': int(rolling_id)}, {'_id': False}))
     print(message_list)
     return jsonify({'message_list': message_list}), 200

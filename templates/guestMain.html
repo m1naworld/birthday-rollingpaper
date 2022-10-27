@@ -344,13 +344,20 @@
     </style>
     <script>
 
-        $(document).ready(function () {
 
-            var mySwiper = new Swiper('.swiper-container', {
+        $(document).ready(function set() {
+            $.ajax({
+                type: "GET",
+                url: "/rolling/detail-data/{{mainpage_info.rolling_id}}?key={{mainpage_info.url}}",
+                data: {},
+                success: function (response) {
+                    console.log(response);
 
-                slidePerView: 1, // 한 슬라이드에 보여줄 갯수
-                spaceBetween: 300,  // 슬라이드 사이 여백
-                centeredSlides: true, // 슬라이드 센터모드
+                    const mySwiper = new Swiper('.swiper-container', {
+
+                        slidePerView: 1, // 한 슬라이드에 보여줄 갯수
+                        spaceBetween: 300,  // 슬라이드 사이 여백
+                        centeredSlides: true, // 슬라이드 센터모드
 
                 loop: true,
                 loopAdditionalSlides: 1,
@@ -591,7 +598,8 @@
     </div>
     <div onclick="close_message()" class="footer">
 
-        <button class="pink-button" onclick="location.href='/message'">축하하기</button>
+
+        <button class="pink-button" onclick="location.href='/message?rolling={{mainpage_info.rolling_id}}'">축하하기</button>
         <button class="blue-button" onclick="location.href='/sign-up'">나도 만들기</button>
 
     </div>

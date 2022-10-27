@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template, request, jsonify, redirect, url_for
 from db import db
 import bcrypt
-from flask_jwt_extended import (get_jwt_identity, jwt_required)
 
 cake = Blueprint("cake", __name__, template_folder="templates")
 
@@ -9,9 +8,9 @@ cake = Blueprint("cake", __name__, template_folder="templates")
 def question():
     return render_template("cake.html")
 
-@cake.route("/makecake", methods=["POST"])
-@jwt_required()
+@cake.route("/cake", methods=["POST"])
 def sel_cake():
+
     user_id = get_jwt_identity()
     # 세션에서 현재 유저 받아오기
 
@@ -23,7 +22,9 @@ def sel_cake():
     last_cake_num = all_cake.pop()['rolling_id']
 
     rolling_id = str(int(last_cake_num) + 1)
+
     rolling_int = int(rolling_id)
+
 
     url = str(bcrypt.hashpw(rolling_id.encode('utf-8'), bcrypt.gensalt()), 'utf-8')
 
@@ -33,3 +34,4 @@ def sel_cake():
     db.rollingpaper.insert_one(doc)
 
     return jsonify({'msg': '케이크가 만들어졌어요!', 'url': url})
+

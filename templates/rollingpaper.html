@@ -366,7 +366,7 @@
 
         }
 
-        button {
+        .footer > button {
 
             width: 300px;
             height: 80px;
@@ -380,140 +380,62 @@
             margin: 1rem;
         }
 
-        button:hover {
+        .footer > button:hover {
             border: 3px solid white;
         }
 
-        .pink-button {
+        .congratulation-button {
             border: 1px solid var(--color-point-1);
             background-color: var(--color-point-1);
 
         }
 
-        .blue-button {
+        .make-button {
             border: 1px solid var(--color-background-2);
             background-color: var(--color-background-2);
-        }
-
-        .yellow-button {
-            border: 1px solid var(--color-point-3);
-            background-color: var(--color-point-3);
-        }
-
-        .message-div {
-            display: none;
-            width: 100%;
-            height: 100%;
-        }
-
-        .message-box {
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            justify-content: center;
-
-            width: 100%;
-            height: 70%;
-
-            max-font-size: 80px;
-            font-size: 2rem;
-
-        }
-
-        .message-detail {
-
-            /*margin-top: 30px;*/
-            border-radius: 40px;
-
-            width: 60%;
-            height: 80%;
-            padding: 10% 5% 10% 5%;
-
-            border: 4px solid var(--color-point-1);
-            background-color: var(--color-background);
-        }
-
-        .message {
-            /*width: 55%;*/
-            height: 70%;
-            margin: 10%;
-
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* 위아래 기준 중앙정렬 */
-            justify-content: center; /* 좌우 기준 중앙정렬 */
-
-        }
-
-        .message-detail button {
-            width: 200px;
-            height: 80px;
-            margin-right: 10px;
-            color: white;
-            font-size: 30px;
-            font-weight: bold;
-
-            border-radius: 10px;
-            padding: 12px;
-        }
-
-        input {
-            border: 3px solid var(--color-point-3);
-            border-radius: 10px;
-        }
-
-        textarea {
-            margin-top: 10px;
-            width: 80%;
-            height: 60%;
-            background: transparent;
-            border-radius: 10px;
-            border: none;
         }
 
 
     </style>
     <script>
 
+        $(document).ready(function () {
 
-        //        const mySwiper = new Swiper('.swiper-container', {
-        //
-        //                slidePerView: 1, // 한 슬라이드에 보여줄 갯수
-        //                spaceBetween: 300,  // 슬라이드 사이 여백
-        //                centeredSlides: true, // 슬라이드 센터모드
-        //
-        //                loop: true,
-        //                loopAdditionalSlides: 1,
-        //
-        //                watchOverflow: false,
-        //                // effect: "fade",
-        //                effect: 'slide', // 기본 슬라이드 전환
-        //                // effect: 'fade' // 희미해지면서 슬라이드 전환
-        //                // effect: 'cube', // 큐브 형태로 전환
-        //                // effect: 'coverflow', // 약간의 그림자와 함께 슬라이드를 밀어내며 전환
-        //                // effect: 'flip', // 카드를 뒤집듯이 전환
-        //
-        //
-        //                // If we need pagination
-        //                pagination: {
-        //                    el: '.swiper-pagination',
-        //                    clickable: true,
-        //                    type: 'bullets',
-        //                },
-        //
-        //
-        //                // Navigation arrows
-        //                navigation: {
-        //                    nextEl: '.swiper-button-next',
-        //                    prevEl: '.swiper-button-prev',
-        //                },
-        //
-        //                observe: true,
-        //                observeParents: true
-        //
-        //
-        //            })
+            var mySwiper = new Swiper('.swiper-container', {
+
+                slidePerView: 1, // 한 슬라이드에 보여줄 갯수
+                spaceBetween: 300,  // 슬라이드 사이 여백
+                centeredSlides: true, // 슬라이드 센터모드
+
+                loop: true,
+                loopAdditionalSlides: 1,
+
+                // effect: "fade",
+                effect: 'slide', // 기본 슬라이드 전환
+                // effect: 'fade' // 희미해지면서 슬라이드 전환
+                // effect: 'cube', // 큐브 형태로 전환
+                // effect: 'coverflow', // 약간의 그림자와 함께 슬라이드를 밀어내며 전환
+                // effect: 'flip', // 카드를 뒤집듯이 전환
+
+
+                // If we need pagination
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                    type: 'bullets',
+                },
+
+
+                // Navigation arrows
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+
+
+            })
+
+        })
 
         function open_list() {
             $('#menu').toggle();
@@ -524,11 +446,22 @@
             if (display === "block") {
                 $('.swiper-container').hide();
                 $('.footer').hide();
-                $('.message-div').hide();
             } else {
                 $('.swiper-container').show();
                 $('.footer').show();
             }
+        }
+
+        function close_list() {
+            $('.rollingpaper-body').click(function (e) {
+                let result = e.target.matches('button') // 클릭한 곳의 태그가 button일 때 true
+                console.log(result)
+                if (!result) {
+                    $('#menu').hide();
+                    $('.swiper-container').show();
+                    $('.footer').show();
+                }
+            })
         }
 
 
@@ -556,213 +489,32 @@
                 data: {},
                 success: function (response) {
                     console.log(response);
-
-                    const mySwiper = new Swiper('.swiper-container', {
-
-                        slidePerView: 1, // 한 슬라이드에 보여줄 갯수
-                        spaceBetween: 300,  // 슬라이드 사이 여백
-                        centeredSlides: true, // 슬라이드 센터모드
-
-                        loop: true,
-                        loopAdditionalSlides: 1,
-
-                        watchOverflow: false,
-                        // effect: "fade",
-                        effect: 'slide', // 기본 슬라이드 전환
-                        // effect: 'fade' // 희미해지면서 슬라이드 전환
-                        // effect: 'cube', // 큐브 형태로 전환
-                        // effect: 'coverflow', // 약간의 그림자와 함께 슬라이드를 밀어내며 전환
-                        // effect: 'flip', // 카드를 뒤집듯이 전환
-
-
-                        // If we need pagination
-                        pagination: {
-                            el: '.swiper-pagination',
-                            clickable: true,
-                            type: 'bullets',
-                        },
-
-
-                        // Navigation arrows
-                        navigation: {
-                            nextEl: '.swiper-button-next',
-                            prevEl: '.swiper-button-prev',
-                        },
-
-                        observe: true,
-                        observeParents: true
-
-
-                    })
-
                     messageAllData = response['message_list'];
                     console.log(messageAllData);
                     let msgLength = messageAllData.length
                     let pagesNumber = parseInt(msgLength / 10) + 1
                     console.log(msgLength, pagesNumber)
-
-
                     for (let j = 0; j < pagesNumber; j++) {
-                        let temp_html = `
-                                          <div class="swiper-slide swiper-slide${j + 1}">
+                        let temp_html = `<div class="swiper-slide swiper-slide${j + 1}">
                                             <div class="cake-candle-wrapper cake-candle-wrapper${j + 1}">
                                                 <img class="cake-img" src="/static/img/cake_{{mainpage_info.cake_id}}.png">
                                              </div>
-                                          </div>
-                                          `
-
-                        // mySwiper.appendSlide(temp_html);
+                                          </div>`
                         $('.swiper-wrapper').append(temp_html)
                     }
-
                     for (let i = 0; i < msgLength; i++) {
 
                         let candlePagesNumber = parseInt(i / 10) + 1
                         let candleLocation = (i % 10) + 1
                         console.log(candlePagesNumber, candleLocation)
-                        let temp_html = `<img onclick="open_message(${messageAllData[i].message_id})" class="candle candle${candleLocation}" id="candle-img" src="/static/img/candle_${messageAllData[i].candle_id}.png"/>
+                        let temp_html = `<img class="candle candle${candleLocation}" src="/static/img/candle_${messageAllData[i].candle_id}.png"/>
                         <div class="nickname nickname${candleLocation}">${messageAllData[i].nickname}</div>`
-                        $(`.cake-candle-wrapper${candlePagesNumber}`).append(temp_html)
+                        $(`.swiper-slide${candlePagesNumber}`).append(temp_html)
                     }
+
                 }
             })
-
-
         })
-
-
-        // // 메시지 창 닫기
-        // function close_message() {
-        //     $('.rollingpaper-body').click(function (e) {
-        //
-        //         let result = e.target.getAttribute('id');
-        //         let buttonResult = e.target.matches('button');
-        //         let inputResult = e.target.matches('input');
-        //         let textareaResult = e.target.matches('textarea');
-        //
-        //         console.log(result)
-        //         console.log(buttonResult)
-        //         if (result != 'candle-img' && result != 'message' && !buttonResult && !inputResult && !textareaResult) {
-        //             $('.message-div').hide();
-        //             $('.swiper-container').show();
-        //             $('.footer').show();
-        //         }
-        //     })
-        // }
-
-        //  function close_list() {
-        //     $('.rollingpaper-body').click(function (e) {
-        //         let result = e.target.matches('button') // 클릭한 곳의 태그가 button일 때 true
-        //         console.log(result)
-        //         if (!result) {
-        //             $('#menu').hide();
-        //             $('.swiper-container').show();
-        //             $('.footer').show();
-        //         }
-        //     })
-        // }
-
-        function close() {
-            $('.rollingpaper-body').click(function (e) {
-
-                let result = e.target.getAttribute('id');
-                let buttonResult = e.target.matches('button');
-                let inputResult = e.target.matches('input');
-                let textareaResult = e.target.matches('textarea');
-
-                console.log(result)
-                console.log(buttonResult)
-
-                if (result != 'candle-img' && result != 'message' && !buttonResult && !inputResult && !textareaResult) {
-                    $('.menu-div').hide();
-                    $('.message-div').hide();
-                    $('.swiper-container').show();
-                    $('.footer').show();
-                }
-            })
-        }
-
-        // 메시지 삭제 데이터 보내기
-        function message_delete_req(message_id) {
-            $.ajax({
-                type: "POST",
-                url: "/rolling/message/removal",
-                data: {'message_id': message_id},
-                success: function (response) {
-                    alert(response['message']);
-                    window.location.reload();
-                }
-            })
-        }
-
-
-        // 메시지 삭제 확인 버튼
-        function message_delete_check_button(message_id) {
-            let temp_html = `<div class="message">
-                                <p>정말 삭제하시겠습니까?</p>
-                                <button class="pink-button" onclick="message_delete_req(${message_id})">삭제하기</button>
-                            </div>`
-
-            $('.message-detail').replaceWith(temp_html)
-        }
-
-        // 캔들 클릭시 메시지 보기
-        function open_message(message_id) {
-            // function open_message() { // 테스트 코드
-            $('.swiper-container').hide();
-            $('.footer').hide()
-
-            console.log("캔들 클릭시 확인" + messageAllData)
-            let result = messageAllData.find(m => m['message_id'] === message_id)
-            // let result = messageAllData.find(m => m['message_id'] === 5)
-            console.log("메시지 결과 확인" + result)
-            let temp_html = ` <div class="message-detail">
-                                <p>FROM. ${result.nickname}</p>
-                                <p class="message">${result.content}</p>
-                                <button class="pink-button" id="delete" onclick="message_delete_check_button(${message_id})">삭제하기</button>
-                            </div>`
-
-            $('.message-box').html(temp_html);
-            $('.message-div').show();
-        }
-
-
-        // 롤링페이퍼 삭제 확인 버튼
-        function delete_check_button() {
-            let temp_html = `<div class="menu-list">
-                                <p>롤링페이퍼를 정말 삭제하시겠습니까?</p>
-                                <button onclick="rolling_delete()">삭제하기</button>
-                            </div>`
-
-            $('.menu-list').replaceWith(temp_html)
-        }
-
-        // 롤링페이퍼 삭제하기
-        function rolling_delete() {
-            $.ajax({
-                type: "POST",
-                url: "/mypage/delete",
-                data: {'del_num': `{{mainpage_info.rolling_id}}`},
-                success: function (response) {
-                    alert("삭제가 완료되었습니다.")
-                    location.replace('/mypage')
-                }
-            })
-        }
-
-        // 로그아웃
-        function logout() {
-            $.ajax({
-                type: "POST",
-                url: "/login/tokenout",
-                data: {},
-                success: function (response) {
-                    console.log(response)
-                    location.replace('/login')
-                }
-            })
-
-        }
 
 
     </script>
@@ -773,82 +525,77 @@
         <h2> {{mainpage_info.user_nickname}}님 에게 <br/>
             {{message_count}}명의 축하가 도착했어요!
         </h2>
-        <svg onclick="open_list()" xmlns="http://www.w3.org/2000/svg" width="100" height="90" fill="currentColor"
-             id="bi-list"
-             class="bi bi-list"
-             viewBox="0 0 16 16">
-            <path fill-rule="evenodd"
-                  d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-        </svg>
+        <!--        <svg onclick="open_list()" xmlns="http://www.w3.org/2000/svg" width="100" height="90" fill="currentColor"-->
+        <!--             id="bi-list"-->
+        <!--             class="bi bi-list"-->
+        <!--             viewBox="0 0 16 16">-->
+        <!--            <path fill-rule="evenodd"-->
+        <!--                  d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>-->
+        <!--        </svg>-->
 
     </div>
 
-    <div onclick="close()" class="rollingpaper-body">
+    <div class="rollingpaper-body">
 
-        <div class="menu" id="menu">
-            <div class="menu-list">
-                <!--                        <p class="menu-p1">사람들에게<br/>-->
-                <!--                            공유하여 편지를 받아보세요!</p>-->
-
-                <!--                <p class="menu-p2">&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</p>-->
-                <button onclick="location.href='/cake'">새로 만들기</button>
-                <button onclick="delete_check_button()">삭제하기</button>
-                <button onclick="logout()">로그아웃</button>
-            </div>
-        </div>
-        <div class="message-div">
-            <div class="message-box">
-            </div>
-        </div>
+        <!--        <div class="menu" id="menu">-->
+        <!--            <div class="menu-list">-->
+        <!--                <p class="menu-p1">사람들에게<br/>-->
+        <!--                    공유하여 편지를 받아보세요!</p>-->
+        <!--                <button>공유하기</button>-->
+        <!--                <p class="menu-p2">&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</p>-->
+        <!--                <button>새로 만들기</button>-->
+        <!--                <button>삭제하기</button>-->
+        <!--            </div>-->
+        <!--        </div>-->
         <div class="swiper-container">
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide swiper-slide1">
+                    <div class="cake-candle-wrapper cake-candle-wrapper1">
+                        <img class="cake-img" src="/static/img/cake_strawberry.png">
+                        <img class="candle candle1" src="../static/img/candle_purple.png">
+                        <div class="nickname nickname1">민아</div>
+                        <img class="candle candle2" src="../static/img/candle_purple.png">
+                        <div class="nickname nickname2">현정쓰</div>
+                        <img class="candle candle3" src="../static/img/candle_purple.png">
+                        <div class="nickname nickname3">안씨</div>
+                        <img class="candle candle4" src="../static/img/candle_purple.png">
+                        <div class="nickname nickname4">무결이</div>
+                        <img class="candle candle5" src="../static/img/candle_purple.png">
+                        <div class="nickname nickname5">민아쓰</div>
+                        <img class="candle candle6" src="../static/img/candle_purple.png">
+                        <div class="nickname nickname6">현정쓰</div>
+                        <img class="candle candle7" src="../static/img/candle_purple.png">
+                        <div class="nickname nickname7">안씨</div>
+                        <img class="candle candle8" src="../static/img/candle_purple.png">
+                        <div class="nickname nickname8">무결이</div>
+                        <img class="candle candle9" src="../static/img/candle_purple.png">
+                        <div class="nickname nickname9">민아쓰</div>
+                        <img class="candle candle10" src="../static/img/candle_purple.png">
+                        <div class="nickname nickname10">현정쓰</div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img class="cake-img" src="/static/img/cake_strawberry.png">
+                </div>
+                <div class="swiper-slide">
+                    <img class="cake-img" src="/static/img/cake_choco.png">
+                </div>
+                <div class="swiper-slide">
+                    <img class="cake-img" src="/static/img/cake_sweetpotato.png">
+                </div>
+
             </div>
             <div class="swiper-pagination"></div>
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
         </div>
     </div>
-    <div onclick="close()" class="footer">
-        <button class="pink-button" onclick="clip()">공유하기</button>
-        <button class="blue-button" onclick="location.href='/mypage'">마이 페이지</button>
+    <div class="footer">
+        <button class="congratulation-button" onclick="clip()">공유하기</button>
+        <button class="make-button" onclick="location.href='/mypage'">마이 페이지</button>
     </div>
 </div>
 </body>
 </html>
-
-<!-- Slides -->
-<!--                <div class="swiper-slide swiper-slide1">/-->
-<!--                    <div class="cake-candle-wrapper cake-candle-wrapper1">-->
-<!--                        <img class="cake-img" src="/static/img/cake_strawberry.png">-->
-<!--                        <img class="candle candle1" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname1">민아</div>-->
-<!--                        <img class="candle candle2" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname2">현정쓰</div>-->
-<!--                        <img class="candle candle3" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname3">안씨</div>-->
-<!--                        <img class="candle candle4" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname4">무결이</div>-->
-<!--                        <img class="candle candle5" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname5">민아쓰</div>-->
-<!--                        <img class="candle candle6" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname6">현정쓰</div>-->
-<!--                        <img class="candle candle7" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname7">안씨</div>-->
-<!--                        <img class="candle candle8" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname8">무결이</div>-->
-<!--                        <img class="candle candle9" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname9">민아쓰</div>-->
-<!--                        <img class="candle candle10" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname10">현정쓰</div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="swiper-slide">-->
-<!--                    <img class="cake-img" src="/static/img/cake_strawberry.png">-->
-<!--                </div>-->
-<!--                <div class="swiper-slide">-->
-<!--                    <img class="cake-img" src="/static/img/cake_choco.png">-->
-<!--                </div>-->
-<!--                <div class="swiper-slide">-->
-<!--                    <img class="cake-img" src="/static/img/cake_sweetpotato.png">-->
-<!--                </div>-->

@@ -259,23 +259,15 @@
 
                 {#/cake로 관련 정보 보내기#}
                 console.log(current_cake_name, nickname, birthday)
-
-                function getCookie(name) {
-                    const value = `; ${document.cookie}`;
-                    const parts = value.split(`; ${name}=`);
-                    if (parts.length === 2) return parts.pop().split(';').shift();}
-
                 $.ajax({
                     type: 'POST',
-                    url: '/cake/makecake',
-                    {#credentials: 'same-origin',#}
-                    beforeSend: function (request) {
-                        request.setRequestHeader( 'X-CSRF-TOKEN', getCookie('csrf_access_token'));
-                        console.log(getCookie('csrf_access_token'));
-                    },
-                    {#headers: {#}
-                    {#    'X-CSRF-TOKEN': getCookie('csrf_access_token'),#}
-                    {# },#}
+                    url: '/cake/cake',
+
+                    data: {birth_give: birthday,
+                        nickname_give: nickname,
+                        cake_give: current_cake_name,
+                        temp_user: 'palbaw5' },
+
                     data: {birth: birthday, user_nickname: nickname, cake_id: current_cake_name},
 
                     success: function (response) {

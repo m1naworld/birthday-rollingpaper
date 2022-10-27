@@ -42,16 +42,19 @@ def check_message_password():
     message_id = request.form['message_id']
 
     data = db.message.find_one({'message_id': int(message_id)}, {'_id': False})
-    # data = db.rollingpaper.find_one({'rolling_id': rolling_id})
 
     password2 = data['message_password']
+
+    print(password2)
 
     if bcrypt.checkpw(password.encode('utf-8'), password2.encode('utf-8')):
         success = True
         message = '비밀번호 일치'
+        print("일치")
     else:
         success = False
         message = '비밀번호 불일치, 다시 입력해주세요!'
+        print("불일치")
 
     return jsonify({'success': success, 'message': message, 'data': data})
 

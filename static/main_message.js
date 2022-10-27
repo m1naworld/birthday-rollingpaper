@@ -15,6 +15,7 @@
 	// const candles = document.querySelectorAll('.btn');
 
 	$(document).ready(function () {
+
             loadFn();
         });
 	// 통신연결 임시 확인
@@ -25,7 +26,7 @@
 //			url: "/message/save_msg",
 //			data: {},
 //			success: function (response) {
-//				console.log('GET 연결 성공!');
+//
 //			}
 //		});
 	}

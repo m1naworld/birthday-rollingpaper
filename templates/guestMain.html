@@ -109,174 +109,66 @@
             background-color: var(--color-point-3);
         }
 
+        .menu-list > p {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--color-point-2);
+
+        }
+
+        .menu-p1 {
+            margin-top: 30%;
+        }
+
+        .menu-p2 {
+            margin-top: 20%;
+        }
+
+
+        .menu-list > button {
+            width: 300px;
+
+            background-color: var(--color-background);
+            border: 3px solid var(--color-background);
+            color: var(--color-point-1);
+            font-size: 2rem;
+            font-weight: bold;
+
+            border-radius: 15px;
+            padding: 3%;
+            margin: 3%;
+        }
+
+        .menu-list > button:hover {
+            border: 3px solid white;
+        }
+
 
         .swiper-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            width: 100%;
+            height: 70%;
         }
 
         .swiper-slide {
-            position: relative;
+            text-align: center;
+            display: flex;
+            align-items: center; /* 위아래 기준 중앙정렬 */
+            justify-content: center; /* 좌우 기준 중앙정렬 */
         }
 
-        .cake-candle-wrapper {
-            width: 500px;
-        }
 
         .cake-img {
-            position: absolute;
-            width: 1000px;
-            margin-top: 20vw;
-            top: 50vw;
-            left: 50vw;
-            transform: translate(-50%, -50%);
+            margin-top: 8%;
+            max-width: 900px;
+            height: 100%;
         }
-
-        .swiper-slide .candle {
-            position: absolute;
-            width: 50px;
-            z-index: 1;
-        }
-
-        .swiper-slide .nickname {
-            position: absolute;
-            z-index: 2;
-            font-family: var(--font-point);
-            color: white;
-            background-color: var(--color-point-1);
-            font-size: 2rem;
-            padding-left: 10px;
-            padding-right: 10px;
-            border-radius: 10px;
-        }
-
-        .swiper-slide .candle1 {
-            top: 20vw;
-            left: 50vw;
-            transform: translate(-50%, -50%);
-        }
-
-        .swiper-slide .nickname1 {
-            top: 31vw;
-            left: 50vw;
-            transform: translate(-50%, -50%);
-        }
-
-        .swiper-slide .candle2 {
-            top: 46vw;
-            left: 32vw;
-            transform: translate(-50%, -50%);
-        }
-
-        .swiper-slide .nickname2 {
-            top: 58vw;
-            left: 32vw;
-            transform: translate(-50%, -50%);
-        }
-
-        .swiper-slide .candle3 {
-            top: 46vw;
-            left: 44vw;
-            transform: translate(-50%, -50%);
-        }
-
-        .swiper-slide .nickname3 {
-            top: 58vw;
-            left: 44vw;
-            transform: translate(-50%, -50%);
-        }
-
-        .swiper-slide .candle4 {
-            top: 46vw;
-            left: 56vw;
-            transform: translate(-50%, -50%);
-        }
-
-        .swiper-slide .nickname4 {
-            top: 58vw;
-            left: 56vw;
-            transform: translate(-50%, -50%);
-        }
-
-        .swiper-slide .candle5 {
-            top: 46vw;
-            left: 68vw;
-            transform: translate(-50%, -50%);
-        }
-
-        .swiper-slide .nickname5 {
-            top: 58vw;
-            left: 68vw;
-            transform: translate(-50%, -50%);
-        }
-
-        .swiper-slide .candle6 {
-            top: 68vw;
-            left: 23vw;
-            transform: translate(-50%, -50%);
-        }
-
-        .swiper-slide .nickname6 {
-            top: 80vw;
-            left: 23vw;
-            transform: translate(-50%, -50%);
-        }
-
-        .swiper-slide .candle7 {
-            top: 68vw;
-            left: 36vw;
-            transform: translate(-50%, -50%);
-        }
-
-        .swiper-slide .nickname7 {
-            top: 80vw;
-            left: 36vw;
-            transform: translate(-50%, -50%);
-        }
-
-        .swiper-slide .candle8 {
-            top: 68vw;
-            left: 50vw;
-            transform: translate(-50%, -50%);
-        }
-
-        .swiper-slide .nickname8 {
-            top: 80vw;
-            left: 50vw;
-            transform: translate(-50%, -50%);
-        }
-
-        .swiper-slide .candle9 {
-            top: 68vw;
-            left: 63vw;
-            transform: translate(-50%, -50%);
-        }
-
-        .swiper-slide .nickname9 {
-            top: 80vw;
-            left: 63vw;
-            transform: translate(-50%, -50%);
-        }
-
-        .swiper-slide .candle10 {
-            top: 68vw;
-            left: 76vw;
-            transform: translate(-50%, -50%);
-        }
-
-        .swiper-slide .nickname10 {
-            top: 80vw;
-            left: 76vw;
-            transform: translate(-50%, -50%);
-        }
-
 
         .swiper-pagination {
             width: 80vw;
             height: 20vh;
             margin-bottom: 15vh;
         }
+
 
         .swiper-pagination-bullet {
             width: 16px;
@@ -293,6 +185,7 @@
             background: pink;
             border: 2px solid transparent;
         }
+
 
         .swiper-button-next {
             background: url(/static/img/main_angle-right.png) no-repeat;
@@ -369,12 +262,12 @@
             background-color: var(--color-point-3);
         }
 
-        /*.candle-img {*/
-        /*    position: absolute;*/
-        /*    width: 40px;*/
-        /*    top: 500px;*/
+        .candle-img {
+            position: absolute;
+            width: 40px;
+            top: 500px;
 
-        /*}*/
+        }
 
         .message-div {
             display: none;
@@ -450,95 +343,51 @@
 
     </style>
     <script>
-        // 메시지 데이터
-        let messageAllData;
 
-        $(document).ready(function set() {
-            $.ajax({
-                type: "GET",
-                url: "/rolling/detail-data/{{mainpage_info.url}}/{{mainpage_info.rolling_id}}",
-                data: {},
-                success: function (response) {
-                    console.log(response);
+        $(document).ready(function () {
 
-                    const mySwiper = new Swiper('.swiper-container', {
+            var mySwiper = new Swiper('.swiper-container', {
 
-                        slidePerView: 1, // 한 슬라이드에 보여줄 갯수
-                        spaceBetween: 300,  // 슬라이드 사이 여백
-                        centeredSlides: true, // 슬라이드 센터모드
+                slidePerView: 1, // 한 슬라이드에 보여줄 갯수
+                spaceBetween: 300,  // 슬라이드 사이 여백
+                centeredSlides: true, // 슬라이드 센터모드
 
-                        loop: true,
-                        loopAdditionalSlides: 1,
+                loop: true,
+                loopAdditionalSlides: 1,
 
-                        watchOverflow: false,
-                        // effect: "fade",
-                        effect: 'slide', // 기본 슬라이드 전환
-                        // effect: 'fade' // 희미해지면서 슬라이드 전환
-                        // effect: 'cube', // 큐브 형태로 전환
-                        // effect: 'coverflow', // 약간의 그림자와 함께 슬라이드를 밀어내며 전환
-                        // effect: 'flip', // 카드를 뒤집듯이 전환
+                // effect: "fade",
+                effect: 'slide', // 기본 슬라이드 전환
+                // effect: 'fade' // 희미해지면서 슬라이드 전환
+                // effect: 'cube', // 큐브 형태로 전환
+                // effect: 'coverflow', // 약간의 그림자와 함께 슬라이드를 밀어내며 전환
+                // effect: 'flip', // 카드를 뒤집듯이 전환
 
 
-                        // If we need pagination
-                        pagination: {
-                            el: '.swiper-pagination',
-                            clickable: true,
-                            type: 'bullets',
-                        },
+                // If we need pagination
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                    type: 'bullets',
+                },
 
 
-                        // Navigation arrows
-                        navigation: {
-                            nextEl: '.swiper-button-next',
-                            prevEl: '.swiper-button-prev',
-                        },
-
-                        observe: true,
-                        observeParents: true
+                // Navigation arrows
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
 
 
-                    })
-
-                    messageAllData = response['message_list'];
-                    console.log(messageAllData);
-                    let msgLength = messageAllData.length
-                    let pagesNumber = parseInt(msgLength / 10) + 1
-                    console.log(msgLength, pagesNumber)
-
-
-                    for (let j = 0; j < pagesNumber; j++) {
-                        let temp_html = `
-                                          <div class="swiper-slide swiper-slide${j + 1}">
-                                            <div class="cake-candle-wrapper cake-candle-wrapper${j + 1}">
-                                                <img class="cake-img" src="/static/img/cake_{{mainpage_info.cake_id}}.png">
-                                             </div>
-                                          </div>
-                                          `
-
-                        // mySwiper.appendSlide(temp_html);
-                        $('.swiper-wrapper').append(temp_html)
-                    }
-
-                    for (let i = 0; i < msgLength; i++) {
-
-                        let candlePagesNumber = parseInt(i / 10) + 1
-                        let candleLocation = (i % 10) + 1
-                        console.log(candlePagesNumber, candleLocation)
-                        let temp_html = `<img onclick="open_message(${messageAllData[i].message_id})" class="candle candle${candleLocation}" id="candle-img" src="/static/img/candle_${messageAllData[i].candle_id}.png"/>
-                        <div class="nickname nickname${candleLocation}">${messageAllData[i].nickname}</div>`
-                        $(`.cake-candle-wrapper${candlePagesNumber}`).append(temp_html)
-                    }
-                }
             })
 
-
         })
+
 
         // 메시지 창 닫기
         function close_message() {
             $('.rollingpaper-body').click(function (e) {
 
-                let result = e.target.getAttribute('id');
+                let result = e.target.getAttribute('class');
                 let buttonResult = e.target.matches('button');
                 let inputResult = e.target.matches('input');
                 let textareaResult = e.target.matches('textarea');
@@ -552,6 +401,28 @@
             })
         }
 
+        // 메시지 데이터
+        let messageAllData;
+
+        // 페이지 렌더링 시 message 데이터 불러오기
+        $(document).ready(function set() {
+            console.log(`{{mainpage_info}}`)
+            console.log(`{{mainpage_info.url}}` + `{{mainpage_info.rolling_id}}`)
+            $.ajax({
+                type: "GET",
+                url: "/rolling/detail-data/{{mainpage_info.url}}/{{mainpage_info.rolling_id}}",
+                data: {},
+                success: function (response) {
+                    console.log(response);
+                    messageAllData = response['message_list'];
+                    console.log(messageAllData)
+                    for (let i = 0; i < messageAllData.length; i++) {
+                        let temp_html = `<img class="candle-img" onclick="open_message(${messageAllData[i].message_id})" src="/static/img/candle_${messageAllData[i].candle_id}.png">`
+                        $('.swiper-slide').append(temp_html)
+                    }
+                }
+            })
+        })
 
         // 메시지 수정 데이터 보내기
         function message_update_req(message_id, message_content, nickname) {
@@ -596,19 +467,12 @@
                 $.ajax({
                     type: "POST",
                     url: "/rolling/message/check",
-                    data: {'message_id': message_id, 'message_password': password},
+                    data: {'message_id': 0, 'message_password': password},
                     success: function (response) {
-                        // const success = response['success'];
+                         const success = response['success'];
                         // const result = response['data'];
-                        const success = true;
-                        const result = {
-                            'rolling_id': 1,
-                            'nickname': '민아!',
-                            'message_password': '$2b$12$0guYCRx098lOVgxOnT47LOnW0lMioBfGnvHlH2opkgiyDFQCy0GE6',
-                            'content': '안녕!',
-                            'candle_id': 'blue',
-                            'message_id': 55
-                        }
+
+                        const result = {'rolling_id': 1, 'nickname': '민아!', 'message_password': '$2b$12$0guYCRx098lOVgxOnT47LOnW0lMioBfGnvHlH2opkgiyDFQCy0GE6', 'content': '안녕!', 'candle_id': 'blue', 'message_id': 55}
 
                         if (success && type === "update") {
                             let temp_html =
@@ -680,17 +544,45 @@
         <h2> {{mainpage_info.user_nickname}}님 에게 <br/>
             {{message_count}}명의 축하가 도착했어요!
         </h2>
+        <!--        <svg onclick="open_list()" xmlns="http://www.w3.org/2000/svg" width="100" height="90" fill="currentColor"-->
+        <!--             id="bi-list"-->
+        <!--             class="bi bi-list"-->
+        <!--             viewBox="0 0 16 16">-->
+        <!--            <path fill-rule="evenodd"-->
+        <!--                  d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>-->
+        <!--        </svg>-->
+
     </div>
 
     <div onclick="close_message()" class="rollingpaper-body">
         <div class="message-div">
             <div class="message-box">
+
             </div>
         </div>
+        <!--        <div class="menu" id="menu">-->
+        <!--            <div class="menu-list">-->
+        <!--                <p class="menu-p1">여러분도!<br/>-->
+        <!--                    여러분의 롤링페이퍼를 만들어보세요!</p>-->
+        <!--                <button onclick="location.href='/sign-up'">나도 만들기</button>-->
+        <!--                <p class="menu-p2"> 아니면, <br/>-->
+        <!--                    이미 있으신가요?</p>-->
+        <!--                <button onclick="location.href='/login'">내 롤링페이퍼 <br/> 보러가기</button>-->
+        <!--            </div>-->
+        <!--        </div>-->
         <div class="swiper-container">
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
                 <!-- Slides -->
+                <div class="swiper-slide">
+                    <img class="cake-img" src="/static/img/cake_{{mainpage_info.cake_id}}.png">
+                </div>
+                <div class="swiper-slide">
+                    <img class="cake-img" src="/static/img/cake_{{mainpage_info.cake_id}}.png">
+                </div>
+                <div class="swiper-slide">
+                    <img class="cake-img" src="/static/img/cake_{{mainpage_info.cake_id}}.png">
+                </div>
             </div>
             <div class="swiper-pagination"></div>
             <div class="swiper-button-prev"></div>
@@ -699,7 +591,7 @@
     </div>
     <div onclick="close_message()" class="footer">
 
-        <button class="pink-button" onclick="location.href='/message/rolling={{mainpage_info.rolling_id}}'">축하하기</button>
+        <button class="pink-button" onclick="location.href='/message'">축하하기</button>
         <button class="blue-button" onclick="location.href='/sign-up'">나도 만들기</button>
 
     </div>

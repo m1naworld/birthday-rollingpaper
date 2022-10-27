@@ -598,9 +598,13 @@
                     messageAllData = response['message_list'];
                     console.log(messageAllData);
                     let msgLength = messageAllData.length
-                    let pagesNumber = parseInt(msgLength / 10) + 1
+                    let pagesNumber;
+                    if((msgLength % 10) === 0){
+                        pagesNumber  = parseInt(msgLength / 10)
+                    }else{
+                        pagesNumber = parseInt(msgLength / 10) + 1
+                    }
                     console.log(msgLength, pagesNumber)
-
 
                     for (let j = 0; j < pagesNumber; j++) {
                         let temp_html = `
@@ -610,13 +614,10 @@
                                              </div>
                                           </div>
                                           `
-
-                        // mySwiper.appendSlide(temp_html);
-                        $('.swiper-wrapper').append(temp_html)
+                            $('.swiper-wrapper').append(temp_html)
                     }
 
                     for (let i = 0; i < msgLength; i++) {
-
                         let candlePagesNumber = parseInt(i / 10) + 1
                         let candleLocation = (i % 10) + 1
                         console.log(candlePagesNumber, candleLocation)
@@ -629,38 +630,6 @@
 
 
         })
-
-
-        // // 메시지 창 닫기
-        // function close_message() {
-        //     $('.rollingpaper-body').click(function (e) {
-        //
-        //         let result = e.target.getAttribute('id');
-        //         let buttonResult = e.target.matches('button');
-        //         let inputResult = e.target.matches('input');
-        //         let textareaResult = e.target.matches('textarea');
-        //
-        //         console.log(result)
-        //         console.log(buttonResult)
-        //         if (result != 'candle-img' && result != 'message' && !buttonResult && !inputResult && !textareaResult) {
-        //             $('.message-div').hide();
-        //             $('.swiper-container').show();
-        //             $('.footer').show();
-        //         }
-        //     })
-        // }
-
-        //  function close_list() {
-        //     $('.rollingpaper-body').click(function (e) {
-        //         let result = e.target.matches('button') // 클릭한 곳의 태그가 button일 때 true
-        //         console.log(result)
-        //         if (!result) {
-        //             $('#menu').hide();
-        //             $('.swiper-container').show();
-        //             $('.footer').show();
-        //         }
-        //     })
-        // }
 
         function close_window() {
             $('.rollingpaper-body').click(function (e) {
@@ -787,10 +756,6 @@
 
         <div class="menu" id="menu">
             <div class="menu-list">
-                <!--                        <p class="menu-p1">사람들에게<br/>-->
-                <!--                            공유하여 편지를 받아보세요!</p>-->
-
-                <!--                <p class="menu-p2">&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</p>-->
                 <button onclick="location.href='/cake'">새로 만들기</button>
                 <button onclick="delete_check_button()">삭제하기</button>
                 <button onclick="logout()">로그아웃</button>

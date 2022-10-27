@@ -184,6 +184,10 @@
 
     </style>
     <script>
+        $(function () {
+
+        })
+
         {#로그인 화면으로 이동#}
         $(function(){
             $('.back-text').click(function(){
@@ -255,16 +259,27 @@
 
                 {#/cake로 관련 정보 보내기#}
                 console.log(current_cake_name, nickname, birthday)
+
+                function getCookie(name) {
+                    const value = `; ${document.cookie}`;
+                    const parts = value.split(`; ${name}=`);
+                    if (parts.length === 2) return parts.pop().split(';').shift();}
+
                 $.ajax({
                     type: 'POST',
-                    url: '/cake/cake',
-                    data: {
-                        birth_give: birthday,
-                        nickname_give: nickname,
-                        cake_give: current_cake_name,
-                        temp_user: 'palbaw5'
+                    url: '/cake/makecake',
+                    {#credentials: 'same-origin',#}
+                    beforeSend: function (request) {
+                        request.setRequestHeader( 'X-CSRF-TOKEN', getCookie('csrf_access_token'));
+                        console.log(getCookie('csrf_access_token'));
                     },
+                    {#headers: {#}
+                    {#    'X-CSRF-TOKEN': getCookie('csrf_access_token'),#}
+                    {# },#}
+                    data: {birth: birthday, user_nickname: nickname, cake_id: current_cake_name},
+
                     success: function (response) {
+                        console.log(response);
                         const url = response['url']
                         location.href =`/rolling/${url}`;
                     }
@@ -281,7 +296,6 @@
 
     <div class="goLogInBtn">
         <p>&nbsp < 로그인 화면으로</p>
-
     </div>
 
     <div class="title">

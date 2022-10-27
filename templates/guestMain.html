@@ -85,6 +85,7 @@
             position: fixed;
             width: 100%;
             height: 100%;
+
             background-size: 50%;
             text-align: center;
         }
@@ -106,40 +107,6 @@
 
 
             background-color: var(--color-point-3);
-        }
-
-        .menu-list > p {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--color-point-2);
-
-        }
-
-        .menu-p1 {
-            margin-top: 30%;
-        }
-
-        .menu-p2 {
-            margin-top: 20%;
-        }
-
-
-        .menu-list > button {
-            width: 300px;
-
-            background-color: var(--color-background);
-            border: 3px solid var(--color-background);
-            color: var(--color-point-1);
-            font-size: 2rem;
-            font-weight: bold;
-
-            border-radius: 15px;
-            padding: 3%;
-            margin: 3%;
-        }
-
-        .menu-list > button:hover {
-            border: 3px solid white;
         }
 
 
@@ -353,6 +320,7 @@
             display: none;
         }
 
+
         .footer {
             position: absolute;
             bottom: 0;
@@ -366,7 +334,7 @@
 
         }
 
-        button {
+        .footer > button {
 
             width: 300px;
             height: 80px;
@@ -384,6 +352,7 @@
             border: 3px solid white;
         }
 
+
         .pink-button {
             border: 1px solid var(--color-point-1);
             background-color: var(--color-point-1);
@@ -399,6 +368,13 @@
             border: 1px solid var(--color-point-3);
             background-color: var(--color-point-3);
         }
+
+        /*.candle-img {*/
+        /*    position: absolute;*/
+        /*    width: 40px;*/
+        /*    top: 500px;*/
+
+        /*}*/
 
         .message-div {
             display: none;
@@ -472,83 +448,11 @@
             border: none;
         }
 
-
     </style>
     <script>
-
-
-        //        const mySwiper = new Swiper('.swiper-container', {
-        //
-        //                slidePerView: 1, // 한 슬라이드에 보여줄 갯수
-        //                spaceBetween: 300,  // 슬라이드 사이 여백
-        //                centeredSlides: true, // 슬라이드 센터모드
-        //
-        //                loop: true,
-        //                loopAdditionalSlides: 1,
-        //
-        //                watchOverflow: false,
-        //                // effect: "fade",
-        //                effect: 'slide', // 기본 슬라이드 전환
-        //                // effect: 'fade' // 희미해지면서 슬라이드 전환
-        //                // effect: 'cube', // 큐브 형태로 전환
-        //                // effect: 'coverflow', // 약간의 그림자와 함께 슬라이드를 밀어내며 전환
-        //                // effect: 'flip', // 카드를 뒤집듯이 전환
-        //
-        //
-        //                // If we need pagination
-        //                pagination: {
-        //                    el: '.swiper-pagination',
-        //                    clickable: true,
-        //                    type: 'bullets',
-        //                },
-        //
-        //
-        //                // Navigation arrows
-        //                navigation: {
-        //                    nextEl: '.swiper-button-next',
-        //                    prevEl: '.swiper-button-prev',
-        //                },
-        //
-        //                observe: true,
-        //                observeParents: true
-        //
-        //
-        //            })
-
-        function open_list() {
-            $('#menu').toggle();
-
-            const display = document.getElementById('menu').style.display;
-            console.log(display)
-
-            if (display === "block") {
-                $('.swiper-container').hide();
-                $('.footer').hide();
-                $('.message-div').hide();
-            } else {
-                $('.swiper-container').show();
-                $('.footer').show();
-            }
-        }
-
-
-        // url 복사 함수
-        function clip() {
-            let url = '';
-            const textarea = document.createElement("textarea");
-            document.body.appendChild(textarea);
-            url = window.document.location.href;
-            textarea.value = url;
-            textarea.select();
-            document.execCommand("copy");
-            document.body.removeChild(textarea);
-            alert("링크가 복사되었습니다.")
-        }
-
-
-        // 메세시 수에 따른 캔들과 아이디, 페이지 만들기
+        // 메시지 데이터
         let messageAllData;
-        // 페이지 렌더링 시 message 데이터 불러오기
+
         $(document).ready(function set() {
             $.ajax({
                 type: "GET",
@@ -630,39 +534,8 @@
 
         })
 
-
-        // // 메시지 창 닫기
-        // function close_message() {
-        //     $('.rollingpaper-body').click(function (e) {
-        //
-        //         let result = e.target.getAttribute('id');
-        //         let buttonResult = e.target.matches('button');
-        //         let inputResult = e.target.matches('input');
-        //         let textareaResult = e.target.matches('textarea');
-        //
-        //         console.log(result)
-        //         console.log(buttonResult)
-        //         if (result != 'candle-img' && result != 'message' && !buttonResult && !inputResult && !textareaResult) {
-        //             $('.message-div').hide();
-        //             $('.swiper-container').show();
-        //             $('.footer').show();
-        //         }
-        //     })
-        // }
-
-        //  function close_list() {
-        //     $('.rollingpaper-body').click(function (e) {
-        //         let result = e.target.matches('button') // 클릭한 곳의 태그가 button일 때 true
-        //         console.log(result)
-        //         if (!result) {
-        //             $('#menu').hide();
-        //             $('.swiper-container').show();
-        //             $('.footer').show();
-        //         }
-        //     })
-        // }
-
-        function close() {
+        // 메시지 창 닫기
+        function close_message() {
             $('.rollingpaper-body').click(function (e) {
 
                 let result = e.target.getAttribute('id');
@@ -670,14 +543,34 @@
                 let inputResult = e.target.matches('input');
                 let textareaResult = e.target.matches('textarea');
 
-                console.log(result)
                 console.log(buttonResult)
-
                 if (result != 'candle-img' && result != 'message' && !buttonResult && !inputResult && !textareaResult) {
-                    $('.menu-div').hide();
                     $('.message-div').hide();
                     $('.swiper-container').show();
                     $('.footer').show();
+                }
+            })
+        }
+
+
+        // 메시지 수정 데이터 보내기
+        function message_update_req(message_id, message_content, nickname) {
+            console.log(message_id, message_content, nickname)
+            $.ajax({
+                type: "POST",
+                url: "/rolling/message/update",
+                data: {'message_id': message_id, 'message_content': message_content},
+                success: function (response) {
+                    alert(response['message']);
+                    window.location.reload();
+                    // let temp_html = ` <div class="message-detail">
+                    //             <p>FROM. ${nickname}</p>
+                    //             <p class="message">${message_content}</p>
+                    //             <button class="blue-button" id="update" onclick="password_check(${message_id}, \'update'\)">수정하기</button>
+                    //             <button class="pink-button" id="delete" onclick="password_check(${message_id}, \'delete'\)">삭제하기</button>
+                    //         </div>`
+                    // $('.message-detail').replaceWith(temp_html);
+
                 }
             })
         }
@@ -695,16 +588,68 @@
             })
         }
 
+        // 메시지 수정 비밀번호 확인 및 수정 데이터 보내기
+        function message_update_and_delete(message_id, password, type) {
+            console.log(password);
+            console.log(typeof (password));
+            if (password != '') {
+                $.ajax({
+                    type: "POST",
+                    url: "/rolling/message/check",
+                    data: {'message_id': message_id, 'message_password': password},
+                    success: function (response) {
+                        // const success = response['success'];
+                        // const result = response['data'];
+                        const success = true;
+                        const result = {
+                            'rolling_id': 1,
+                            'nickname': '민아!',
+                            'message_password': '$2b$12$0guYCRx098lOVgxOnT47LOnW0lMioBfGnvHlH2opkgiyDFQCy0GE6',
+                            'content': '안녕!',
+                            'candle_id': 'blue',
+                            'message_id': 55
+                        }
 
-        // 메시지 삭제 확인 버튼
-        function message_delete_check_button(message_id) {
-            let temp_html = `<div class="message">
-                                <p>정말 삭제하시겠습니까?</p>
-                                <button class="pink-button" onclick="message_delete_req(${message_id})">삭제하기</button>
+                        if (success && type === "update") {
+                            let temp_html =
+                                ` <div class="message-detail">
+                                 <p>FROM. ${result.nickname}</p>
+                                 <textarea type='text'id="message-textarea" maxLength = "140" wrap = "hard" cols = "10" rows = "3" >${result.content}</textarea>
+                                <button onclick="message_update_req(${result.message_id}, $('#message-textarea').val(), \'${result.nickname}'\)" class="pink-button" style="margin-top:20px">수정 완료</button>
                             </div>`
+                            $('.message-detail').replaceWith(temp_html);
 
-            $('.message-detail').replaceWith(temp_html)
+                        } else if (success && type === "delete") {
+                            let temp_html =
+                                ` <div class="message-detail">
+                                 <p>FROM. ${result.nickname}</p>
+                                 <p class="message">${result.content}</p>
+                                <button onclick="message_delete_req(${result.message_id})" class="pink-button" style="margin-top:20px">삭제하기</button>
+                            </div>`
+                            $('.message-detail').replaceWith(temp_html);
+
+                        } else { // success가 false일 경우
+                            alert(response['message']);
+                        }
+                    }
+                })
+            } else {
+                alert("비밀번호를 입력해주세요!")
+            }
+
         }
+
+        // 비밀번호 입력 창
+        function password_check(message_id, type) {
+            $('.message').hide();
+            let temp_html = ` <div class="message">
+                <input type='password' id="input-password" style='width:80%;height:70px;' placeholder=" 비밀번호" required/>
+                <button onclick="message_update_and_delete(${message_id}, $('#input-password').val(), \'${type}'\)" class="yellow-button" style="margin-top: 10px">비밀번호 확인</button>
+                </div>
+                </div>`
+            $('.message-detail').html(temp_html)
+        }
+
 
         // 캔들 클릭시 메시지 보기
         function open_message(message_id) {
@@ -719,51 +664,13 @@
             let temp_html = ` <div class="message-detail">
                                 <p>FROM. ${result.nickname}</p>
                                 <p class="message">${result.content}</p>
-                                <button class="pink-button" id="delete" onclick="message_delete_check_button(${message_id})">삭제하기</button>
+                                <button class="blue-button" id="update" onclick="password_check(${message_id}, \'update'\)">수정하기</button>
+                                <button class="pink-button" id="delete" onclick="password_check(${message_id}, \'delete'\)">삭제하기</button>
                             </div>`
 
             $('.message-box').html(temp_html);
             $('.message-div').show();
         }
-
-
-        // 롤링페이퍼 삭제 확인 버튼
-        function delete_check_button() {
-            let temp_html = `<div class="menu-list">
-                                <p>롤링페이퍼를 정말 삭제하시겠습니까?</p>
-                                <button onclick="rolling_delete()">삭제하기</button>
-                            </div>`
-
-            $('.menu-list').replaceWith(temp_html)
-        }
-
-        // 롤링페이퍼 삭제하기
-        function rolling_delete() {
-            $.ajax({
-                type: "POST",
-                url: "/mypage/delete",
-                data: {'del_num': `{{mainpage_info.rolling_id}}`},
-                success: function (response) {
-                    alert("삭제가 완료되었습니다.")
-                    location.replace('/mypage')
-                }
-            })
-        }
-
-        // 로그아웃
-        function logout() {
-            $.ajax({
-                type: "POST",
-                url: "/login/tokenout",
-                data: {},
-                success: function (response) {
-                    console.log(response)
-                    location.replace('/login')
-                }
-            })
-
-        }
-
 
     </script>
 </head>
@@ -773,29 +680,9 @@
         <h2> {{mainpage_info.user_nickname}}님 에게 <br/>
             {{message_count}}명의 축하가 도착했어요!
         </h2>
-        <svg onclick="open_list()" xmlns="http://www.w3.org/2000/svg" width="100" height="90" fill="currentColor"
-             id="bi-list"
-             class="bi bi-list"
-             viewBox="0 0 16 16">
-            <path fill-rule="evenodd"
-                  d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-        </svg>
-
     </div>
 
-    <div onclick="close()" class="rollingpaper-body">
-
-        <div class="menu" id="menu">
-            <div class="menu-list">
-                <!--                        <p class="menu-p1">사람들에게<br/>-->
-                <!--                            공유하여 편지를 받아보세요!</p>-->
-
-                <!--                <p class="menu-p2">&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</p>-->
-                <button onclick="location.href='/cake'">새로 만들기</button>
-                <button onclick="delete_check_button()">삭제하기</button>
-                <button onclick="logout()">로그아웃</button>
-            </div>
-        </div>
+    <div onclick="close_message()" class="rollingpaper-body">
         <div class="message-div">
             <div class="message-box">
             </div>
@@ -803,52 +690,19 @@
         <div class="swiper-container">
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
+                <!-- Slides -->
             </div>
             <div class="swiper-pagination"></div>
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
         </div>
     </div>
-    <div onclick="close()" class="footer">
-        <button class="pink-button" onclick="clip()">공유하기</button>
-        <button class="blue-button" onclick="location.href='/mypage'">마이 페이지</button>
+    <div onclick="close_message()" class="footer">
+
+        <button class="pink-button" onclick="location.href='/message/rolling={{mainpage_info.rolling_id}}'">축하하기</button>
+        <button class="blue-button" onclick="location.href='/sign-up'">나도 만들기</button>
+
     </div>
 </div>
 </body>
 </html>
-
-<!-- Slides -->
-<!--                <div class="swiper-slide swiper-slide1">/-->
-<!--                    <div class="cake-candle-wrapper cake-candle-wrapper1">-->
-<!--                        <img class="cake-img" src="/static/img/cake_strawberry.png">-->
-<!--                        <img class="candle candle1" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname1">민아</div>-->
-<!--                        <img class="candle candle2" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname2">현정쓰</div>-->
-<!--                        <img class="candle candle3" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname3">안씨</div>-->
-<!--                        <img class="candle candle4" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname4">무결이</div>-->
-<!--                        <img class="candle candle5" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname5">민아쓰</div>-->
-<!--                        <img class="candle candle6" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname6">현정쓰</div>-->
-<!--                        <img class="candle candle7" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname7">안씨</div>-->
-<!--                        <img class="candle candle8" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname8">무결이</div>-->
-<!--                        <img class="candle candle9" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname9">민아쓰</div>-->
-<!--                        <img class="candle candle10" src="../static/img/candle_purple.png">-->
-<!--                        <div class="nickname nickname10">현정쓰</div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="swiper-slide">-->
-<!--                    <img class="cake-img" src="/static/img/cake_strawberry.png">-->
-<!--                </div>-->
-<!--                <div class="swiper-slide">-->
-<!--                    <img class="cake-img" src="/static/img/cake_choco.png">-->
-<!--                </div>-->
-<!--                <div class="swiper-slide">-->
-<!--                    <img class="cake-img" src="/static/img/cake_sweetpotato.png">-->
-<!--                </div>-->

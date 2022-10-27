@@ -20,14 +20,14 @@
 	// 통신연결 임시 확인
 
 	const loadFn = () => {
-		$.ajax({
-			type: "GET",
-			url: "/message/save_msg",
-			data: {},
-			success: function (response) {
-				alert('GET 연결 성공!');
-			}
-		});
+//		$.ajax({
+//			type: "GET",
+//			url: "/message/save_msg",
+//			data: {},
+//			success: function (response) {
+//				console.log('GET 연결 성공!');
+//			}
+//		});
 	}
 
 	function goback () {

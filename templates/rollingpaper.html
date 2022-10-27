@@ -569,6 +569,43 @@
 
         })
 
+        // 삭제 확인 버튼
+        function delete_check_button() {
+            let temp_html = `<div class="menu-list">
+                                <p>롤링페이퍼를 정말 삭제하시겠습니까?</p>
+                                <button onclick="rolling_delete()">삭제하기</button>
+                            </div>`
+
+            $('.menu-list').replaceWith(temp_html)
+        }
+
+        // 롤링페이퍼 삭제하기
+        function rolling_delete() {
+            $.ajax({
+                type: "POST",
+                url: "/mypage/delete",
+                data: {'del_num': `{{mainpage_info.rolling_id}}`},
+                success: function (response) {
+                    alert("삭제가 완료되었습니다.")
+                    location.replace('/mypage')
+                }
+            })
+        }
+
+        // 로그아웃
+        function logout() {
+            $.ajax({
+                type: "POST",
+                url: "/login/tokenout",
+                data: {},
+                success: function (response) {
+                    console.log(response)
+                    location.replace('/login')
+                }
+            })
+
+        }
+
 
     </script>
 </head>
@@ -578,28 +615,29 @@
         <h2> {{mainpage_info.user_nickname}}님 에게 <br/>
             {{message_count}}명의 축하가 도착했어요!
         </h2>
-        <!--        <svg onclick="open_list()" xmlns="http://www.w3.org/2000/svg" width="100" height="90" fill="currentColor"-->
-        <!--             id="bi-list"-->
-        <!--             class="bi bi-list"-->
-        <!--             viewBox="0 0 16 16">-->
-        <!--            <path fill-rule="evenodd"-->
-        <!--                  d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>-->
-        <!--        </svg>-->
+        <svg onclick="open_list()" xmlns="http://www.w3.org/2000/svg" width="100" height="90" fill="currentColor"
+             id="bi-list"
+             class="bi bi-list"
+             viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                  d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+        </svg>
 
     </div>
 
     <div class="rollingpaper-body">
 
-        <!--        <div class="menu" id="menu">-->
-        <!--            <div class="menu-list">-->
-        <!--                <p class="menu-p1">사람들에게<br/>-->
-        <!--                    공유하여 편지를 받아보세요!</p>-->
-        <!--                <button>공유하기</button>-->
-        <!--                <p class="menu-p2">&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</p>-->
-        <!--                <button>새로 만들기</button>-->
-        <!--                <button>삭제하기</button>-->
-        <!--            </div>-->
-        <!--        </div>-->
+        <div class="menu" id="menu">
+            <div class="menu-list">
+                <!--                        <p class="menu-p1">사람들에게<br/>-->
+                <!--                            공유하여 편지를 받아보세요!</p>-->
+
+                <!--                <p class="menu-p2">&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</p>-->
+                <button onclick="location.href='/cake'">새로 만들기</button>
+                <button onclick="delete_check_button()">삭제하기</button>
+                <button onclick="logout()">로그아웃</button>
+            </div>
+        </div>
         <div class="swiper-container">
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">

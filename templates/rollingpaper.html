@@ -363,7 +363,7 @@
             border: 3px solid white;
         }
 
-         .pink-button {
+        .pink-button {
             border: 1px solid var(--color-point-1);
             background-color: var(--color-point-1);
 
@@ -378,7 +378,7 @@
             border: 1px solid var(--color-point-3);
             background-color: var(--color-point-3);
         }
-        
+
         .message-div {
             display: none;
             width: 100%;
@@ -452,240 +452,240 @@
         }
 
     </style>
-   <script>
+    <script>
 
-    // 메세시 수에 따른 캔들과 아이디, 페이지 만들기
-    let messageAllData;
-    // 페이지 렌더링 시 message 데이터 불러오기
-    $(document).ready(function set() {
-        $.ajax({
-            type: "GET",
-            url: "/rolling/detail-data/{{mainpage_info.rolling_id}}?key={{mainpage_info.url}}",
-            data: {},
-            success: function (response) {
-                console.log(response);
+        // 메세시 수에 따른 캔들과 아이디, 페이지 만들기
+        let messageAllData;
+        // 페이지 렌더링 시 message 데이터 불러오기
+        $(document).ready(function set() {
+            $.ajax({
+                type: "GET",
+                url: "/rolling/detail-data/{{mainpage_info.rolling_id}}?key={{mainpage_info.url}}",
+                data: {},
+                success: function (response) {
+                    console.log(response);
 
-                const mySwiper = new Swiper('.swiper-container', {
+                    const mySwiper = new Swiper('.swiper-container', {
 
-                    slidePerView: 1, // 한 슬라이드에 보여줄 갯수
-                    spaceBetween: 300,  // 슬라이드 사이 여백
-                    centeredSlides: true, // 슬라이드 센터모드
+                        slidePerView: 1, // 한 슬라이드에 보여줄 갯수
+                        spaceBetween: 300,  // 슬라이드 사이 여백
+                        centeredSlides: true, // 슬라이드 센터모드
 
-                    loop: true,
-                    loopAdditionalSlides: 1,
+                        loop: true,
+                        loopAdditionalSlides: 1,
 
-                    watchOverflow: false,
-                    // effect: "fade",
-                    effect: 'slide', // 기본 슬라이드 전환
-                    // effect: 'fade' // 희미해지면서 슬라이드 전환
-                    // effect: 'cube', // 큐브 형태로 전환
-                    // effect: 'coverflow', // 약간의 그림자와 함께 슬라이드를 밀어내며 전환
-                    // effect: 'flip', // 카드를 뒤집듯이 전환
-
-
-                    // If we need pagination
-                    pagination: {
-                        el: '.swiper-pagination',
-                        clickable: true,
-                        type: 'bullets',
-                    },
+                        watchOverflow: false,
+                        // effect: "fade",
+                        effect: 'slide', // 기본 슬라이드 전환
+                        // effect: 'fade' // 희미해지면서 슬라이드 전환
+                        // effect: 'cube', // 큐브 형태로 전환
+                        // effect: 'coverflow', // 약간의 그림자와 함께 슬라이드를 밀어내며 전환
+                        // effect: 'flip', // 카드를 뒤집듯이 전환
 
 
-                    // Navigation arrows
-                    navigation: {
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
-                    },
-
-                    observe: true,
-                    observeParents: true
+                        // If we need pagination
+                        pagination: {
+                            el: '.swiper-pagination',
+                            clickable: true,
+                            type: 'bullets',
+                        },
 
 
-                })
+                        // Navigation arrows
+                        navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        },
 
-                messageAllData = response['message_list'];
-                console.log(messageAllData);
-                let msgLength = messageAllData.length
-                let pagesNumber;
-                if ((msgLength % 10) === 0) {
-                    pagesNumber = parseInt(msgLength / 10)
-                } else {
-                    pagesNumber = parseInt(msgLength / 10) + 1
-                }
-                console.log(msgLength, pagesNumber)
+                        observe: true,
+                        observeParents: true
 
-                for (let j = 0; j < pagesNumber; j++) {
-                    let temp_html = `
+
+                    })
+
+                    messageAllData = response['message_list'];
+                    console.log(messageAllData);
+                    let msgLength = messageAllData.length
+                    let pagesNumber;
+                    if ((msgLength % 10) === 0) {
+                        pagesNumber = parseInt(msgLength / 10)
+                    } else {
+                        pagesNumber = parseInt(msgLength / 10) + 1
+                    }
+                    console.log(msgLength, pagesNumber)
+
+                    for (let j = 0; j < pagesNumber; j++) {
+                        let temp_html = `
                                       <div class="swiper-slide swiper-slide${j + 1}">
                                         <div class="cake-candle-wrapper cake-candle-wrapper${j + 1}">
                                             <img class="cake-img" src="/static/img/cake_{{mainpage_info.cake_id}}.png">
                                          </div>
                                       </div>
                                       `
-                    $('.swiper-wrapper').append(temp_html)
+                        $('.swiper-wrapper').append(temp_html)
 
-                    if (pagesNumber > 1) {
-                        $('.swiper-button-next').show();
-                        $('.swiper-button-prev').show();
+                        if (pagesNumber > 1) {
+                            $('.swiper-button-next').show();
+                            $('.swiper-button-prev').show();
+                        }
+                    }
+
+                    for (let i = 0; i < msgLength; i++) {
+                        let candlePagesNumber = parseInt(i / 10) + 1
+                        let candleLocation = (i % 10) + 1
+                        console.log(candlePagesNumber, candleLocation)
+                        let temp_html = `<img onclick="open_message(${messageAllData[i].message_id})" class="candle candle${candleLocation}" id="candle-img" src="/static/img/candle_${messageAllData[i].candle_id}.png"/>
+                    <div onclick="open_message(${messageAllData[i].message_id})" id="nickname" class="nickname nickname${candleLocation}" >${messageAllData[i].nickname}</div>`
+                        $(`.cake-candle-wrapper${candlePagesNumber}`).append(temp_html)
                     }
                 }
-
-                for (let i = 0; i < msgLength; i++) {
-                    let candlePagesNumber = parseInt(i / 10) + 1
-                    let candleLocation = (i % 10) + 1
-                    console.log(candlePagesNumber, candleLocation)
-                    let temp_html = `<img onclick="open_message(${messageAllData[i].message_id})" class="candle candle${candleLocation}" id="candle-img" src="/static/img/candle_${messageAllData[i].candle_id}.png"/>
-                    <div onclick="open_message(${messageAllData[i].message_id})" id="nickname" class="nickname nickname${candleLocation}" >${messageAllData[i].nickname}</div>`
-                    $(`.cake-candle-wrapper${candlePagesNumber}`).append(temp_html)
-                }
-            }
+            })
         })
-    })
 
 
-    // 메뉴 toggle
-    function open_list() {
-        $('#menu').toggle();
+        // 메뉴 toggle
+        function open_list() {
+            $('#menu').toggle();
 
-        const display = document.getElementById('menu').style.display;
-        console.log(display)
+            const display = document.getElementById('menu').style.display;
+            console.log(display)
 
-        if (display === "block") {
-            $('.swiper-container').hide();
-            $('.footer').hide();
-            $('.message-div').hide();
-        } else {
-            $('.swiper-container').show();
-            $('.footer').show();
-        }
-    }
-
-     // 메시지, 메뉴 창 닫기 함수
-    function close_window() {
-        $('.rollingpaper-body').click(function (e) {
-
-            let result = e.target.getAttribute('id');
-            let buttonResult = e.target.matches('button');
-            let inputResult = e.target.matches('input');
-            let textareaResult = e.target.matches('textarea');
-
-            console.log(result)
-            console.log(buttonResult)
-
-            if (result != 'candle-img' && result != 'menu-list' && result != 'message' && result != 'nickname' && !buttonResult && !inputResult && !textareaResult) {
-                $('.menu').hide();
+            if (display === "block") {
+                $('.swiper-container').hide();
+                $('.footer').hide();
                 $('.message-div').hide();
+            } else {
                 $('.swiper-container').show();
                 $('.footer').show();
             }
-        })
-    }
+        }
+
+        // 메시지, 메뉴 창 닫기 함수
+        function close_window() {
+            $('.rollingpaper-body').click(function (e) {
+
+                let result = e.target.getAttribute('id');
+                let buttonResult = e.target.matches('button');
+                let inputResult = e.target.matches('input');
+                let textareaResult = e.target.matches('textarea');
+
+                console.log(result)
+                console.log(buttonResult)
+
+                if (result != 'candle-img' && result != 'menu-list' && result != 'message' && result != 'nickname' && !buttonResult && !inputResult && !textareaResult) {
+                    $('.menu').hide();
+                    $('.message-div').hide();
+                    $('.swiper-container').show();
+                    $('.footer').show();
+                }
+            })
+        }
 
 
-    // url 복사 함수
-    function clip() {
-        let url = '';
-        const textarea = document.createElement("textarea");
-        document.body.appendChild(textarea);
-        url = window.document.location.href;
-        console.log(url.split("/"))
-        url_list = url.split("/")
-        url_list.splice(4, 0, "guest")
-        result = (url_list.join()).replace(/[',']/g, '/')
-        textarea.value = result
-        textarea.select();
-        document.execCommand("copy");
-        document.body.removeChild(textarea);
-        alert("링크가 복사되었습니다.")
-    }
+        // url 복사 함수
+        function clip() {
+            let url = '';
+            const textarea = document.createElement("textarea");
+            document.body.appendChild(textarea);
+            url = window.document.location.href;
+            console.log(url.split("/"))
+            url_list = url.split("/")
+            url_list.splice(4, 0, "guest")
+            result = (url_list.join()).replace(/[',']/g, '/')
+            textarea.value = result
+            textarea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textarea);
+            alert("링크가 복사되었습니다.")
+        }
 
-      // 캔들 클릭시 메시지 보기
-    function open_message(message_id) {
-        $('.swiper-container').hide();
-        $('.footer').hide()
+        // 캔들 클릭시 메시지 보기
+        function open_message(message_id) {
+            $('.swiper-container').hide();
+            $('.footer').hide()
 
-        console.log("캔들 클릭시 확인" + messageAllData)
-        let result = messageAllData.find(m => m['message_id'] === message_id)
-        console.log("메시지 결과 확인" + result)
-        let temp_html = ` <div id= "message-detail" class="message-detail">
+            console.log("캔들 클릭시 확인" + messageAllData)
+            let result = messageAllData.find(m => m['message_id'] === message_id)
+            console.log("메시지 결과 확인" + result)
+            let temp_html = ` <div id= "message-detail" class="message-detail">
                             <p style="font-family: var(--font-point)">FROM. ${result.nickname}</p>
                             <p class="message" style="font-family: var(--font-handwriting)">${result.content}</p>
                             <button class="yellow-button" id="delete" onclick="message_delete_check_button(${message_id})">삭제하기</button>
                         </div>`
 
-        $('.message-box').html(temp_html);
-        $('.message-div').show();
-    }
+            $('.message-box').html(temp_html);
+            $('.message-div').show();
+        }
 
-     // 메시지 삭제 확인 버튼
-    function message_delete_check_button(message_id) {
-        let temp_html = `<div class="message" style="font-size: 20px">
+        // 메시지 삭제 확인 버튼
+        function message_delete_check_button(message_id) {
+            let temp_html = `<div class="message" style="font-size: 20px">
                             <p style="font-size: 2.5rem">정말 삭제하시겠습니까?</p>
                             <button class="yellow-button" onclick="message_delete_req(${message_id})">삭제하기</button>
                         </div>`
 
-        $('.message-detail').replaceWith(temp_html)
-    }
+            $('.message-detail').replaceWith(temp_html)
+        }
 
 
+        // 메시지 삭제 데이터 보내기
+        function message_delete_req(message_id) {
+            $.ajax({
+                type: "POST",
+                url: "/rolling/message/removal",
+                data: {'message_id': message_id},
+                success: function (response) {
+                    alert(response['message']);
+                    window.location.reload();
+                }
+            })
+        }
 
-    // 메시지 삭제 데이터 보내기
-    function message_delete_req(message_id) {
-        $.ajax({
-            type: "POST",
-            url: "/rolling/message/removal",
-            data: {'message_id': message_id},
-            success: function (response) {
-                alert(response['message']);
-                window.location.reload();
-            }
-        })
-    }
 
-
-    // 롤링페이퍼 삭제 확인 버튼
-    function delete_check_button() {
-        let temp_html = `<div class="menu-list">
+        // 롤링페이퍼 삭제 확인 버튼
+        function delete_check_button() {
+            let temp_html = `<div class="menu-list">
                             <p>롤링페이퍼를 정말 삭제하시겠습니까?</p>
                             <button onclick="rolling_delete()">삭제하기</button>
                         </div>`
 
-        $('.menu-list').replaceWith(temp_html)
-    }
+            $('.menu-list').replaceWith(temp_html)
+        }
 
-    // 롤링페이퍼 삭제하기
-    function rolling_delete() {
-        $.ajax({
-            type: "POST",
-            url: "/mypage/delete",
-            data: {'del_num': `{{mainpage_info.rolling_id}}`},
-            success: function (response) {
-                alert("삭제가 완료되었습니다.")
-                location.replace('/mypage')
-            }
-        })
-    }
+        // 롤링페이퍼 삭제하기
+        function rolling_delete() {
+            $.ajax({
+                type: "POST",
+                url: "/mypage/delete",
+                data: {'del_num': `{{mainpage_info.rolling_id}}`},
+                success: function (response) {
+                    alert("삭제가 완료되었습니다.")
+                    location.replace('/mypage')
+                }
+            })
+        }
 
-    // 로그아웃
-    function logout() {
-        $.ajax({
-            type: "POST",
-            url: "/login/tokenout",
-            data: {},
-            success: function (response) {
-                console.log(response)
-                location.replace('/login')
-            }
-        })
+        // 로그아웃
+        function logout() {
+            $.ajax({
+                type: "POST",
+                url: "/login/tokenout",
+                data: {},
+                success: function (response) {
+                    console.log(response)
+                    location.replace('/login')
+                }
+            })
 
-    }
+        }
 
-</script>
+    </script>
 </head>
 <body>
 <div class="root">
     <div class="header">
-        <h2><span style="color:var(--color-point-2); font-weight: bold;">{{mainpage_info.user_nickname}}</span>님 에게 <br/>
+        <h2><span style="color:var(--color-point-2); font-weight: bold;">{{mainpage_info.user_nickname}}</span>님 에게
+            <br/>
             <span style="color:var(--color-point-2); font-weight: bold;">{{message_count}}</span>명의 축하가 도착했어요!
         </h2>
         <svg onclick="open_list()" xmlns="http://www.w3.org/2000/svg" width="100" height="90" fill="currentColor"

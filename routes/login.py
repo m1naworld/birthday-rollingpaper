@@ -32,7 +32,7 @@ def create_token():
     userId = user['user_id']
     passWord = user['password']
 
-    ispasswordcorrect = bcrypt.checkpw(password.encode('utf-8'), passWord)
+    ispasswordcorrect = bcrypt.checkpw(password.encode('utf-8'), passWord.encode('utf-8'))
 
     if user_id != userId or ispasswordcorrect != True:
         return jsonify({'msg': '아이디가 없거나 일치하는 비밀번호가 없습니다'}), 401

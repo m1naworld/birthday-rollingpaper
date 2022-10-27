@@ -241,6 +241,8 @@
 
 <!--        삭제기능-->
         function cakedel(del_num){
+            console.log('r_id = ');
+            console.log(del_num);
             if(!confirm("정말 삭제하시겠습니까?")){
 
             }
@@ -250,7 +252,6 @@
                         url: "/mypage/delete",
                         data: {del_num : del_num},
                         success: function (response) {
-                            console.log(response);
                             window.location.reload();
                         }
                     })

@@ -24,6 +24,7 @@ def cdelete():
     del_num = int(del_num)
 
     print(type(del_num))
+    print(del_num)
 
     db.rollingpaper.delete_one({'rolling_id': del_num})
 

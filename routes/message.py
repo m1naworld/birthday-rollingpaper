@@ -21,13 +21,19 @@ def msg_post():
     candle_receive = request.form['candle_give']
     pw_receive = request.form['pwd_give']
 
+    data = db.message.find_one({'title': '초기값'})
+    count = data['count']
+
+    message_id = int(count) + 1
+
+    db.message.update_one({'count': int(count)}, {'$set': {'count': message_id}})
+
     pw_receive = pw_receive.encode('utf-8')
     hashed_password = bcrypt.hashpw(pw_receive, bcrypt.gensalt())
     pw_receive = hashed_password.decode('utf-8')
 
-
     doc = {
-        'rolling_id' : "userid",
+        'message_id' : message_id,
         'nickname': name_receive,
         'message_password': pw_receive,
         'content': msg_receive,
@@ -35,7 +41,6 @@ def msg_post():
     }
     db.message.insert_one(doc)
 
-    collection.update
 
     return jsonify({'msg':'저장 완료!'})
 

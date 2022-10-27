@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify, redirect
 
 from routes.cake import cake
 from routes.login import login
@@ -26,10 +26,6 @@ jwt = JWTManager(app)
 @app.route("/")
 def hello_world():
     return "hello world!"
-
-@app.route("/message")
-def msg():
-    return render_template("message.html")
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=7777, debug=True)

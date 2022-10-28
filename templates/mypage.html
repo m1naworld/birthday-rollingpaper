@@ -266,10 +266,6 @@
             } else {
                 $.ajax({
                     type: "POST",
-                    beforeSend: function (request) {
-                        request.setRequestHeader('X-CSRF-TOKEN', getCookie('csrf_access_token'));
-                        console.log(getCookie('csrf_access_token'));
-                    },
                     url: "/mypage/delete",
                     data: {del_num: del_num},
                     success: function (response) {

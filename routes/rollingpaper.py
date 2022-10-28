@@ -74,6 +74,8 @@ def get_candle(rolling_id):
 def check_message_password():
     password = request.form['message_password']
     message_id = request.form['message_id']
+    print(message_id)
+    print(password)
 
     data = db.message.find_one({'message_id': int(message_id)}, {'_id': False})
 

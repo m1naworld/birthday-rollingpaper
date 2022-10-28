@@ -21,12 +21,14 @@ def msg_post():
     candle_receive = request.form['candle_give']
     pw_receive = request.form['pwd_give']
     rolling_id = request.form['rolling_give']
-
+    print(rolling_id);
     data = db.message.find_one({'title': '초기값'})
     count = data['count']
 
     message_id = int(count) + 1
 
+    rolling_id = int(rolling_id)
+    print(type(rolling_id))
     db.message.update_one({'count': int(count)}, {'$set': {'count': message_id}})
 
     pw_receive = pw_receive.encode('utf-8')

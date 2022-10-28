@@ -261,6 +261,8 @@
                     const parts = value.split(`; ${name}=`);
                     if (parts.length === 2) return parts.pop().split(';').shift();}
 
+                let url
+
                 $.ajax({
                     type: 'POST',
                     url: '/cake/makecake',
@@ -273,14 +275,31 @@
                     data: {birth: birthday, user_nickname: nickname, cake_id: current_cake_name},
                     success: function (response) {
                         console.log(response);
-                        const url = response['url']
-                        location.href =`/rolling/${url}`;
+                        url = response['url']
+                        {#location.href =`/rolling/${url}`;#}
                     },
                     error: function (response) {
                         alert(response['responseJSON']['msg'])
                         console.log('there is an error!')
                         location.href =`/login`;
                     }
+                }).then((arg) =>{
+                    $.ajax({
+                        type: "GET",
+                        beforeSend: function (request) {
+                            request.setRequestHeader('X-CSRF-TOKEN', getCookie('csrf_access_token'));
+                            console.log(getCookie('csrf_access_token'));
+                        },
+                        url: "/rolling/check",
+                        data: {},
+                        success: function (response, testStatus, xhr) {
+                            if (xhr.status == 200) {
+                                location.href = "/rolling?key=" + url
+                            } else {
+                                location.href = '/login'
+                            }
+                        }
+                    });
                 })
             })
         })

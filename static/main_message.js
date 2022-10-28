@@ -6,15 +6,16 @@
 	const msg_pw = document.querySelector('#msg_content');
 	const submit_btn = document.querySelector('#submit_btn');
 
-	const candle_1 = document.querySelector('#candle_1');
-	const candle_2 = document.querySelector('#candle_2');
-	const candle_3 = document.querySelector('#candle_3');
-	const candle_4 = document.querySelector('#candle_4');
-	const candle_5 = document.querySelector('#candle_5');
-	const candle_6 = document.querySelector('#candle_6');
+	const red = document.querySelector('#red');
+	const purple = document.querySelector('#purple');
+	const orange = document.querySelector('#orange');
+	const blue = document.querySelector('#blue');
+	const mint = document.querySelector('#mint');
+	const skyblue = document.querySelector('#skyblue');
 
 	function goback () {
-		location.href = '/login'
+		const prev_url = location.search
+		location.href = `/rolling/guest${prev_url}`;
 	}
 
 	nav_btn.addEventListener("click", goback);
@@ -23,18 +24,37 @@
 
 	function sel_candle(e) {
 		candle_id = e['path'][0]['id'];
+		console.log('first', candle_id);
+		/*
+		if (candle_id == 'candle_1') {
+			candle_id = red;
+		} else if (candle_id == 'candle_2') {
+			candle_id = purple;
+		} else if (candle_id == 'candle_3') {
+			candle_id = orange;
+		} else if (candle_id == 'candle_4') {
+			candle_id = blue;
+		} else if (candle_id == 'candle_5') {
+			candle_id = mint;
+		} else if (candle_id == 'candle_6') {
+			candle_id = skyblue;
+			console.log('middle', candle_id);
+		}
+		 */
+
 	}
 
-	candle_1.addEventListener("click", sel_candle);
-	candle_2.addEventListener("click", sel_candle);
-	candle_3.addEventListener("click", sel_candle);
-	candle_4.addEventListener("click", sel_candle);
-	candle_5.addEventListener("click", sel_candle);
-	candle_6.addEventListener("click", sel_candle);
+	red.addEventListener("click", sel_candle);
+	purple.addEventListener("click", sel_candle);
+	orange.addEventListener("click", sel_candle);
+	blue.addEventListener("click", sel_candle);
+	mint.addEventListener("click", sel_candle);
+	skyblue.addEventListener("click", sel_candle);
 
 	function save_msg() {
-			const rolling_id = location.search.substr(location.search.indexOf('=') + 1, 5);
-			const rolling_num = Number(rolling_id)
+			const prev_url = location.search
+				location.href = `/rolling/guest${prev_url}`;
+			const rolling_num = Number(location.search.split("&")[0].split("=")[1])
 
             let name = $('#msg_name').val()
             let pwd = $('#msg_pw').val()
@@ -55,6 +75,8 @@
                     data: {msg_give: content, nick_give: name, pwd_give: pwd, candle_give: candle_id, rolling_give: rolling_num},
                     success: function (response) {
 							alert(response['msg']);
+							const prev_url = location.search
+							location.href = `/rolling/guest${prev_url}`;
                         }
                     });
 			}

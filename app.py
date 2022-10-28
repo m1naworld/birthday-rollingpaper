@@ -32,7 +32,7 @@ jwt = JWTManager(app)
 
 @app.route("/")
 def hello_world():
-    return "hello world!"
+    return render_template("login.html")
 
 #refresh
 @app.after_request
@@ -55,9 +55,6 @@ def protected():
     user_id = get_jwt_identity()
     return jsonify(user_id=user_id), 200
 
-@app.route("/message")
-def msg():
-    return render_template("message.html")
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)

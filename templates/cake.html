@@ -271,11 +271,15 @@
                     },
 
                     data: {birth: birthday, user_nickname: nickname, cake_id: current_cake_name},
-
                     success: function (response) {
                         console.log(response);
                         const url = response['url']
                         location.href =`/rolling/${url}`;
+                    },
+                    error: function (response) {
+                        alert(response['responseJSON']['msg'])
+                        console.log('there is an error!')
+                        location.href =`/login`;
                     }
                 })
             })

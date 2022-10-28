@@ -14,16 +14,15 @@ def question():
 def cshow():
     try:
         user_id = get_jwt_identity()
-        rolling_list = list(db.rollingpaper.find({user_id}, {'_id': False}))
+        rolling_list = list(db.rollingpaper.find({'user_id': user_id}, {'_id': False}))
 
         return jsonify({'rollings': rolling_list})
     except TypeError:
-        response =jsonify({"msg": '아이디가 없거나 일치하는 비밀번호가 없습니다'})
+        response =jsonify({"msg": '다시 로그인해주세요!'})
         return response, 500
 
 @mypage.route('/delete', methods=["POST"])
 def cdelete():
-
     del_num = request.form['del_num']
     del_num = int(del_num)
 

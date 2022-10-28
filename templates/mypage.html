@@ -190,8 +190,15 @@
     </style>
     <script>
         let rows = 0;
-        $(document).ready(function(){
-        let url = 0;
+
+        $(document).ready(function () {
+            let url = 0;
+
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
              $.ajax({
                 type: "GET",
                 url: "/mypage/show",
@@ -200,11 +207,9 @@
                         request.setRequestHeader( 'X-CSRF-TOKEN', getCookie('csrf_access_token'));
                         console.log(getCookie('csrf_access_token'));
                     },
-
                 data: {},
                 success: function (response) {
                     console.log(response['rollings']);
-
                     rows = response['rollings'];
                     for(let i=0; i < rows.length; i++){
                         let r_id = rows[i]['rolling_id'];
@@ -242,15 +247,16 @@
 
                         $('.card-container').append(temp_html)
                     }
-                }
+                },
+                 error: function (response) {
+                     alert(response['responseJSON']['msg'])
+                     console.log('there is an error!')
+                     location.href = `/login`;
+                 }
             });
         });
 
 <!--        삭제기능-->
-         function getCookie(name) {
-                    const value = `; ${document.cookie}`;
-                    const parts = value.split(`; ${name}=`);
-                    if (parts.length === 2) return parts.pop().split(';').shift();}
 
         function cakedel(del_num) {
             console.log('r_id = ');
@@ -273,28 +279,34 @@
             }
         }
 
-        function cakeshow(r_id){
-            for(let i=0;i<rows.length;i++){
+        function cakeshow(r_id) {
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
+
+            for (let i = 0; i < rows.length; i++) {
                 let id = rows[i]['rolling_id'];
-                if(r_id == id){
+                if (r_id == id) {
                     let url = rows[i]['url'];
-                        console.log("/rolling?key="+url)
-                        $.ajax({
-                            type: "GET",
-                            beforeSend: function (request) {
-                                request.setRequestHeader('X-CSRF-TOKEN', getCookie('csrf_access_token'));
-                                console.log(getCookie('csrf_access_token'));
-                            },
-                            url: "/rolling/check",
-                            data: {},
-                            success: function (response, testStatus, xhr) {
-                                if (xhr.status == 200) {
-                                    location.href ="/rolling?key="+url
-                                } else {
-                                    location.href ='/login'
-                                }
+                    console.log("/rolling?key=" + url)
+                    $.ajax({
+                        type: "GET",
+                        beforeSend: function (request) {
+                            request.setRequestHeader('X-CSRF-TOKEN', getCookie('csrf_access_token'));
+                            console.log(getCookie('csrf_access_token'));
+                        },
+                        url: "/rolling/check",
+                        data: {},
+                        success: function (response, testStatus, xhr) {
+                            if (xhr.status == 200) {
+                                location.href = "/rolling?key=" + url
+                            } else {
+                                location.href = '/login'
                             }
-                        });
+                        }
+                    });
                 }
 
             }

@@ -570,7 +570,7 @@
                 $.ajax({
                     type: "POST",
                     url: "/rolling/message/check",
-                    data: {'message_id': 0, 'message_password': password},
+                    data: {'message_id': message_id, 'message_password': password},
                     success: function (response) {
                          const success = response['success'];
                          const result = response['data'];
@@ -673,7 +673,7 @@
     <div onclick="close_message()" class="footer">
 
 
-        <button class="pink-button" onclick="location.href='/message?rolling={{mainpage_info.rolling_id}}'">축하하기</button>
+        <button class="pink-button" onclick="location.href='/message?rolling={{mainpage_info.rolling_id}}&key={{mainpage_info.url}}'">축하하기</button>
         <button class="blue-button" onclick="location.href='/sign-up'">나도 만들기</button>
 
     </div>

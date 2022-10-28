@@ -12,27 +12,9 @@
 	const candle_4 = document.querySelector('#candle_4');
 	const candle_5 = document.querySelector('#candle_5');
 	const candle_6 = document.querySelector('#candle_6');
-	// const candles = document.querySelectorAll('.btn');
-
-	$(document).ready(function () {
-
-            loadFn();
-        });
-	// 통신연결 임시 확인
-
-	const loadFn = () => {
-//		$.ajax({
-//			type: "GET",
-//			url: "/message/save_msg",
-//			data: {},
-//			success: function (response) {
-//
-//			}
-//		});
-	}
 
 	function goback () {
-		location.href="http://127.0.0.1:9999";
+		location.href = '/login'
 	}
 
 	nav_btn.addEventListener("click", goback);
@@ -51,7 +33,9 @@
 	candle_6.addEventListener("click", sel_candle);
 
 	function save_msg() {
-			console.log(candle_id)
+			const rolling_id = location.search.substr(location.search.indexOf('=') + 1, 5);
+			const rolling_num = Number(rolling_id)
+
             let name = $('#msg_name').val()
             let pwd = $('#msg_pw').val()
             let content = $('#msg_content').val()
@@ -68,8 +52,9 @@
 				$.ajax({
                     type: "POST",
                     url: "/message/save_msg",
-                    data: {msg_give: content, nick_give: name, pwd_give: pwd, candle_give: candle_id},
+                    data: {msg_give: content, nick_give: name, pwd_give: pwd, candle_give: candle_id, rolling_give: rolling_num},
                     success: function (response) {
+							alert(response['msg']);
                         }
                     });
 			}

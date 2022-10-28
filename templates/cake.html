@@ -184,10 +184,6 @@
 
     </style>
     <script>
-        $(function () {
-
-        })
-
         {#로그인 화면으로 이동#}
         $(function(){
             $('.back-text').click(function(){
@@ -250,44 +246,47 @@
         })
 
         {#케이크 선택 한 후 이동#}
-
-        $(function () {
+        $(function() {
             $('.cakeSelBtn').click(function () {
-                var current_cake = cakes.filter((cake)=>cake.cake_id === n_count)
+                var current_cake = cakes.filter((cake) => cake.cake_id === n_count)
                 var current_cake_name = current_cake[0]['cake_name']
                 var nickname = $('#nick').val()
                 var birthday = $('#b_day').val()
 
                 {#/cake로 관련 정보 보내기#}
                 console.log(current_cake_name, nickname, birthday)
+
+                function getCookie(name) {
+                    const value = `; ${document.cookie}`;
+                    const parts = value.split(`; ${name}=`);
+                    if (parts.length === 2) return parts.pop().split(';').shift();}
+
                 $.ajax({
                     type: 'POST',
-                    url: '/cake/cake',
+                    url: '/cake/makecake',
 
-                    data: {birth_give: birthday,
-                        nickname_give: nickname,
-                        cake_give: current_cake_name,
-                        temp_user: 'palbaw5' },
+                    beforeSend: function (request) {
+                        request.setRequestHeader( 'X-CSRF-TOKEN', getCookie('csrf_access_token'));
+                        console.log(getCookie('csrf_access_token'));
+                    },
 
                     data: {birth: birthday, user_nickname: nickname, cake_id: current_cake_name},
-
                     success: function (response) {
-                        alert(response['msg']);
-                        location.href = '/rolling'
+                        console.log(response);
+                        const url = response['url']
+                        location.href =`/rolling/${url}`;
+                    },
+                    error: function (response) {
+                        alert(response['responseJSON']['msg'])
+                        console.log('there is an error!')
+                        location.href =`/login`;
                     }
-                 });
+                })
             })
         })
-
-
-
     </script>
 </head>
 <body>
-
-
-<!--     <div class="back">
-        <p class="back-text">&nbsp 로그인 화면으로</p> -->
 
     <div class="goLogInBtn">
         <p>&nbsp < 로그인 화면으로</p>
@@ -336,7 +335,6 @@
     <div class="button">
         <button class="cakeSelBtn"><b>케이크 선택하기</b></button>
     </div>
-
 </body>
 </html>
 

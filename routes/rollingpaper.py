@@ -1,35 +1,69 @@
-from flask import Blueprint, render_template, request, jsonify
+from flask import Blueprint, render_template, request, jsonify, redirect, url_for
 from db import db
 import bcrypt
+from flask_jwt_extended import (get_jwt_identity, jwt_required)
+
+from routes.login import token_out
 
 rolling = Blueprint("rolling", __name__, template_folder="templates")
 
+# 로그인 확인
+@rolling.route('/check')
+@jwt_required()
+def check_user():
+    try:
+        user_id = get_jwt_identity()
+        response = jsonify({"msg": "로그인한 회원"})
+        return response, 200
+
+    except TypeError:
+        response = jsonify({"msg": '로그인 안한 회원'})
+        return response, 500
 
 # 롤링 페이퍼 페이지 기본 정보 get
-@rolling.route('/<url>')
-def get_rollingpaper(url):
-    print(url)
+# 로그인 유저용
+@rolling.route('/')
+@jwt_required()
+def get_my_rollingpaper():
+    try:
+        user_id = get_jwt_identity()
+        url = request.args.get('key')
+        print(url)
 
-    # test 주석
-    result = {'url': 'mina', 'rolling_id': 1, 'user_nickname': "mina", "cake_id": "choco"}
-    message_count = db.message.count_documents({'rolling_id': 1})
+        result = db.rollingpaper.find_one({'url': url}, {'_id': False})
+        print(result)
+        message_count = db.message.count_documents({'rolling_id': result['rolling_id']})
+        # return render_template("rollingpaper.html", mainpage_info=result, message_count=message_count), 200
 
-    # result = db.rollingpaper.find_one({'url': url})
-    # message_count = db.message.count_documents({'rolling_id': result['rolling_id']})
+        success = result['user_id'] == user_id
+        if(success):
+            message_count = db.message.count_documents({'rolling_id': result['rolling_id']})
+            return render_template("rollingpaper.html", mainpage_info=result, message_count=message_count), 200
+        else:
+            token_out()
+            return render_template("login.html")
+    except:
+        return render_template("login.html")
 
-    print(result)
-    print(message_count)
 
-    # if(# 토큰 없을 경우 ):
+# 롤링 페이퍼 페이지 기본 정보 get
+# 로그인 안한 유저(게스트용)
+@rolling.route('/guest/')
+def get_rollingpaper():
+
+    url = request.args.get('key')
+
+    result = db.rollingpaper.find_one({'url': url})
+    message_count = db.message.count_documents({'rolling_id': result['rolling_id']})
     return render_template("guestMain.html", mainpage_info=result, message_count=message_count), 200
 
-    # else: # 토큰 있을 경우
-    # return render_template("rollingpaper.html", mainpage_info=result, message_count=message_count), 200
+
 
 # 롤링 페이지 캔들 정보 get
-@rolling.route('/detail-data/<url>/<rolling_id>')
-def get_candle(url, rolling_id):
+@rolling.route('/detail-data/<rolling_id>')
+def get_candle(rolling_id):
     print(type(rolling_id))
+    url = request.args.get('key')
     message_list = list(db.message.find({'rolling_id': int(rolling_id)}, {'_id': False}))
     print(message_list)
     return jsonify({'message_list': message_list}), 200

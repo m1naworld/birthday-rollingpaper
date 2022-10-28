@@ -6,6 +6,10 @@ import bcrypt
 
 message = Blueprint("message", __name__, template_folder="templates")
 
+@message.route("/")
+def msg():
+    return render_template("message.html")
+
 @message.route('/detail-data/<rolling_id>')
 def send_msg(rolling_id):
     return render_template("message.html")

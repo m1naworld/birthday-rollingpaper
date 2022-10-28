@@ -76,7 +76,10 @@
                     success: function (response) {
 							alert(response['msg']);
 							const prev_url = location.search
-							location.href = `/rolling/guest${prev_url}`;
+							window.location.reload();
+							location.href = `/rolling/guest/${prev_url}`;
+
+
                         }
                     });
 			}

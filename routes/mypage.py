@@ -28,4 +28,9 @@ def cdelete():
 
     db.rollingpaper.delete_one({'rolling_id': del_num})
 
+    all_delete = list(db.message.find({'rolling_id': del_num}))
+
+    for i in all_delete:
+        db.message.delete_one({'rolling_id': del_num})
+
     return "삭제가 완료되었습니다"

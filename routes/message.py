@@ -6,8 +6,8 @@ import bcrypt
 
 message = Blueprint("message", __name__, template_folder="templates")
 
-@message.route('/')
-def msg():
+@message.route('/detail-data/<rolling_id>')
+def send_msg(rolling_id):
     return render_template("message.html")
 
 # @message.route("/save_msg", methods=["GET"])
@@ -20,6 +20,7 @@ def msg_post():
     msg_receive = request.form['msg_give']
     candle_receive = request.form['candle_give']
     pw_receive = request.form['pwd_give']
+    rolling_id = request.form['rolling_give']
 
     data = db.message.find_one({'title': '초기값'})
     count = data['count']
@@ -33,6 +34,7 @@ def msg_post():
     pw_receive = hashed_password.decode('utf-8')
 
     doc = {
+        'rolling_id': rolling_id,
         'message_id' : message_id,
         'nickname': name_receive,
         'message_password': pw_receive,

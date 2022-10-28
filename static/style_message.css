@@ -82,10 +82,19 @@ body{
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+}
+/*
+.btn-outline-primary:hover {
+    box-shadow: 0 0 0 0.25rem var(--color-point-1) !important;
 }
 .btn-outline-primary:focus {
     box-shadow: 0 0 0 0.25rem var(--color-point-1) !important;
 }
+*/
+
 .msg_title {
     margin: 10px 0 10px 10px;
     font-size: 20px;

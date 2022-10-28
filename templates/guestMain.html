@@ -475,8 +475,8 @@
                     console.log(messageAllData);
                     let msgLength = messageAllData.length
                     let pagesNumber;
-                    if ((msgLength % 10) === 0) {
-                        pagesNumber = parseInt(msgLength / 10)
+                    if ((msgLength % 10) === 0 && msgLength != 0) {
+                        pagesNumber = parseInt(msgLength / 10 )
                     } else {
                         pagesNumber = parseInt(msgLength / 10) + 1
                     }

@@ -1,22 +1,49 @@
 from flask import Blueprint, render_template, request, jsonify, redirect, url_for
 from db import db
 import bcrypt
+from flask_jwt_extended import (get_jwt_identity, jwt_required)
+
+from routes.login import token_out
 
 rolling = Blueprint("rolling", __name__, template_folder="templates")
+
+# 로그인 확인
+@rolling.route('/check')
+@jwt_required()
+def check_user():
+    try:
+        user_id = get_jwt_identity()
+        response = jsonify({"msg": "로그인한 회원"})
+        return response, 200
+
+    except TypeError:
+        response = jsonify({"msg": '로그인 안한 회원'})
+        return response, 500
 
 # 롤링 페이퍼 페이지 기본 정보 get
 # 로그인 유저용
 @rolling.route('/')
+@jwt_required()
 def get_my_rollingpaper():
+    try:
+        user_id = get_jwt_identity()
+        url = request.args.get('key')
+        print(url)
 
-    url = request.args.get('key')
-    print(url)
+        result = db.rollingpaper.find_one({'url': url}, {'_id': False})
+        print(result)
+        message_count = db.message.count_documents({'rolling_id': result['rolling_id']})
+        # return render_template("rollingpaper.html", mainpage_info=result, message_count=message_count), 200
 
-    result = db.rollingpaper.find_one({'url': url}, {'_id': False})
-    print(result)
-
-    message_count = db.message.count_documents({'rolling_id': result['rolling_id']})
-    return render_template("rollingpaper.html", mainpage_info=result, message_count=message_count), 200
+        success = result['user_id'] == user_id
+        if(success):
+            message_count = db.message.count_documents({'rolling_id': result['rolling_id']})
+            return render_template("rollingpaper.html", mainpage_info=result, message_count=message_count), 200
+        else:
+            token_out()
+            return render_template("login.html")
+    except:
+        return render_template("login.html")
 
 
 # 롤링 페이퍼 페이지 기본 정보 get

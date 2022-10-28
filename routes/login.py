@@ -38,14 +38,14 @@ def create_token():
 
 
         if user_id != userId or ispasswordcorrect != True:
-            return jsonify({'msg': '아이디가 없거나 일치하는 비밀번호가 없습니다'}), 401
+            return jsonify({'msg': '아이디에 일치하는 비밀번호가 없습니다'}), 401
 
         response = jsonify({"msg": "로그인 완료"})
         access_token = create_access_token(identity=user_id)
         set_access_cookies(response, access_token)
         return response, 200
     except TypeError:
-        response =jsonify({"msg": '아이디가 없거나 일치하는 비밀번호가 없습니다'})
+        response =jsonify({"msg": '아이디가 없습니다'})
         return response, 500
 
 

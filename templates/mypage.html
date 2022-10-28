@@ -41,7 +41,7 @@
 
         body {
             background-image: url("/static/img/background.png");
-            background-repeat: no-repeat;
+            background-repeat: repeat-y;
             background-size: cover;
             width: 100vw;
             height: 100vh;
@@ -85,6 +85,7 @@
 
         .card-container {
             margin-top: 30px;
+            margin-bottom: 50px;
             width: 90vw;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -189,15 +190,26 @@
     </style>
     <script>
         let rows = 0;
-        $(document).ready(function(){
-        let url = 0;
+
+        $(document).ready(function () {
+            let url = 0;
+
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
              $.ajax({
                 type: "GET",
                 url: "/mypage/show",
+
+                 beforeSend: function (request) {
+                        request.setRequestHeader( 'X-CSRF-TOKEN', getCookie('csrf_access_token'));
+                        console.log(getCookie('csrf_access_token'));
+                    },
                 data: {},
                 success: function (response) {
                     console.log(response['rollings']);
-
                     rows = response['rollings'];
                     for(let i=0; i < rows.length; i++){
                         let r_id = rows[i]['rolling_id'];
@@ -235,43 +247,66 @@
 
                         $('.card-container').append(temp_html)
                     }
-                }
+                },
+                 error: function (response) {
+                     alert(response['responseJSON']['msg'])
+                     console.log('there is an error!')
+                     location.href = `/login`;
+                 }
             });
         });
 
 <!--        삭제기능-->
-        function cakedel(del_num){
+
+        function cakedel(del_num) {
             console.log('r_id = ');
             console.log(del_num);
-            if(!confirm("정말 삭제하시겠습니까?")){
+            if (!confirm("정말 삭제하시겠습니까?")) {
 
-            }
-            else{
+            } else {
                 $.ajax({
-                        type: "POST",
-                        url: "/mypage/delete",
-                        data: {del_num : del_num},
-                        success: function (response) {
-                            window.location.reload();
-                        }
-                    })
-                }
+                    type: "POST",
+                    beforeSend: function (request) {
+                        request.setRequestHeader('X-CSRF-TOKEN', getCookie('csrf_access_token'));
+                        console.log(getCookie('csrf_access_token'));
+                    },
+                    url: "/mypage/delete",
+                    data: {del_num: del_num},
+                    success: function (response) {
+                        window.location.reload();
+                    }
+                })
+            }
         }
 
-        function cakeshow(r_id){
-            for(let i=0;i<rows.length;i++){
+        function cakeshow(r_id) {
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
+
+            for (let i = 0; i < rows.length; i++) {
                 let id = rows[i]['rolling_id'];
-
-                if(r_id == id){
+                if (r_id == id) {
                     let url = rows[i]['url'];
-                        $.ajax({
-                            type: "GET",
-                            url: "/rollingpaper/"+url,
-                            data: {},
-                            success: function (response) {
-
+                    console.log("/rolling?key=" + url)
+                    $.ajax({
+                        type: "GET",
+                        beforeSend: function (request) {
+                            request.setRequestHeader('X-CSRF-TOKEN', getCookie('csrf_access_token'));
+                            console.log(getCookie('csrf_access_token'));
+                        },
+                        url: "/rolling/check",
+                        data: {},
+                        success: function (response, testStatus, xhr) {
+                            if (xhr.status == 200) {
+                                location.href = "/rolling?key=" + url
+                            } else {
+                                location.href = '/login'
                             }
-                        });
+                        }
+                    });
                 }
 
             }

@@ -460,6 +460,7 @@
         $(document).ready(function set() {
             $.ajax({
                 type: "GET",
+
                 url: "/rolling/detail-data/{{mainpage_info.rolling_id}}?key={{mainpage_info.url}}",
                 data: {},
                 success: function (response) {
@@ -507,7 +508,7 @@
                     console.log(messageAllData);
                     let msgLength = messageAllData.length
                     let pagesNumber;
-                    if ((msgLength % 10) === 0) {
+                    if ((msgLength % 10) === 0 && msgLength != 0) {
                         pagesNumber = parseInt(msgLength / 10)
                     } else {
                         pagesNumber = parseInt(msgLength / 10) + 1

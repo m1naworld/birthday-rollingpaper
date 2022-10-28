@@ -60,7 +60,7 @@
         .header {
             height: 2%;
             margin: 15% 0 0 15%;
-            color: gray;
+            color: var(--color-point-1);
             display: flex;
             flex-direction: column;
             /*align-items: center; !* 위아래 기준 중앙정렬 *!*/
@@ -641,12 +641,23 @@
             })
         }
 
+        // 삭제 안하고 싶을 경우 삭제하기 창에서 나오기
+        function delete_check_close(){
+            let temp_html = `<div class="menu-list">
+                                <button onClick="location.href='/cake'" style="margin-top: 25%">새로 만들기</button>
+                                <button onClick="delete_check_button()">삭제하기</button>
+                                <button onClick="logout()">로그아웃</button>
+                            </div>`
+
+            $('.menu-list').replaceWith(temp_html)
+        }
 
         // 롤링페이퍼 삭제 확인 버튼
         function delete_check_button() {
-            let temp_html = `<div class="menu-list">
-                            <p>롤링페이퍼를 정말 삭제하시겠습니까?</p>
+            let temp_html = `<div onclick="close_window()" class="menu-list" >
+                            <p style="margin-top: 30%; font-size: 1.6rem; font-family: var(--font-point)">롤링페이퍼를 정말 삭제하시겠습니까?</p>
                             <button onclick="rolling_delete()">삭제하기</button>
+                            <button onclick="delete_check_close()">취소하기</button>
                         </div>`
 
             $('.menu-list').replaceWith(temp_html)
@@ -684,9 +695,9 @@
 <body>
 <div class="root">
     <div class="header">
-        <h2><span style="color:var(--color-point-2); font-weight: bold;">{{mainpage_info.user_nickname}}</span>님 에게
+        <h2><span style="color:var(--color-point-2);  font-size: 3.5rem; font-weight: bold;">{{mainpage_info.user_nickname}}</span>님 에게
             <br/>
-            <span style="color:var(--color-point-2); font-weight: bold;">{{message_count}}</span>명의 축하가 도착했어요!
+            <span style="color:var(--color-point-2);  font-size: 4rem; font-weight: bold;">{{message_count}}</span>명의 축하가 도착했어요!
         </h2>
         <svg onclick="open_list()" xmlns="http://www.w3.org/2000/svg" width="100" height="90" fill="currentColor"
              id="bi-list"

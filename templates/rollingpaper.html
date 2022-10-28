@@ -460,6 +460,7 @@
         $(document).ready(function set() {
             $.ajax({
                 type: "GET",
+
                 url: "/rolling/detail-data/{{mainpage_info.rolling_id}}?key={{mainpage_info.url}}",
                 data: {},
                 success: function (response) {

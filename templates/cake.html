@@ -184,10 +184,6 @@
 
     </style>
     <script>
-        $(function () {
-
-        })
-
         {#로그인 화면으로 이동#}
         $(function(){
             $('.back-text').click(function(){
@@ -259,14 +255,20 @@
 
                 {#/cake로 관련 정보 보내기#}
                 console.log(current_cake_name, nickname, birthday)
+
+                function getCookie(name) {
+                    const value = `; ${document.cookie}`;
+                    const parts = value.split(`; ${name}=`);
+                    if (parts.length === 2) return parts.pop().split(';').shift();}
+
                 $.ajax({
                     type: 'POST',
-                    url: '/cake/cake',
+                    url: '/cake/makecake',
 
-                    data: {birth_give: birthday,
-                        nickname_give: nickname,
-                        cake_give: current_cake_name,
-                        temp_user: 'palbaw5' },
+                    beforeSend: function (request) {
+                        request.setRequestHeader( 'X-CSRF-TOKEN', getCookie('csrf_access_token'));
+                        console.log(getCookie('csrf_access_token'));
+                    },
 
                     data: {birth: birthday, user_nickname: nickname, cake_id: current_cake_name},
 
@@ -281,10 +283,6 @@
     </script>
 </head>
 <body>
-
-
-<!--     <div class="back">
-        <p class="back-text">&nbsp 로그인 화면으로</p> -->
 
     <div class="goLogInBtn">
         <p>&nbsp < 로그인 화면으로</p>

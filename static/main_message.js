@@ -22,34 +22,21 @@
 
 	let candle_id = '';
 
-	function sel_candle(e) {
-		candle_id = e['path'][0]['id'];
-		console.log('first', candle_id);
-		/*
-		if (candle_id == 'candle_1') {
-			candle_id = red;
-		} else if (candle_id == 'candle_2') {
-			candle_id = purple;
-		} else if (candle_id == 'candle_3') {
-			candle_id = orange;
-		} else if (candle_id == 'candle_4') {
-			candle_id = blue;
-		} else if (candle_id == 'candle_5') {
-			candle_id = mint;
-		} else if (candle_id == 'candle_6') {
-			candle_id = skyblue;
-			console.log('middle', candle_id);
-		}
-		 */
-
+	function sel_candle(candle) {
+		console.log(candle.id);
+		console.log(candle)
+		// candle_id = e['path'][0]['id'];
+		candle_id = e.id;
+		// console.log('first', candle_id);
+		// this.style.boxShadow = '0 0 0 0.25rem #FFA3B5';
 	}
 
-	red.addEventListener("click", sel_candle);
-	purple.addEventListener("click", sel_candle);
-	orange.addEventListener("click", sel_candle);
-	blue.addEventListener("click", sel_candle);
-	mint.addEventListener("click", sel_candle);
-	skyblue.addEventListener("click", sel_candle);
+	red.addEventListener("click", sel_candle(red));
+	purple.addEventListener("click", sel_candle(purple));
+	orange.addEventListener("click", sel_candle(orange));
+	blue.addEventListener("click", sel_candle(blue));
+	mint.addEventListener("click", sel_candle(mint));
+	skyblue.addEventListener("click", sel_candle(skyblue));
 
 	function save_msg() {
 			const prev_url = location.search

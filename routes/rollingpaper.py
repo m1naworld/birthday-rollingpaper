@@ -99,19 +99,20 @@ def check_message_password():
 # 메시지 내용 수정
 @rolling.route('/message/update', methods=['POST'])
 def message_update():
+    rolling_id_receive = request.form['rolling_id']
     message_id_receive = request.form['message_id']
     message_content_receive = request.form['message_content']
 
-    db.message.update_one({'message_id': int(message_id_receive)}, {'$set': {'content': message_content_receive}})
+    db.message.update_one({'rolling_id': int(rolling_id_receive), 'message_id': int(message_id_receive)}, {'$set': {'content': message_content_receive}})
     return jsonify({'message': '수정 완료!'}), 200
 
 
 # 메시지 삭제
 @rolling.route('/message/removal', methods=['POST'])
 def message_delete():
+    rolling_id_receive = request.form['rolling_id']
     message_id_receive = request.form['message_id']
-    print(message_id_receive)
-    db.message.delete_one({'message_id': int(message_id_receive)})
 
+    db.message.delete_one({'rolling_id': int(rolling_id_receive), 'message_id': int(message_id_receive)})
     return jsonify({'message': '삭제 완료!'}), 200
 

@@ -636,7 +636,7 @@
             $.ajax({
                 type: "POST",
                 url: "/rolling/message/removal",
-                data: {'message_id': message_id},
+                data: {'rolling_id': `{{mainpage_info.rolling_id}}`, 'message_id': message_id},
                 success: function (response) {
                     alert(response['message']);
                     window.location.reload();

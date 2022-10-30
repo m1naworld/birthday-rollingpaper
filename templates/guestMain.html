@@ -542,7 +542,7 @@
             $.ajax({
                 type: "POST",
                 url: "/rolling/message/update",
-                data: {'message_id': message_id, 'message_content': message_content},
+                data: {'rolling_id': `{{mainpage_info.rolling_id}}`, 'message_id': message_id, 'message_content': message_content},
                 success: function (response) {
                     alert(response['message']);
                     window.location.reload();
@@ -556,7 +556,7 @@
             $.ajax({
                 type: "POST",
                 url: "/rolling/message/removal",
-                data: {'message_id': message_id},
+                data: {'rolling_id': `{{mainpage_info.rolling_id}}`, 'message_id': message_id},
                 success: function (response) {
                     alert(response['message']);
                     window.location.reload();
@@ -574,9 +574,10 @@
                     url: "/rolling/message/check",
                     data: {'message_id': message_id, 'message_password': password},
                     success: function (response) {
-                        const success = response['success'];
-                        const result = response['data'];
-
+                        // const success = response['success'];
+                        // const result = response['data'];
+                        const success = true;
+                        result = {"rolling_id": 13, "message_id": 64, "nickname": "d안녕", "candle_id":"red", "content": "수정되나?"}
                         if (success && type === "update") {
                             // alert("비밀번호 일치!")
                             let temp_html =
@@ -596,6 +597,7 @@
                                     <div id='message-detail' class="message-detail">
                                          <p style="font-family: var(--font-point)">FROM. ${result.nickname}</p>
                                          <p class="message" style="font-family: var(--font-handwriting)">${result.content}</p>
+<!--                                         <p> 정말로 삭제하시겠습니까? </p>-->
                                         <button onclick="message_delete_req(${result.message_id})" class="yellow-button" style="margin-top:20px">삭제하기</button>
                                     </div>
                                 </div>`

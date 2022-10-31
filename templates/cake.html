@@ -52,7 +52,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin-top: 23px;
+            margin-top: 13px;
             margin-left: -9px;
             font-size: 33px;
         }
@@ -75,6 +75,11 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+        }
+        .back-text p {
+            font-family: var(--font-basic);
+            font-size: 44px;
+            cursor: pointer;
         }
 
 /*         .cake-choice-btn { */
@@ -184,10 +189,11 @@
 
     </style>
     <script>
+
         {#로그인 화면으로 이동#}
         $(function(){
             $('.back-text').click(function(){
-                location.href ='/login'
+                location.href ='/mypage'
             })
         })
 
@@ -302,8 +308,8 @@
 </head>
 <body>
 
-    <div class="goLogInBtn">
-        <p>&nbsp < 로그인 화면으로</p>
+    <div class="back-text">
+        <p>&nbsp; < 마이페이지</p>
     </div>
 
     <div class="title">

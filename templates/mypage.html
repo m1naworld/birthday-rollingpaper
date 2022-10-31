@@ -308,12 +308,26 @@
             }
         }
 
+         // 로그아웃
+        function logout() {
+            $.ajax({
+                type: "POST",
+                url: "/login/tokenout",
+                data: {},
+                success: function (response) {
+                    console.log(response)
+                    location.replace('/login')
+                }
+            })
+
+        }
+
     </script>
 </head>
 <body>
 <div class="header">
 <!--    <button class="back"><</button>-->
-    <button class="logout">로그아웃</button>
+    <button onclick="logout()" class="logout">로그아웃</button>
 </div>
 <div class="cake-card-container">
     <div class="card-container">

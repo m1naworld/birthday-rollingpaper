@@ -572,7 +572,7 @@
                 $.ajax({
                     type: "POST",
                     url: "/rolling/message/check",
-                    data: {'message_id': message_id, 'message_password': password},
+                    data: {'rolling_id': `{{mainpage_info.rolling_id}}`, 'message_id': message_id, 'message_password': password},
                     success: function (response) {
                         const success = response['success'];
                         const result = response['data'];

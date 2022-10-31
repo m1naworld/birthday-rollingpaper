@@ -72,12 +72,13 @@ def get_candle(rolling_id):
 # 메시지 비밀번호 확인
 @rolling.route('/message/check', methods=['POST'])
 def check_message_password():
+    rolling_id = request.form['rolling_id']
     password = request.form['message_password']
     message_id = request.form['message_id']
     print(message_id)
     print(password)
 
-    data = db.message.find_one({'message_id': int(message_id)}, {'_id': False})
+    data = db.message.find_one({'rolling_id': int(rolling_id), 'message_id': int(message_id)}, {'_id': False})
 
     password2 = data['message_password']
 

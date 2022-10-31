@@ -20,13 +20,13 @@
 
 	nav_btn.addEventListener("click", goback);
 
-	let candle_id = '';
+	var candle_id = '';
 
 	function sel_candle(candle) {
-		console.log(candle.id);
-		console.log(candle)
+		// console.log(candle.id);
+
 		// candle_id = e['path'][0]['id'];
-		candle_id = e.id;
+
 		// console.log('first', candle_id);
 		// this.style.boxShadow = '0 0 0 0.25rem #FFA3B5';
 	}
@@ -38,6 +38,16 @@
 	mint.addEventListener("click", sel_candle(mint));
 	skyblue.addEventListener("click", sel_candle(skyblue));
 
+	$('#red').click((e) => candle_id = e.target.id);
+	$('#purple').click((e) => candle_id = e.target.id);
+	$('#orange').click((e) => candle_id = e.target.id);
+	$('#blue').click((e) => candle_id = e.target.id);
+	$('#mint').click((e) => candle_id = e.target.id);
+	$('#skyblue').click((e) => candle_id = e.target.id);
+
+    $('#msg_content').click(() => console.log(candle_id));
+	$('#msg_name').click(() => console.log(candle_id));
+	$('#msg_pw').click(() => console.log(candle_id));
 	function save_msg() {
 			const prev_url = location.search
 				location.href = `/rolling/guest${prev_url}`;

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{{mainpage_info.user_nickname}}-얘두라 고마어어어</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
@@ -163,121 +163,121 @@
         }
 
         .swiper-slide .candle1 {
-            top: 20vw;
+            top: 12vw;
             left: 50vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .nickname1 {
-            top: 31vw;
+            top: 21vw;
             left: 50vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .candle2 {
-            top: 46vw;
+            top: 38vw;
             left: 32vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .nickname2 {
-            top: 58vw;
+            top: 48vw;
             left: 32vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .candle3 {
-            top: 46vw;
+            top: 38vw;
             left: 44vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .nickname3 {
-            top: 58vw;
+            top: 48vw;
             left: 44vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .candle4 {
-            top: 46vw;
+            top: 38vw;
             left: 56vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .nickname4 {
-            top: 58vw;
+            top: 48vw;
             left: 56vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .candle5 {
-            top: 46vw;
+            top: 38vw;
             left: 68vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .nickname5 {
-            top: 58vw;
+            top: 48vw;
             left: 68vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .candle6 {
-            top: 68vw;
+            top: 60vw;
             left: 23vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .nickname6 {
-            top: 80vw;
+            top: 70vw;
             left: 23vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .candle7 {
-            top: 68vw;
+            top: 60vw;
             left: 36vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .nickname7 {
-            top: 80vw;
+            top: 70vw;
             left: 36vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .candle8 {
-            top: 68vw;
+            top: 60vw;
             left: 50vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .nickname8 {
-            top: 80vw;
+            top: 70vw;
             left: 50vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .candle9 {
-            top: 68vw;
+            top: 60vw;
             left: 63vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .nickname9 {
-            top: 80vw;
+            top: 70vw;
             left: 63vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .candle10 {
-            top: 68vw;
+            top: 60vw;
             left: 76vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .nickname10 {
-            top: 80vw;
+            top: 70vw;
             left: 76vw;
             transform: translate(-50%, -50%);
         }
@@ -451,6 +451,7 @@
             border: none;
         }
 
+
     </style>
     <script>
 
@@ -467,7 +468,7 @@
                     console.log(response);
 
                     const mySwiper = new Swiper('.swiper-container', {
-
+                        width:1000,
                         slidePerView: 1, // 한 슬라이드에 보여줄 갯수
                         spaceBetween: 300,  // 슬라이드 사이 여백
                         centeredSlides: true, // 슬라이드 센터모드
@@ -526,6 +527,7 @@
                         $('.swiper-wrapper').append(temp_html)
 
                         if (pagesNumber > 1) {
+                            $('.swiper-pagination').show();
                             $('.swiper-button-next').show();
                             $('.swiper-button-prev').show();
                         }
@@ -634,7 +636,7 @@
             $.ajax({
                 type: "POST",
                 url: "/rolling/message/removal",
-                data: {'message_id': message_id},
+                data: {'rolling_id': `{{mainpage_info.rolling_id}}`, 'message_id': message_id},
                 success: function (response) {
                     alert(response['message']);
                     window.location.reload();
@@ -643,7 +645,7 @@
         }
 
         // 삭제 안하고 싶을 경우 삭제하기 창에서 나오기
-        function delete_check_close(){
+        function delete_check_close() {
             let temp_html = `<div class="menu-list">
                                 <button onClick="location.href='/cake'" style="margin-top: 25%">새로 만들기</button>
                                 <button onClick="delete_check_button()">삭제하기</button>
@@ -696,9 +698,11 @@
 <body>
 <div class="root">
     <div class="header">
-        <h2><span style="color:var(--color-point-2);  font-size: 3.5rem; font-weight: bold;">{{mainpage_info.user_nickname}}</span>님 에게
+        <h2><span style="color:var(--color-point-2);  font-size: 3.5rem; ">{{mainpage_info.user_nickname}}</span>님
+            에게
             <br/>
-            <span style="color:var(--color-point-2);  font-size: 4rem; font-weight: bold;">{{message_count}}</span>명의 축하가 도착했어요!
+            <span style="color:var(--color-point-2);  font-size: 4rem;">{{message_count}}</span>명의
+            축하가 도착했어요!
         </h2>
         <svg onclick="open_list()" xmlns="http://www.w3.org/2000/svg" width="100" height="90" fill="currentColor"
              id="bi-list"

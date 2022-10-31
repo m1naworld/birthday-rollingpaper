@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <meta property="og:title" content="얘두라 고마어어어" />
-    <meta property="og:description" content="내 생일을 축하해줘!-!" />
-    <meta property="og:image" content="/static/img/og-img.png"/>
+    <title>{{mainpage_info.user_nickname}}-얘두라 고마어어어</title>
+    <meta property="og:title" content="🌈얘두라 고마어어어"/>
+    <meta property="og:description" content="🎉'{{mainpage_info.user_nickname}}'님의 생일을 축하해줘💛🎁"/>
+    <meta property="og:image" content="/static/img/og-img2.png"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
@@ -87,15 +87,15 @@
             background-size: 50%;
             text-align: center;
         }
-      
 
-         .swiper-container {
+
+        .swiper-container {
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-         .swiper-slide {
+        .swiper-slide {
             position: relative;
         }
 
@@ -106,13 +106,13 @@
         .cake-img {
             position: absolute;
             width: 1000px;
-            margin-top: 20vw;
+            margin-top: 12vw;
             top: 50vw;
             left: 50vw;
             transform: translate(-50%, -50%);
         }
-        
-          .swiper-slide .candle {
+
+        .swiper-slide .candle {
             position: absolute;
             width: 50px;
             z-index: 1;
@@ -131,121 +131,121 @@
         }
 
         .swiper-slide .candle1 {
-            top: 20vw;
+            top: 12vw;
             left: 50vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .nickname1 {
-            top: 31vw;
+            top: 21vw;
             left: 50vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .candle2 {
-            top: 46vw;
+            top: 38vw;
             left: 32vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .nickname2 {
-            top: 58vw;
+            top: 48vw;
             left: 32vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .candle3 {
-            top: 46vw;
+            top: 38vw;
             left: 44vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .nickname3 {
-            top: 58vw;
+            top: 48vw;
             left: 44vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .candle4 {
-            top: 46vw;
+            top: 38vw;
             left: 56vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .nickname4 {
-            top: 58vw;
+            top: 48vw;
             left: 56vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .candle5 {
-            top: 46vw;
+            top: 38vw;
             left: 68vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .nickname5 {
-            top: 58vw;
+            top: 48vw;
             left: 68vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .candle6 {
-            top: 68vw;
+            top: 60vw;
             left: 23vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .nickname6 {
-            top: 80vw;
+            top: 70vw;
             left: 23vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .candle7 {
-            top: 68vw;
+            top: 60vw;
             left: 36vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .nickname7 {
-            top: 80vw;
+            top: 70vw;
             left: 36vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .candle8 {
-            top: 68vw;
+            top: 60vw;
             left: 50vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .nickname8 {
-            top: 80vw;
+            top: 70vw;
             left: 50vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .candle9 {
-            top: 68vw;
+            top: 60vw;
             left: 63vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .nickname9 {
-            top: 80vw;
+            top: 70vw;
             left: 63vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .candle10 {
-            top: 68vw;
+            top: 60vw;
             left: 76vw;
             transform: translate(-50%, -50%);
         }
 
         .swiper-slide .nickname10 {
-            top: 80vw;
+            top: 70vw;
             left: 76vw;
             transform: translate(-50%, -50%);
         }
@@ -254,7 +254,7 @@
         .swiper-pagination {
             width: 80vw;
             height: 20vh;
-            margin-bottom: 15vh;
+            margin-bottom: 14vh;
         }
 
 
@@ -437,39 +437,37 @@
                     console.log(response);
 
                     const mySwiper = new Swiper('.swiper-container', {
-
+                        width: 1000,
                         slidePerView: 1, // 한 슬라이드에 보여줄 갯수
                         spaceBetween: 300,  // 슬라이드 사이 여백
                         centeredSlides: true, // 슬라이드 센터모드
 
-                loop: true,
-                loopAdditionalSlides: 1,
+                        loop: true,
+                        loopAdditionalSlides: 1,
 
-                // effect: "fade",
-                effect: 'slide', // 기본 슬라이드 전환
-                // effect: 'fade' // 희미해지면서 슬라이드 전환
-                // effect: 'cube', // 큐브 형태로 전환
-                // effect: 'coverflow', // 약간의 그림자와 함께 슬라이드를 밀어내며 전환
-                // effect: 'flip', // 카드를 뒤집듯이 전환
-
-
-                // If we need pagination
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                    type: 'bullets',
-                },
+                        // effect: "fade",
+                        effect: 'slide', // 기본 슬라이드 전환
+                        // effect: 'cube', // 큐브 형태로 전환
+                        // effect: 'coverflow', // 약간의 그림자와 함께 슬라이드를 밀어내며 전환
+                        // effect: 'flip', // 카드를 뒤집듯이 전환
 
 
-                // Navigation arrows
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                
-                observe: true,
-                observeParents: true
+                        // If we need pagination
+                        pagination: {
+                            el: '.swiper-pagination',
+                            clickable: true,
+                            type: 'bullets',
+                        },
 
+
+                        // Navigation arrows
+                        navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        },
+
+                        observe: true,
+                        observeParents: true
 
 
                     })
@@ -479,7 +477,7 @@
                     let msgLength = messageAllData.length
                     let pagesNumber;
                     if ((msgLength % 10) === 0 && msgLength != 0) {
-                        pagesNumber = parseInt(msgLength / 10 )
+                        pagesNumber = parseInt(msgLength / 10)
                     } else {
                         pagesNumber = parseInt(msgLength / 10) + 1
                     }
@@ -497,6 +495,7 @@
 
                         $('.swiper-wrapper').append(temp_html)
                         if (pagesNumber > 1) {
+                            // $('.swiper-pagination').show();
                             $('.swiper-button-next').show();
                             $('.swiper-button-prev').show();
                         }
@@ -543,7 +542,7 @@
             $.ajax({
                 type: "POST",
                 url: "/rolling/message/update",
-                data: {'message_id': message_id, 'message_content': message_content},
+                data: {'rolling_id': `{{mainpage_info.rolling_id}}`, 'message_id': message_id, 'message_content': message_content},
                 success: function (response) {
                     alert(response['message']);
                     window.location.reload();
@@ -557,7 +556,7 @@
             $.ajax({
                 type: "POST",
                 url: "/rolling/message/removal",
-                data: {'message_id': message_id},
+                data: {'rolling_id': `{{mainpage_info.rolling_id}}`, 'message_id': message_id},
                 success: function (response) {
                     alert(response['message']);
                     window.location.reload();
@@ -575,9 +574,10 @@
                     url: "/rolling/message/check",
                     data: {'message_id': message_id, 'message_password': password},
                     success: function (response) {
-                         const success = response['success'];
-                         const result = response['data'];
-
+                        // const success = response['success'];
+                        // const result = response['data'];
+                        const success = true;
+                        result = {"rolling_id": 13, "message_id": 64, "nickname": "d안녕", "candle_id":"red", "content": "수정되나?"}
                         if (success && type === "update") {
                             // alert("비밀번호 일치!")
                             let temp_html =
@@ -597,6 +597,7 @@
                                     <div id='message-detail' class="message-detail">
                                          <p style="font-family: var(--font-point)">FROM. ${result.nickname}</p>
                                          <p class="message" style="font-family: var(--font-handwriting)">${result.content}</p>
+<!--                                         <p> 정말로 삭제하시겠습니까? </p>-->
                                         <button onclick="message_delete_req(${result.message_id})" class="yellow-button" style="margin-top:20px">삭제하기</button>
                                     </div>
                                 </div>`
@@ -651,11 +652,13 @@
 <body>
 <div class="root">
     <div class="header">
-        <h2><span style="color:var(--color-point-2); font-size: 3.5rem; font-weight: bold;">{{mainpage_info.user_nickname}}</span>님 에게
+        <h2><span style="color:var(--color-point-2); font-size: 3.5rem;">{{mainpage_info.user_nickname}}</span>님
+            에게
             <br/>
-            <span style="color:var(--color-point-2); font-size: 4rem; font-weight: bold;">{{message_count}}</span>명의 축하가 도착했어요!
+            <span style="color:var(--color-point-2); font-size: 4rem; ">{{message_count}}</span>명의 축하가
+            도착했어요!
         </h2>
-   
+
     </div>
 
     <div onclick="close_message()" class="rollingpaper-body">
@@ -676,7 +679,9 @@
     <div onclick="close_message()" class="footer">
 
 
-        <button class="pink-button" onclick="location.href='/message?rolling={{mainpage_info.rolling_id}}&key={{mainpage_info.url}}'">축하하기</button>
+        <button class="pink-button"
+                onclick="location.href='/message?rolling={{mainpage_info.rolling_id}}&key={{mainpage_info.url}}'">축하하기
+        </button>
         <button class="blue-button" onclick="location.href='/sign-up'">나도 만들기</button>
 
     </div>

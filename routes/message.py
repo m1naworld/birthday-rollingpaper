@@ -1,34 +1,55 @@
 from flask import Blueprint, render_template, request, jsonify
 
-from pymongo import MongoClient
-client = MongoClient('mongodb+srv://pablaw:9dlrhd!357@cluster0.spvewgv.mongodb.net/?retryWrites=true&w=majority')
-db = client.dbsparta
+from db import db
 
-# 초기 세팅
-messageBP = Blueprint("message", __name__, template_folder="templates")
-# messageBP = Blueprint("message", __name__, url_prefix="/message")
+import bcrypt
 
-@messageBP.route('/')
+message = Blueprint("message", __name__, template_folder="templates")
+
+@message.route("/")
 def msg():
     return render_template("message.html")
 
-@messageBP.route("/save_msg", methods=["GET"])
-def test_fn():
-    return jsonify({'msg':'GET 연결 완료!'})
+@message.route('/detail-data/<rolling_id>')
+def send_msg(rolling_id):
+    return render_template("message.html")
 
-@messageBP.route("/save_msg", methods=["POST"])
+# @message.route("/save_msg", methods=["GET"])
+# def test_fn():
+#     return jsonify({'msg':'GET 연결 완료!'})
+
+@message.route("/save_msg", methods=["POST"])
 def msg_post():
-    name_receive = request.form['name_give']
-    pw_receive = request.form['pw_give']
-    candle_receive = request.form['candle_give']
+    name_receive = request.form['nick_give']
     msg_receive = request.form['msg_give']
+    candle_receive = request.form['candle_give']
+    pw_receive = request.form['pwd_give']
+    rolling_id = request.form['rolling_give']
+    print(rolling_id);
+    data = db.message.find_one({'title': '초기값'})
+    count = data['count']
 
+    message_id = int(count) + 1
+
+    rolling_id = int(rolling_id)
+
+    db.message.update_one({'count': int(count)}, {'$set': {'count': message_id}})
+
+    pw_receive = pw_receive.encode('utf-8')
+    hashed_password = bcrypt.hashpw(pw_receive, bcrypt.gensalt())
+    pw_receive = hashed_password.decode('utf-8')
+    print(candle_receive)
     doc = {
-        'name': name_receive,
-        'pw': pw_receive,
-        'candle': candle_receive,
-        'msg': msg_receive
+        'rolling_id': rolling_id,
+        'message_id' : message_id,
+        'nickname': name_receive,
+        'message_password': pw_receive,
+        'content': msg_receive,
+        'candle_id': candle_receive
     }
-    db.rolling.insert_one(doc)
+    db.message.insert_one(doc)
+
 
     return jsonify({'msg':'저장 완료!'})
+
+

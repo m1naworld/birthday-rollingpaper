@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <title>Mypage</title>
+    <style>
+        @font-face {
+            font-family: 'Cafe24Ssurround';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'S-CoreDream-5Light';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'LeeSeoyun';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            --color-background: #FFF7BB;
+            --color-background-2: #B8E2E8;
+            --color-point-1: #FFA3B5;
+            --color-point-2: #6ED2C4;
+            --color-point-3: #FBEB54;
+            --color-black: #949494;
+            --font-point: Cafe24Ssurround;
+            --font-basic: S-CoreDream-3Light;
+            --font-handwriting: LeeSeoyun;
+        }
+
+        body {
+            background-image: url("/static/img/background.png");
+            background-repeat: repeat-y;
+            background-size: cover;
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            margin: 40px;
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+
+        }
+        .header .back {
+            width: 8vw;
+            color: white;
+            background-color: var(--color-point-1);
+            border: none;
+            border-radius: 3rem;
+            font-family: var(--font-point);
+            font-size: 2rem;
+            padding: 20px 10px 20px 10px;
+        }
+        .header .logout {
+            margin-top: 70px;
+            width: 18vw;
+            color: white;
+            background-color: var(--color-point-1);
+            border: none;
+            border-radius: 3rem;
+            font-family: var(--font-point);
+            font-size: 2rem;
+            padding: 20px 10px 20px 10px;
+        }
+        .cake-card-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card-container {
+            margin-top: 30px;
+            margin-bottom: 50px;
+            width: 90vw;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-auto-rows: 700px;
+            grid-gap: 30px;
+        }
+
+        .card-container .new-cake-card{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: solid 4px var(--color-point-3);
+            background-color: rgba(253, 226, 100, 0.41);
+            border-radius: 10px;
+        }
+
+        .card-container .new-cake-card .new-cake-button {
+            width: 8vw;
+            color: white;
+            background-color: var(--color-point-2);
+            border: none;
+            border-radius: 4rem;
+            font-family: var(--font-basic);
+            font-size: 3rem;
+            padding: 10px;
+        }
+        .card-container .cake-card{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: solid 4px var(--color-point-3);
+            background-color: rgba(253, 226, 100, 0.41);
+            border-radius: 10px;
+        }
+
+        .card-container .cake-card img{
+            width: 100%;
+        }
+
+        .card-container .cake-card .cake-comment {
+            margin-top: -50px;
+            text-align: center;
+        }
+
+        .card-container .cake-card .cake-comment .cake-name {
+            color: var(--color-point-2);
+            font-family: var(--font-point);
+            font-size: 2rem;
+        }
+
+        .card-container .cake-card .cake-comment .cake-date{
+            margin-top: 10px;
+            color: var(--color-point-1);
+            font-family: var(--font-basic);
+            font-size: 2rem;
+        }
+        .checked-box-container {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+        }
+        .delete {
+            margin-top: 13px;
+            margin-left: 71px;
+            width: 13vw;
+            color: white;
+            background-color: #FF465F;
+            border: none;
+            border-radius: 3rem;
+            font-family: var(--font-point);
+            font-size: 2rem;
+            padding: 20px 10px 20px 10px;
+        }
+        .show {
+            margin-top: 13px;
+            margin-left: 16px;
+            width: 14vw;
+            color: white;
+            background-color: #2B63DE;
+            border: none;
+            border-radius: 3rem;
+            font-family: var(--font-point);
+            font-size: 2rem;
+            padding: 20px 10px 20px 10px;
+        }
+
+        input + label {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 3px solid var(--color-point-2);
+            cursor: pointer;
+        }
+
+        input:checked + label {
+            background-color: var(--color-point-2);
+        }
+
+        input {
+            display: none;
+        }
+    </style>
+    <script>
+        let rows = 0;
+
+        $(document).ready(function () {
+            let url = 0;
+
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
+             $.ajax({
+                type: "GET",
+                url: "/mypage/show",
+
+                 beforeSend: function (request) {
+                        request.setRequestHeader( 'X-CSRF-TOKEN', getCookie('csrf_access_token'));
+                        console.log(getCookie('csrf_access_token'));
+                    },
+                data: {},
+                success: function (response) {
+                    console.log(response['rollings']);
+                    rows = response['rollings'];
+                    for(let i=0; i < rows.length; i++){
+                        let r_id = rows[i]['rolling_id'];
+                        let birth = rows[i]['birth'];
+                        let nick = rows[i]['user_nickname'];
+                        let cake = rows[i]['cake_id'];
+                        let url = rows[i]['url'];
+                        let c_img = 0;
+
+                        if(cake == 'strawberry'){
+                            c_img = "/static/img/cake_strawberry.png";
+                        }
+                        else if(cake == 'choco'){
+                            c_img = "/static/img/cake_choco.png";
+                        }
+                        else if(cake == 'sweetpotato'){
+                            c_img = "/static/img/cake_sweetpotato.png";
+                        }
+                        else if(cake == 'halloween'){
+                            c_img = "/static/img/cake_halloween.png";
+                        }
+
+                        let temp_html = `<div class="cake-card">
+                                            <img src=${c_img}>
+                                            <div class="cake-comment">
+                                                <div class="cake-name">${nick}의</div>
+                                                <div class="cake-name">생일 케이크</div>
+                                                <div class="cake-date">${birth}</div>
+                                            </div>
+                                            <div class="buttons">
+                                                <button onclick='cakedel(${r_id})'class="delete">삭제</button>
+                                                <button onclick='cakeshow(${r_id})' class="show">자세히</button>
+                                            </div>
+                                        </div>`
+
+                        $('.card-container').append(temp_html)
+                    }
+                },
+                 error: function (response) {
+                     alert(response['responseJSON']['msg'])
+                     console.log('there is an error!')
+                     location.href = `/login`;
+                 }
+            });
+        });
+
+<!--        삭제기능-->
+
+        function cakedel(del_num) {
+            console.log('r_id = ');
+            console.log(del_num);
+            if (!confirm("정말 삭제하시겠습니까?")) {
+
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url: "/mypage/delete",
+                    data: {del_num: del_num},
+                    success: function (response) {
+                        window.location.reload();
+                    }
+                })
+            }
+        }
+
+        function cakeshow(r_id) {
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
+
+            for (let i = 0; i < rows.length; i++) {
+                let id = rows[i]['rolling_id'];
+                if (r_id == id) {
+                    let url = rows[i]['url'];
+                    console.log("/rolling?key=" + url)
+                    $.ajax({
+                        type: "GET",
+                        beforeSend: function (request) {
+                            request.setRequestHeader('X-CSRF-TOKEN', getCookie('csrf_access_token'));
+                            console.log(getCookie('csrf_access_token'));
+                        },
+                        url: "/rolling/check",
+                        data: {},
+                        success: function (response, testStatus, xhr) {
+                            if (xhr.status == 200) {
+                                location.href = "/rolling?key=" + url
+                            } else {
+                                location.href = '/login'
+                            }
+                        }
+                    });
+                }
+
+            }
+        }
+
+    </script>
+</head>
+<body>
+<div class="header">
+<!--    <button class="back"><</button>-->
+    <button class="logout">로그아웃</button>
+</div>
+<div class="cake-card-container">
+    <div class="card-container">
+        <div class="new-cake-card">
+            <button onclick="window.location.href = '/cake';"class="new-cake-button" >+</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

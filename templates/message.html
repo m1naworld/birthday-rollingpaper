@@ -2,53 +2,308 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>카드 페이지</title>
 
+    <style>
+        @font-face {
+            font-family: 'Cafe24Ssurround';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+             font-family: 'S-CoreDream-3Light';
+             src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+             font-weight: normal;
+             font-style: normal;
+        }
+        :root {
+            --color-background: #FFF7BB;
+            --color-background-2: #B8E2E8;
+            --color-point-1: #FFA3B5;
+            --color-point-2: #6ED2C4;
+            --color-point-3: #FBEB54;
+            --color-black: #949494;
+            --font-point: Cafe24Ssurround;
+            --font-basic: S-CoreDream-3Light;
+            --font-handwriting: LeeSeoyun;
+        }
+        body {
+            width: 375px;
+            height: 667px;
+            background-image: url("/static/img/background.png");
+        }
+
+        .nav_btn {
+            background: none;
+            border: none;
+            width: 150px;
+            font-size: 17px;
+            font-family: var(--font-point);
+            cursor: pointer;
+            color: black;
+        }
+        #top_nav_btn{
+            margin: 20px 0 0 10px;
+        }
+        #bottom_nav_btn{
+
+        }
+        .candle_title {
+            margin: 10px;
+            font-size: 20px;
+            font-family: var(--font-point);
+        }
+        .btn-outline-primary {
+            width: 105px;
+            height: 95px;
+            object-fit: contain;
+            border: gainsboro solid 2px !important;
+            border-radius: 20px !important;
+            padding: 10px;
+            margin: 5px 4px 5px 4px !important;
+            background-color: #FAF4F1 !important;
+            color: black !important;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+            -webkit-appearance: none !important;
+            -moz-appearance: none !important;
+            appearance: none !important;
+        }
+        .btn-outline-primary:focus{
+            box-shadow: none !important;
+        }
+        .btn-outline-primary:hover{
+            border: solid var(--color-point-1) 4px !important;
+        }
+        .btn-outline-primary:not(hover){
+            border: solid var(--color-background-2) 2px !important;
+        }
+        .container{
+            height: 200vh;
+            transition: transform 0.85s;
+        }
+        .inner {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            float: bottom;
+        }
+        #candle_section{
+            padding-bottom: 100px;
+        }
+        #message_section{
+            padding-bottom: 60px;
+        }
+        .candle_name{
+            font-size: 17px;
+            font-family: var(--font-point);
+        }
+        span{
+            padding: 0 20px 0 20px;
+        }
+        .msg_title {
+            margin: 10px 0 10px 10px;
+            font-size: 20px;
+            font-family: var(--font-point);
+        }
+        .msg_section{
+            width: 355px;
+            height:220px;
+            background-color: #FAF4F1 !important;
+            border-radius: 20px;
+            margin: 0 0 10px 0;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+        }
+        .msg {
+            width: 335px;
+            height:200px;
+            margin: 10px 0 10px 10px;
+            text-align: center;
+            background-color: #FAF4F1;
+            font-family: var(--font-handwriting);
+            border-radius: 20px;
+            border: #FFA3B5 dashed 2.5px;
+            border-color: var(--color-point-1);
+            resize: none;
+            overflow: unset;
+        }
+        .msg:focus{
+            outline: none;
+        }
+        .submit_name{
+            width: 43vw;
+            height:35px;
+            margin: 0 5px 10px 0;
+            font-family: var(--font-handwriting);
+            text-align: center;
+            border-radius: 10px;
+            border: #FFA3B5;
+            background-color: #FAF4F1;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+        }
+        .submit_name:focus{
+            outline: none;
+        }
+        .submit_pw{
+            width: 43vw;
+            height:35px;
+            margin: 0 0 10px 20px;
+            font-family: var(--font-handwriting);
+            text-align: center;
+            border-radius: 10px;
+            border: #FFA3B5;
+            background-color: #FAF4F1;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+        }
+        .submit_pw:focus{
+            outline: none;
+        }
+        .submit_btn_section{
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            width: 353px;
+            height: 37px;
+            background-color: #FAF4F1;
+            margin: 0 0 10px 0;
+            border-radius: 10px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+        }
+        .submit_btn_section:hover{
+            background-color: var(--color-point-1);
+        }
+        .submit_btn_section:focus{
+            background-color: var(--color-point-1);
+        }
+        #submit_btn{
+            width: 355px;
+            height: 37px;
+            border: darkblue dashed 2px;
+            border-radius: 10px;
+            padding: 0 !important;
+            font-family: var(--font-point);
+            color: var(--color-point-1);
+            border: white solid 2.5px;
+            border-color: var(--color-point-1);
+            background-color: rgba(0, 0, 0, 0);
+        }
+        #submit_btn:focus, #submit_btn:hover{
+            box-shadow: none;
+            color: white;
+            background-color: var(--color-point-1);
+        }
+    </style>
+    <script>
+        $(function(){
+            $('.nav_btn').click(function(){
+                console.log(location.search);
+                location.href = `/rolling/guest${location.search}`;
+            })
+        })
+
+        var candle_id = '';
+
+        var clickEvent = (e) => {
+            candle_id = e.id;
+            console.log(candle_id);
+            $('.container').attr('style', 'transform: translateY(-100vh)');
+            $('.nav_btn').attr('style', 'transform: translateY(-100vh)');
+        }
+
+        $('#msg_content').click(() => console.log(candle_id));
+        $('#msg_name').click(() => console.log(candle_id));
+        $('#msg_pw').click(() => console.log(candle_id));
+
+        $(function () {
+            $('#submit_btn').click(function() {
+
+
+                var rolling_num = Number(location.search.split("&")[0].split("=")[1]);
+
+                var name = $('#msg_name').val();
+                var pwd = $('#msg_pw').val();
+                var content = $('#msg_content').val();
+
+                if (candle_id == "") {
+                    alert("전달할 캔들을 선택해주세요");
+                } else if (content == "") {
+                    alert("메시지를 입력해주세요");
+                } else if (name == "") {
+                    alert("닉네임을 입력해주세요");
+                } else if (pwd == "") {
+                    alert("비밀번호를 입력해주세요");
+                } else {
+                    $.ajax({
+                    type: "POST",
+                    url: "/message/save_msg",
+                    data: {msg_give: content, nick_give: name, pwd_give: pwd, candle_give: candle_id, rolling_give: rolling_num},
+                    success: function (response) {
+							alert(response['msg']);
+							window.location.reload();
+							location.href = `/rolling/guest/${location.search}`;
+                        }
+                        });
+                }
+            })
+        })
+    </script>
+
     <meta name="viewport" content="width=375px, initial-scale=1.0">
-{#    css, js파일 임포트#}
-    <script defer src="/static/main_message.js"></script>
-    <link rel="stylesheet" href="/static/style_message.css">
-{#    부트스트랩 임포트#}
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
 </head>
 <body>
-    <div class="nav_btn">< 이전으로</div>
-    <h2 class="candle_title">캔들색상을 선택하세요🕯</h2>
-    <div class="candle_section">
+    <button type="button" id="top_nav_btn" class="nav_btn">< 이전페이지</button>
+    <div class="container" style="overflow: hidden; position: fixed">
+    <form id="candle_section" class="inner">
+    <h2 class="candle_title">🕯 캔들색상을 선택하세요</h2>
         <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <button id="candle_1" style="background-image: url('/static/img/candle_red.png')" type="button" class="btn btn-outline-primary"></button>
-            <button id="candle_2" style="background-image: url('/static/img/candle_purple.png')" type="button" class="btn btn-outline-primary"></button>
-            <button id="candle_3" style="background-image: url('/static/img/candle_orange.png')" type="button" class="btn btn-outline-primary"></button>
+            <button onclick="clickEvent(red)" id="red" style="background-image: url('/static/img/candle_red.png')" type="button" class="btn btn-outline-primary"></button>
+            <button onclick="clickEvent(purple)" id="purple" style="background-image: url('/static/img/candle_purple.png')" type="button" class="btn btn-outline-primary"></button>
+            <button onclick="clickEvent(orange)" id="orange" style="background-image: url('/static/img/candle_orange.png')" type="button" class="btn btn-outline-primary"></button>
+        </div>
+        <div class="candle_name">
+            <span>빨강캔들</span> <span>보라캔들</span> <span>주황캔들</span>
         </div>
             <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <button id="candle_4" style="background-image: url('/static/img/candle_blue.png')" type="button" class="btn btn-outline-primary"></button>
-            <button id="candle_5" style="background-image: url('/static/img/candle_mint.png')" type="button" class="btn btn-outline-primary"></button>
-            <button id="candle_6" style="background-image: url('/static/img/candle_skyblue.png')" type="button" class="btn btn-outline-primary"></button>
+            <button onclick="clickEvent(blue)" id="blue" style="background-image: url('/static/img/candle_blue.png')" type="button" class="btn btn-outline-primary"></button>
+            <button onclick="clickEvent(mint)" id="mint" style="background-image: url('/static/img/candle_mint.png')" type="button" class="btn btn-outline-primary"></button>
+            <button onclick="clickEvent(skyblue)" id="skyblue" style="background-image: url('/static/img/candle_skyblue.png')" type="button" class="btn btn-outline-primary"></button>
         </div>
-    </div>
-    <h2 class="msg_title">메시지를 남겨주세요</h2>
-    <div class="msg_section">
-        <textarea type="text"
-                id="msg_content" class="msg" type="text" wrap="hard"
-                maxlength="140"
-                cols="10" rows="3"
-                placeholder="&#13;&#10;&#13;&#10;따뜻한 메시지를 남겨주세요!&#13;&#10;&#13;&#10;150자 이내"></textarea>
-{#        <input id="msg_content" class="msg" type="text" wrap="hard" placeholder="따뜻한 메시지를 남겨주세요!">#}
-    </div>
-    <form class="submit">
-        <input id="msg_name" class="submit_name" type="text" maxlength="9" placeholder="10자 이내로 입력하세요">
-        <input id="msg_pw" class="submit_pw" type="password" maxlength="4" placeholder="4자리">
-        <div class="submit_btn_section">
-            <button id="submit_btn" type="button" class="btn btn-outline-warning">작성하기</button>
+        <div class="candle_name">
+            <span>파랑캔들</span> <span>민트캔들</span> <span>하늘캔들</span>
         </div>
     </form>
+    <div id="message_section" class="inner">
+        <h2 class="msg_title">💌 메시지를 남겨주세요</h2>
+        <div class="msg_section">
+            <textarea type="text"
+                    id="msg_content" class="msg" type="text" wrap="hard"
+                    maxlength="140"
+                    cols="10" rows="3"
+                    placeholder="&#13;&#10;&#13;&#10;따뜻한 메시지를 남겨주세요!&#13;&#10;&#13;&#10;150자 이내"></textarea>
+        </div>
+        <form class="submit">
+            <input id="msg_name" class="submit_name" type="text" maxlength="9" placeholder="닉네임">
+            <input id="msg_pw" class="submit_pw" type="password" maxlength="4" placeholder="비밀번호 4자리">
+
+            <div class="submit_btn_section">
+                <button id="submit_btn" type="button" class="btn btn-outline-warning">작성하기</button>
+            </div>
+        </form>
+    </div>
+    <button type="button" id="bottom_nav_btn" class="nav_btn">< 이전페이지</button>
+    </div>
 </body>
 </html>

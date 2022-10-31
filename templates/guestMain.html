@@ -574,10 +574,8 @@
                     url: "/rolling/message/check",
                     data: {'message_id': message_id, 'message_password': password},
                     success: function (response) {
-                        // const success = response['success'];
-                        // const result = response['data'];
-                        const success = true;
-                        result = {"rolling_id": 13, "message_id": 64, "nickname": "d안녕", "candle_id":"red", "content": "수정되나?"}
+                        const success = response['success'];
+                        const result = response['data'];
                         if (success && type === "update") {
                             // alert("비밀번호 일치!")
                             let temp_html =
@@ -618,7 +616,7 @@
         function password_check(message_id, type) {
             $('.message').hide();
             let temp_html = ` <div class="message">
-                <input type='password' id="input-password" style='width:80%;height:70px;' placeholder=" 비밀번호" required/>
+                <input type='password' id="input-password" style='width:80%;height:70px;' placeholder=" 비밀번호 4자리" required/>
                 <button onclick="message_update_and_delete(${message_id}, $('#input-password').val(), \'${type}'\)" class="yellow-button" style="margin-top: 20px">비밀번호 확인</button>
                 </div>
                 </div>`

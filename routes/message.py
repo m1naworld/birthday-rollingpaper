@@ -32,13 +32,13 @@ def msg_post():
     message_id = int(count) + 1
 
     rolling_id = int(rolling_id)
-    print(type(rolling_id))
+
     db.message.update_one({'count': int(count)}, {'$set': {'count': message_id}})
 
     pw_receive = pw_receive.encode('utf-8')
     hashed_password = bcrypt.hashpw(pw_receive, bcrypt.gensalt())
     pw_receive = hashed_password.decode('utf-8')
-
+    print(candle_receive)
     doc = {
         'rolling_id': rolling_id,
         'message_id' : message_id,

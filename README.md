@@ -1,5 +1,9 @@
-### 🚢 향해 99 사전 프로젝트 - 🎂 birthday_rollingpaper
-생일 축하 롤링페이퍼를 만들어 공유해보아요! 
+<br/>
+
+## 🚢 향해 99 사전 프로젝트 - 🎂 birthday_rollingpaper
+### 생일 축하 롤링페이퍼를 만들어 공유해보아요! 
+
+<br/>
 
 ### 1. 프로젝트 소개
 내 트리를 꾸며줘에서 영감을 받아 일상에서 좀 더 활용할 수 있는 '생일 축하 롤링페이퍼'를 만들어 보자! 에서 시작하였습니다. 
@@ -8,11 +12,19 @@
 - 기획 기간: 2022.10.13 ~ 2022.10.15
 - 개발 기간: 2022.10.17 ~ 2022.10.31 (약 2주)
 
+<br/>
+
 ### 2. 기술스택
 - HTML, CSS, JS, Python, Mongodb
 
+<br/>
+
 ### 3. DB 구조
-<img width="600" src="https://user-images.githubusercontent.com/85235063/198988906-804373cc-2fc4-48e7-8f0e-572f310ddde7.png">
+<br/>
+
+<div align=center>
+<img width="800" src="https://user-images.githubusercontent.com/85235063/198988906-804373cc-2fc4-48e7-8f0e-572f310ddde7.png">
+</div>
 
 <br/>
 
@@ -20,7 +32,11 @@
 - jwt를 통한 로그인 유지 
 - CRUD
 
+<br/>
+
+<div align=center>
 <img width="738" src="https://user-images.githubusercontent.com/85235063/198992853-de539659-1eb7-47a5-9d17-ea2e4d867646.png">
+</div>
 
 <br/>
 
@@ -30,14 +46,19 @@
 
 <video  src="https://user-images.githubusercontent.com/85235063/199139675-7e38be0f-01f3-47e4-ad92-17d2da865f45.mp4"  controls>비디오를 재생할 수 없습니다.</video>
 
+<br/>
 
 - 마이페이지
 
 <video  src="https://user-images.githubusercontent.com/85235063/199138821-8ce99a5b-6754-4f28-a3c1-ae0570e0ebda.mp4"  controls>비디오를 재생할 수 없습니다.</video>
 
+<br/>
+
 - 롤링페이퍼 생성(케이크 선택) 페이지
 
 <video  src="https://user-images.githubusercontent.com/85235063/199140036-35f4c5dc-903c-4c99-a1d9-a7a3e40bc8ed.mp4"  controls>비디오를 재생할 수 없습니다.</video>
+
+<br/>
 
 - 메인 페이지 및 메시지 작성 페이지
 
@@ -57,7 +78,7 @@
 <br/>
 
 ### 2) 메인 페이지
-롤링페이퍼를 만든 로그인한 유저와 로그인 하지 않은 사람들이 메시지를 남길 수 있도록 구현하기 위하여 메인 페이지를 2개로 나눠서 만듬.
+롤링페이퍼를 만든 로그인한 유저와 로그인 하지 않은 사람들이 메시지를 남길 수 있도록 메인 페이지를 2개로 나누어 구현.
 
 ### 2-1) 메인 페이지 - (유저.ver)
 > 공유하기 버튼을 통해 게스트 접근 메인 페이지 링크 복사, 마음에 안드는 메시지 삭제 기능
@@ -76,7 +97,7 @@
 | 메시지 수정 창                                                                                                                      | 메시지 삭제 창                                                                                                                      |
 |-------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
 | <img width="300" src="https://user-images.githubusercontent.com/85235063/199001249-fcea9e4d-1f17-41d0-8a62-b96b968c0977.png"> | <img width="300" src="https://user-images.githubusercontent.com/85235063/199001241-2340379b-edea-49df-b70b-fcd537d6d454.png"> |
-|
+
 
 <br/>
 
@@ -99,7 +120,7 @@
 <br/>
 
 ----
-### 기획 및 개발 
+### 🎉 기획 및 개발 
 - 안수빈 [AnSuebin](https://github.com/AnSuebin)
 - 김예진 [yejin0718](https://github.com/yejin0718)
 - 송민아 [m1naworld](https://github.com/m1naworld)

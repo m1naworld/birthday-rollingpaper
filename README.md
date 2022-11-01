@@ -15,7 +15,7 @@
 <br/>
 
 ### 2. 기술스택
-- HTML, CSS, JS, Python, Mongodb
+- HTML, CSS, JS, Python, Mongodb , AWS
 
 <br/>
 

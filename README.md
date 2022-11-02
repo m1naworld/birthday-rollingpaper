@@ -1,6 +1,6 @@
 <br/>
 
-## 🚢 향해 99 사전 프로젝트 - 🎂 birthday_rollingpaper
+## 🚢 향해 99 사전 프로젝트 - 🎂 birthday_rollingpaper '얘듀라 고마어어어'
 ### 생일 축하 롤링페이퍼를 만들어 공유해보아요! 
 
 <br/>
@@ -62,7 +62,15 @@
 
 - 메인 페이지 및 메시지 작성 페이지
 
-<video  src="https://user-images.githubusercontent.com/85235063/199141329-94809347-ac2d-4645-a1ff-dc18e1c9222f.mp4"  controls>비디오를 재생할 수 없습니다.</video>
+<video src="https://user-images.githubusercontent.com/85235063/199141329-94809347-ac2d-4645-a1ff-dc18e1c9222f.mp4"  controls>비디오를 재생할 수 없습니다.</video>
+
+
+<br/>
+
+
+- 실제 공유 사례
+
+<video src="https://user-images.githubusercontent.com/85235063/199148363-66f9e074-4781-434b-a309-bef325c35b83.mp4"  controls>비디오를 재생할 수 없습니다.</video>
 
 <br/>
 

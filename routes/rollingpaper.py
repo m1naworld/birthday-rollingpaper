@@ -32,8 +32,6 @@ def get_my_rollingpaper():
 
         result = db.rollingpaper.find_one({'url': url}, {'_id': False})
         print(result)
-        message_count = db.message.count_documents({'rolling_id': result['rolling_id']})
-        # return render_template("rollingpaper.html", mainpage_info=result, message_count=message_count), 200
 
         success = result['user_id'] == user_id
         if(success):
